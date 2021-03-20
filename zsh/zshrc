@@ -1,6 +1,7 @@
 # prompt configuration
 
-PROMPT='%F{118}%~%f $ '
+fpath=($DOTFILES/prompt $fpath)
+autoload -Uz prompt_prettification_setup; prompt_prettification_setup
 
 # zhistory
 
@@ -10,3 +11,10 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 # aliases
 
 source $DOTFILES/aliases
+
+# completion
+
+#autoload -U compinit; compinit
+#_comp_options+=(globdots)   # With hidden files
+#source $ZDOTDIR/plugins/completion.zsh
+
