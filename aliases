@@ -1,4 +1,42 @@
-# basic navigation aliases
+# the BEST alias ever
+alias please='sudo'
 
-alias la="ls -a"
-alias ll="ls -la"
+# basic navigation aliases
+alias cls='clear; ls'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias cp='cp -r' # copy directories recursively
+
+# list dirs first and colored
+alias ls='ls -h --color=auto --group-directories-first'
+alias la='ls -ah --color=auto --group-directories-first'
+alias ll='ls -lah --color=auto --group-directories-first'
+
+# mimic vim functions
+alias :q='exit'
+
+# editing and reliading
+alias ze='vim $ZDOTDIR/.zshrc'      # zshrc edit
+alias zr='source $ZDOTDIR/.zshrc'   # zshrc reload
+alias ae='vim $DOTFILES/aliases'    # aliases edit
+alias ar='source $DOTFILES/aliases' # aliases reload
+
+# git aliases
+
+alias gs='git status'
+alias ga='git add -A'
+alias gap='git add -p'
+alias gm='git merge'
+alias gl='git log'
+alias gc='git commit'
+alias gck='git checkout'
+alias gckb='git checkout -b'
+alias gpl='git pull'
+alias gp='git push -u origin HEAD'
+alias gr='git reset'
+alias grh='git reset --hard'
+alias gcl='git clean'
+alias gcln='git clean -n'
