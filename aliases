@@ -45,3 +45,17 @@ alias gr='git reset'
 alias grh='git reset --hard'
 alias gcl='git clean'
 alias gcln='git clean -n'
+
+# python aliases
+
+alias python=python3
+alias pip=pip3
+alias p='python'
+alias v='python -m venv venv'
+alias a='source venv/bin/activate'
+alias d='deactivate'
+alias r='pip install -r requirements.txt'
+alias tr='pip install -t tests-requirements.txt'
+alias pp='python -m pytest -v'
+alias var='v;a;r'
+alias vart='var;tr'
