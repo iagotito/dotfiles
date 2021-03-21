@@ -15,6 +15,11 @@ alias ls='ls -h --color=auto --group-directories-first'
 alias la='ls -ah --color=auto --group-directories-first'
 alias ll='ls -lah --color=auto --group-directories-first'
 
+# highlight grep match
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
 # mimic vim functions
 alias :q='exit'
 
