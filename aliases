@@ -3,6 +3,7 @@ alias please='sudo'
 
 # basic navigation aliases
 alias cls='clear; ls'
+alias uz='unzip'
 
 alias ..='cd ..'
 alias ...='cd ../..'
