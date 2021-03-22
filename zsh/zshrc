@@ -11,6 +11,7 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 # aliases
 
 source $DOTFILES/aliases
+source $DOTFILES/personal-aliases
 
 # completion
 
