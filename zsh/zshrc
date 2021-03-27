@@ -25,6 +25,10 @@ source $DOTFILES/personal-aliases
 # see: https://github.com/zsh-users/zsh-syntax-highlighting
 source $DOTFILES/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+if [ -z "$TMUX" ]; then
+  tmux          
+fi  
+
 # asdf
 
 . $HOME/.asdf/asdf.sh
