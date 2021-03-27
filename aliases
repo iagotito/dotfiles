@@ -47,6 +47,15 @@ alias grh='git reset --hard'
 alias gcl='git clean'
 alias gcln='git clean -n'
 
+# tmux
+
+alias ta='tmux attach-session -t'
+alias tl='tmux list-sessions'
+
+# docker
+
+alias dm='docker exec -it mongodb /bin/bash'  # connect into a mongo docker contaiener
+
 # python aliases
 
 alias python=python3
@@ -56,7 +65,11 @@ alias v='python -m venv venv'
 alias a='source venv/bin/activate'
 alias d='deactivate'
 alias r='pip install -r requirements.txt'
-alias tr='pip install -t tests-requirements.txt'
+alias tr='pip install -r tests-requirements.txt'
 alias pp='python -m pytest -v'
 alias var='v;a;r'
 alias vart='var;tr'
+
+# vscode
+
+alias c='code .'
