@@ -24,3 +24,13 @@ source $DOTFILES/personal-aliases
 # activate the syntax highlighting
 # see: https://github.com/zsh-users/zsh-syntax-highlighting
 source $DOTFILES/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# asdf
+
+. $HOME/.asdf/asdf.sh
+
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit
+compinit
