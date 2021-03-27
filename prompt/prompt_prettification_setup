@@ -122,7 +122,7 @@ prompt_prettification_setup() {
 
     prompt_git_branch
     RPROMPT='$(prompt_git_info) $(git_prompt_status)'
-    PROMPT=$'%F{green}%~ %B%F{blue}>%f%b '
+    PROMPT=$'%F{10}%~ %B%F{blue}>%f%b '
 }
 
 prompt_prettification_setup
