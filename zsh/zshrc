@@ -7,17 +7,19 @@ autoload -Uz prompt_prettification_setup; prompt_prettification_setup
 
 setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
 setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd.
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_FIND_NO_DUPS
+
+# functions
+
+source $DOTFILES/functions
 
 # aliases
 
 source $DOTFILES/aliases
 source $DOTFILES/personal-aliases
-
-# completion
-
-#autoload -U compinit; compinit
-#_comp_options+=(globdots)   # With hidden files
-#source $ZDOTDIR/plugins/completion.zsh
 
 # activate the syntax highlighting
 # see: https://github.com/zsh-users/zsh-syntax-highlighting
