@@ -23,14 +23,14 @@ source $DOTFILES/personal-aliases
 
 # activate the syntax highlighting
 # see: https://github.com/zsh-users/zsh-syntax-highlighting
-source $DOTFILES/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# starts new terminal with a tmux session
 if [ -z "$TMUX" ]; then
-  tmux          
-fi  
+  tmux
+fi
 
 # asdf
-
 . $HOME/.asdf/asdf.sh
 
 # append completions to fpath

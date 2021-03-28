@@ -28,9 +28,10 @@ git clone --depth=1 --recurse-submodule https://github.com/iagotito/dotfiles $DO
 
 echo "Copying .zshenv files to $HOME"
 cp $DOTFILES/zsh/zshenv $HOME/.zshenv
-echo "Copying .zshrc to $ZDOTDIR"
+echo "Copying others zsh files to $ZDOTDIR"
 mkdir -p $ZDOTDIR
 cp $DOTFILES/zsh/zshrc $ZDOTDIR/.zshrc
+cp -r $DOTFILES/zsh/plugins $ZDOTDIR
 
 echo "Copying .tmux.conf file to $HOME"
 cp $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
