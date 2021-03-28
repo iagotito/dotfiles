@@ -35,4 +35,7 @@ cp $DOTFILES/zsh/zshrc $ZDOTDIR/.zshrc
 echo "Copying .tmux.conf file to $HOME"
 cp $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
 
+echo "Creating an empty personal-aliases file to avoid error after installation"
+touch $DOTFILES/personal-aliases
+
 echo "Instalation complete. Restart your zsh and tmux server to see the changes."
