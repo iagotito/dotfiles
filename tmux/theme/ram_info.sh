@@ -6,7 +6,7 @@ get_percent()
 {
 	total_mem=$(free -h | awk '/^Mem/ {print $2}')
 	memory_usage=$(free -g | awk '/^Mem/ {print $3}')
-	echo $memory_usage\G\B/$total_mem\G\B
+	echo $memory_usage\G\B/${total_mem%Gi}\G\B
 }
 
 main()
