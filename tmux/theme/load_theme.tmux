@@ -18,18 +18,18 @@ main()
   show_time="true"
   show_refresh="5"
 
-  # Dracula Color Pallette
+  # Based on Dracula Color Pallette, but with bright colors
   white='#f8f8f2'
-  gray='#44475a'
+  gray='#181B28'
   dark_gray='#282a36'
-  light_purple='#bd93f9'
-  dark_purple='#6272a4'
-  cyan='#8be9fd'
-  green='#50fa7b'
-  orange='#ffb86c'
-  red='#ff5555'
-  pink='#ff79c6'
-  yellow='#f1fa8c'
+  light_purple='#9d5ef7'
+  dark_purple='#472c91'
+  cyan='#00d2ff'
+  green='#00ff00'
+  orange='#ff8400'
+  red='#ff0000'
+  pink='#ff00ff'
+  yellow='#ffff00'
 
 
   # Handle left icon configuration
@@ -61,8 +61,8 @@ main()
 	tmux set-option -g clock-mode-style 24
 
   # set length
-  tmux set-option -g status-left-length 100
-  tmux set-option -g status-right-length 100
+  tmux set-option -g status-left-length 57
+  tmux set-option -g status-right-length 47
 
   # pane border styling
   tmux set-option -g pane-active-border-style "fg=${light_purple}"
