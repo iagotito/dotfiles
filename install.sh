@@ -24,7 +24,7 @@ fi
 DOTFILES="$HOME/.dotfiles"
 ZDOTDIR="$HOME/.config/zsh"
 
-git clone --depth=1 https://github.com/iagotito/dotfiles $DOTFILES
+git clone --depth=1 --recurse-submodule https://github.com/iagotito/dotfiles $DOTFILES
 
 echo "Copying .zshenv files to $HOME"
 cp $DOTFILES/zsh/zshenv $HOME/.zshenv
