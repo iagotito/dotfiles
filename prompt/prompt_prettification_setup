@@ -106,12 +106,12 @@ prompt_git_info() {
 prompt_prettification_setup() {
     # Display git branch
 
-    ZSH_THEME_GIT_PROMPT_PREFIX=" %F{yellow}λ:%f%F{blue}"
+    ZSH_THEME_GIT_PROMPT_PREFIX=" %F{202}λ:%f%F{21}" # OrangeRed1 and Blue1 256 color code
     ZSH_THEME_GIT_PROMPT_DIRTY=""
     ZSH_THEME_GIT_PROMPT_CLEAN=""
 
     ZSH_THEME_GIT_PROMPT_ADDED="%F{green}+%f "
-    ZSH_THEME_GIT_PROMPT_MODIFIED="%F{208}!%f " # orange xterm color code
+    ZSH_THEME_GIT_PROMPT_MODIFIED="%F{208}!%f " # DarkOrange 256 color code
     ZSH_THEME_GIT_PROMPT_DELETED="%F{red}x%f "
     ZSH_THEME_GIT_PROMPT_RENAMED="%F{magenta}➜%f "
     ZSH_THEME_GIT_PROMPT_UNMERGED="%F{yellow}═%f "
