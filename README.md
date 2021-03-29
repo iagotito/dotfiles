@@ -19,3 +19,7 @@ and `~/.tmux.conf` files so create a backup before.
 These are dotfiles mainly to zsh and tmux, so you need to have them 
 installed in order to use it well.se are dotfiles do zsh and tmux, 
 so you need to have them installed in order to use it well.
+
+## TODO
+
+Add completion to zsh and create dotfiles to vim.
