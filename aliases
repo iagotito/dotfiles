@@ -38,6 +38,7 @@ alias gap='git add -p'
 alias gm='git merge'
 alias gl='git log'
 alias gc='git commit'
+alias gb='git branch'
 alias gck='git checkout'
 alias gckb='git checkout -b'
 alias gpl='git pull'
@@ -54,7 +55,8 @@ alias tl='tmux list-sessions'
 
 # docker
 
-alias dm='docker exec -it mongodb /bin/bash'  # connect into a mongo docker contaiener
+alias dsm='docker start mongodb'
+alias dcm='docker exec -it mongodb /bin/bash'  # connect into a mongo docker contaiener
 
 # python aliases
 
