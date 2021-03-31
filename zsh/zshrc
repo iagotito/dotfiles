@@ -21,20 +21,24 @@ source $DOTFILES/functions
 source $DOTFILES/aliases
 source $DOTFILES/personal-aliases
 
-# activate the syntax highlighting
-# see: https://github.com/zsh-users/zsh-syntax-highlighting
-source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# starts new terminal with a tmux session
-if [ -z "$TMUX" ]; then
-  tmux
-fi
-
 # asdf
+
 . $HOME/.asdf/asdf.sh
 
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
-autoload -Uz compinit
-compinit
+autoload -Uz compinit; compinit
+_comp_options+=(globdots) # With hidden files
+source $DOTFILES/zsh/plugins/completion.zsh
+
+# activate the syntax highlighting
+# see: https://github.com/zsh-users/zsh-syntax-highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# starts new terminal with a tmux session and close it when quit tmux
+if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
+  exec tmux;
+fi
+
