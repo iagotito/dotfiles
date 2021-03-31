@@ -31,7 +31,6 @@ cp $DOTFILES/zsh/zshenv $HOME/.zshenv
 echo "Copying others zsh files to $ZDOTDIR"
 mkdir -p $ZDOTDIR
 cp $DOTFILES/zsh/zshrc $ZDOTDIR/.zshrc
-cp -r $DOTFILES/zsh/plugins $ZDOTDIR
 
 echo "Copying .tmux.conf file to $HOME"
 cp $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
