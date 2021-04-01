@@ -43,7 +43,7 @@ source $DOTFILES/zsh/plugins/completion.zsh
 
 # activate the syntax highlighting
 # see: https://github.com/zsh-users/zsh-syntax-highlighting
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # starts new terminal with a tmux session and close it when quit tmux
