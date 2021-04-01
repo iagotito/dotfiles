@@ -106,7 +106,9 @@ prompt_git_info() {
 prompt_prettification_setup() {
     # Display git branch
 
-    ZSH_THEME_GIT_PROMPT_PREFIX=" %F{202}λ:%f%F{21}" # OrangeRed1 and Blue1 256 color code
+    ZSH_THEME_GIT_PROMPT_PREFIX=" %F{202}λ:%f%F{#a97f7c}" # OrangeRed1 and Blue1 256 color code
+    							  # for the branch color, #a97fc7 
+							  # (a light purple) is also nice
     ZSH_THEME_GIT_PROMPT_DIRTY=""
     ZSH_THEME_GIT_PROMPT_CLEAN=""
 
