@@ -47,6 +47,7 @@ alias gr='git reset'
 alias grh='git reset --hard'
 alias gcl='git clean'
 alias gcln='git clean -n'
+alias gd='git diff'
 
 # tmux
 

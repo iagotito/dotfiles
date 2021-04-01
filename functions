@@ -8,3 +8,6 @@ pip3()
     command pip3 "$@"
   fi
 }
+
+cds() { cd "$@" && ls }
+
