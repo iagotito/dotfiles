@@ -86,7 +86,7 @@ git_prompt_status() {
   fi
 
   if [[ ! -z "$STATUS" ]]; then
-    echo " %f[ $STATUS]"
+    echo " %f[ $STATUS ]" | xargs # trim white spaces
   fi
 }
 
@@ -100,7 +100,33 @@ prompt_git_branch() {
 }
 
 prompt_git_info() {
-    [ ! -z "$vcs_info_msg_0_" ] && echo "$ZSH_THEME_GIT_PROMPT_PREFIX$vcs_info_msg_0_$ZSH_THEME_GIT_PROMPT_SUFFIX"
+    if [[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]]; then
+        current_branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+        echo "$ZSH_THEME_GIT_PROMPT_PREFIX$current_branch$ZSH_THEME_GIT_PROMPT_SUFFIX"
+    fi
+}
+
+get_pad() {
+    # see: https://www.commandlinefu.com/commands/view/3956/remove-color-codes-special-characters-with-sed
+    plain_line=$(echo $1 | sed -r "s,\x1B\[[0-9;]*[a-zA-Z],,g")
+    plain_git_info=$(echo $2 | sed -r "s,\x1B\[[0-9;]*[a-zA-Z],,g")
+    let pad=$COLUMNS-${#plain_line}-${#plain_git_info}
+    echo $pad
+}
+
+build_prompt() {
+    line_info=$(print -P '%F{10}%~%f')
+    git_info=$(print -P '$(prompt_git_info) $(git_prompt_status)')
+
+    pad=$(get_pad $line_info $git_info)
+    if [[ $pad -le 0 ]]; then
+        line_info=$(print -P '%F{10}.../%1d%f')
+        pad=$(get_pad $line_info $git_info)
+    fi
+
+    git_info=$(printf "%${pad}s%s" "" "$git_info")
+
+    PROMPT=$'$line_info$git_info\n%B%F{blue}>%f%b '
 }
 
 prompt_prettification_setup() {
@@ -123,8 +149,7 @@ prompt_prettification_setup() {
     ZSH_THEME_GIT_PROMPT_AHEAD="%B%F{green}↑%f%b "
 
     prompt_git_branch
-    RPROMPT='$(prompt_git_info) $(git_prompt_status)'
-    PROMPT=$'%F{10}%~ %B%F{blue}>%f%b '
+    precmd_functions+=(build_prompt)
 }
 
 prompt_prettification_setup
