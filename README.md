@@ -3,7 +3,12 @@
 
 My attempt to create some nice dotfiles to me.
 
-## Instalation
+## Instalation*
+
+> The script is deprecated and needs a update. It may not work proper 
+> until it happen and I don't know when I will update it. You still 
+> can install manually, update and make a PR or just send me email to 
+> charge me if you don't know how to do those things. 
 
 Just run this command:
 
@@ -19,7 +24,3 @@ and `~/.tmux.conf` files so create a backup before.
 These are dotfiles mainly to zsh and tmux, so you need to have them 
 installed in order to use it well.se are dotfiles do zsh and tmux, 
 so you need to have them installed in order to use it well.
-
-## TODO
-
-Add completion to zsh and create dotfiles to vim.
