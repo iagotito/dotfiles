@@ -9,5 +9,12 @@ pip3()
   fi
 }
 
+# copy file content to clipboard
+# usage:
+# $ copy <file>
+copy() {
+    cat $1 | xclip -selection clipboard
+}
+
 cds() { cd "$@" && ls }
 
