@@ -114,13 +114,22 @@ get_pad() {
     echo $pad
 }
 
+get_virtual_env() {
+    virtual_env=${VIRTUAL_ENV##*/}
+    if [[ $virtual_env ]]; then
+        virtual_env="%F{51}($virtual_env)%f "
+    fi
+    echo $virtual_env
+}
+
 build_prompt() {
-    line_info=$(print -P '%F{10}%~%f')
+    venv=$(get_virtual_env)
+    line_info=$(print -P '$venv%F{10}%~%f')
     git_info=$(print -P '$(prompt_git_info) $(git_prompt_status)')
 
     pad=$(get_pad $line_info $git_info)
     if [[ $pad -le 0 ]]; then
-        line_info=$(print -P '%F{10}.../%1d%f')
+        line_info=$(print -P '$venv%F{10}.../%1d%f')
         pad=$(get_pad $line_info $git_info)
     fi
 
