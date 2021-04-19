@@ -1,6 +1,6 @@
 # prompt configuration
 
-fpath=($DOTFILES/prompt $fpath)
+fpath=($DOTFILES/zsh/prompt $fpath)
 autoload -Uz prompt_prettification_setup; prompt_prettification_setup
 
 # zhistory
@@ -47,9 +47,9 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # starts new terminal with a tmux session and close it when quit tmux
-if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
-  exec tmux;
-fi
+#if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
+#  exec tmux;
+#fi
 
 # append snap to PATH
 path+=('/snap/bin')
