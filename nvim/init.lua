@@ -39,7 +39,7 @@ opt('o', 'statusline', '%F')          -- display full path in status line
 --opt('o', 'nobackup', true)            -- don't create `filename~` backups
 --opt('o', 'noswapfile', true)          -- don't create temp files
 -- undo tree file
-opt('o', 'undodir', '~/.vim/undodir')
+opt('o', 'undodir', '/home/iago/.vim/undodir')
 opt('o', 'undofile', true)
 --
 
