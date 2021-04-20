@@ -21,6 +21,9 @@ alias ds='dirs -v'  # directy stack
                     # 'd' is used to deactivate python venvs (see $DOTFILES/aliases)
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
+# bd
+source $DOTFILES/zsh/plugins/zsh-bd/bd.zsh
+
 # functions
 
 source $DOTFILES/functions
@@ -29,6 +32,18 @@ source $DOTFILES/functions
 
 source $DOTFILES/aliases
 source $DOTFILES/personal-aliases
+
+# Vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Vim mapping for completion
+
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
 
 # asdf
 
@@ -47,9 +62,11 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # starts new terminal with a tmux session and close it when quit tmux
-#if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
-#  exec tmux;
-#fi
+if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
+  exec tmux;
+fi
 
 # append snap to PATH
 path+=('/snap/bin')
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
