@@ -39,7 +39,8 @@ alias gs='git status'
 alias ga='git add -A'
 alias gap='git add -p'
 alias gm='git merge'
-alias gl='git log'
+alias gl='git log --graph --oneline --branches -20'
+alias glv='git log' # suposed to mean "git log verbose"
 alias gc='git commit'
 alias gb='git branch'
 alias gck='git checkout'
@@ -79,3 +80,6 @@ alias vart='var;tr'
 # vscode
 
 alias c='code .'
+
+# random
+alias ip='curl ipinfo.io/ip'
