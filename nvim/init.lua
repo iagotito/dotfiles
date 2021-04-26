@@ -21,7 +21,7 @@ opt('o', 'autoread', true)            -- reload files changed outside of Nvim
 opt('o', 'visualbell', true)          -- use a visual bell instead of emit beep
 opt('w', 'relativenumber', true)      -- show relative line distances
 opt('w', 'number', true)              -- show current line number
-opt('o', 'scrolloff', 6)              -- number of lines offset when jumping
+opt('o', 'scrolloff', 8)              -- number of lines offset when jumping
 local indent = 4                      -- indent size
 opt('b', 'tabstop', indent)           -- number of spaces tabs count for
 opt('b', 'softtabstop', indent)       -- number of spaces tabs count for while editing
@@ -51,12 +51,14 @@ vim.cmd 'packadd paq-nvim'         -- Load package
 local paq = require'paq-nvim'.paq  -- Import module and bind `paq` function
 paq{'savq/paq-nvim', opt=true}     -- Let Paq manage itself
 
-paq {'nvim-treesitter/nvim-treesitter'}
+paq 'nvim-treesitter/nvim-treesitter'
 paq 'neovim/nvim-lspconfig'
-paq {'shougo/deoplete-lsp'}
+paq 'shougo/deoplete-lsp'
 paq {'shougo/deoplete.nvim', hook = fn['remote#host#UpdateRemotePlugins']}
---paq 'nvim-lua/completion-nvim'
-paq{'dracula/vim', as='dracula'}   -- Use braces when passing options
+paq 'nvim-lua/popup.nvim'
+paq 'nvim-lua/plenary.nvim'
+paq 'nvim-telescope/telescope.nvim'
+paq {'dracula/vim', as='dracula'}   -- Use braces when passing options
                                    -- Use `as` to alias a package name (here `vim`)
 
 -----------------------------------------------------------------------------
@@ -79,26 +81,19 @@ ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
 local lsp = require 'lspconfig'
 -- root_dir is where the LSP server will start: here at the project root otherwise in current folder
 lsp.pyright.setup{root_dir = lsp.util.root_pattern('.git', fn.getcwd())}
------------------
---- Completion --
---lsp.pyright.setup{on_attach=require'completion'.on_attach}
------------------
+
 -----------------------------------------------------------------------------
 -- Mappings
 -----------------------------------------------------------------------------
 
 -- Helper function to create mappings
-local function map(mode, lhs, rhs, opts)
+function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
   if opts then options = vim.tbl_extend('force', options, opts) end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-g.mapleader=' ' -- set `space` as leader key
-
-map('n', '<leader>bn', ':bn<cr>')  -- buffer next
-map('n', '<leader>l', '<cmd>noh<CR>')  -- clear highlights
-
--- <Tab> to navigate the completion menu
-map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
-map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
+require('keymaps')
+require('deoplete')
+require('telescope')
+-----------------------------------------------------------------------------
