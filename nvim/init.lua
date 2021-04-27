@@ -33,15 +33,23 @@ opt('o', 'ignorecase', true)          -- ignore case
 opt('o', 'smartcase', true)           -- don't ignore case with capitals
 opt('o', 'hidden', true)              -- enable modified buffers in background
 opt('o', 'wildmode', 'list:longest')  -- command-line completion mode
-opt('o', 'statusline', '%F')          -- display full path in status line 
-    opt('o', 'clipboard', 'unnamedplus')  -- use system clipboard
-    opt('w', 'colorcolumn', '80')         -- color column position
+opt('o', 'statusline', '%F')          -- display full path in status line
+opt('o', 'clipboard', 'unnamedplus')  -- use system clipboard
+opt('w', 'colorcolumn', '80')         -- color column position
 --opt('o', 'nobackup', true)            -- don't create `filename~` backups
 --opt('o', 'noswapfile', true)          -- don't create temp files
 -- undo tree file
 opt('o', 'undodir', '/home/iago/.vim/undodir')
 opt('o', 'undofile', true)
 --
+
+-----------------------------------------------------------------------------
+-- AutoCommands
+-----------------------------------------------------------------------------
+
+cmd("autocmd BufWritePre * :%s/\\s\\+$//e") -- rstrip white spaces when save
+cmd("autocmd BufNewFile,BufReadPre *.md setlocal textwidth=78") -- auto break line at 78 chars
+                                                                -- in .md files
 
 -----------------------------------------------------------------------------
 -- Plugins
