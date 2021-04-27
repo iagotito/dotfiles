@@ -19,3 +19,11 @@ map('n', '<leader>w=', '<c-w>=')
 map('n', '<leader>pv', ':wincmd v<bar> :Ex <bar> :vertical resize 25<cr>')
 map('n', '<leader>+', ':vertical resize +5<cr>')
 map('n', '<leader>-', ':vertical resize -5<cr>')
+
+-- move lines up/down using Alt+k / Alt+j
+map('n', '<A-j>', ':m .+1<CR>==')
+map('n', '<A-k>', ':m .-2<CR>==')
+map('i', '<A-j>', '<Esc>:m .+1<CR>==gi')
+map('i', '<A-k>', '<Esc>:m .-2<CR>==gi')
+map('v', '<A-j>', ":m '>+1<CR>gv=gv")
+map('v', '<A-k>', ":m '<-2<CR>gv=gv")
