@@ -1,20 +1,6 @@
-# always install pip packages with --no-cache-dir
-pip3()
-{
-  if [ $# -gt 0 ] && [ "$1" = "install" ] ; then
-    shift
-    command pip3 install --no-cache-dir "$@"
-  else
-    command pip3 "$@"
-  fi
-}
-
 # copy file content to clipboard
-# usage:
-# $ copy <file>
 copy() {
     cat $1 | xclip -selection clipboard
 }
 
 cds() { cd "$@" && ls }
-
