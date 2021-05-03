@@ -16,6 +16,7 @@ map('n', '<leader>ws', '<c-w>s')
 map('n', '<leader>wv', '<c-w>v')
 map('n', '<leader>w=', '<c-w>=')
 
+map('n', '<leader>e', ':Ex<cr>')
 map('n', '<leader>pv', ':wincmd v<bar> :Ex <bar> :vertical resize 25<cr>')
 map('n', '<leader>+', ':vertical resize +5<cr>')
 map('n', '<leader>-', ':vertical resize -5<cr>')
