@@ -3,4 +3,4 @@ copy() {
     cat $1 | xclip -selection clipboard
 }
 
-cds() { cd "$@" && ls }
+cs() { cd "$@" && ls }
