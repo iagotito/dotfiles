@@ -92,7 +92,7 @@ git_prompt_status() {
 
 
 prompt_git_branch() {
-    autoload -Uz vcs_info 
+    autoload -Uz vcs_info
     precmd_vcs_info() { vcs_info }
     precmd_functions+=( precmd_vcs_info )
     setopt prompt_subst
@@ -138,11 +138,11 @@ build_prompt() {
     PROMPT=$'$line_info$git_info\n%B%F{blue}>%f%b '
 }
 
-prompt_prettification_setup() {
+prompt_setup() {
     # Display git branch
 
     ZSH_THEME_GIT_PROMPT_PREFIX=" %F{202}λ:%f%F{#a97f7c}" # OrangeRed1 and Blue1 256 color code
-    							  # for the branch color, #a97fc7 
+    							  # for the branch color, #a97fc7
 							  # (a light purple) is also nice
     ZSH_THEME_GIT_PROMPT_DIRTY=""
     ZSH_THEME_GIT_PROMPT_CLEAN=""
@@ -161,4 +161,4 @@ prompt_prettification_setup() {
     precmd_functions+=(build_prompt)
 }
 
-prompt_prettification_setup
+prompt_setup

@@ -1,7 +1,7 @@
 # prompt configuration
 
 fpath=($DOTFILES/zsh/prompt $fpath)
-autoload -Uz prompt_prettification_setup; prompt_prettification_setup
+autoload -Uz prompt_setup; prompt_setup
 
 # zhistory
 
