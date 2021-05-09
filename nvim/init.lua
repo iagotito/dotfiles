@@ -35,9 +35,9 @@ opt('o', 'hidden', true)              -- enable modified buffers in background
 opt('o', 'wildmode', 'list:longest')  -- command-line completion mode
 opt('o', 'statusline', '%F')          -- display full path in status line
 opt('o', 'clipboard', 'unnamedplus')  -- use system clipboard
+opt('w', 'wrap', false)               -- no wrap
+opt('w', 'linebreak', true)           -- when wrap, not break words
 opt('w', 'colorcolumn', '80')         -- color column position
---opt('o', 'nobackup', true)            -- don't create `filename~` backups
---opt('o', 'noswapfile', true)          -- don't create temp files
 -- undo tree file
 opt('o', 'undodir', '/home/iago/.vim/undodir')
 opt('o', 'undofile', true)
@@ -48,8 +48,8 @@ opt('o', 'undofile', true)
 -----------------------------------------------------------------------------
 
 cmd("autocmd BufWritePre * :%s/\\s\\+$//e") -- rstrip white spaces when save
-cmd("autocmd BufNewFile,BufReadPre *.md setlocal textwidth=78") -- auto break line at 78 chars
-                                                                -- in .md files
+cmd("autocmd BufNewFile,BufReadPre *.md setlocal textwidth=71") -- auto break line at 71 chars in .md files
+cmd("autocmd BufNewFile,BufReadPre *.md setlocal colorcolumn=72")
 
 -----------------------------------------------------------------------------
 -- Plugins
@@ -66,8 +66,9 @@ paq {'shougo/deoplete.nvim', hook = fn['remote#host#UpdateRemotePlugins']}
 paq 'nvim-lua/popup.nvim'
 paq 'nvim-lua/plenary.nvim'
 paq 'nvim-telescope/telescope.nvim'
-paq {'dracula/vim', as='dracula'}   -- Use braces when passing options
-                                   -- Use `as` to alias a package name (here `vim`)
+paq {'dracula/vim', as='dracula'} -- Use `as` to alias a package name (here `vim`)
+paq 'vim-airline/vim-airline'
+paq 'vim-airline/vim-airline-themes'
 
 -----------------------------------------------------------------------------
 -- Colors
@@ -104,4 +105,5 @@ end
 require('mappings')
 require('deoplete')
 require('telescope')
+
 -----------------------------------------------------------------------------
