@@ -5,6 +5,7 @@
 vim.g.mapleader=' ' -- set `space` as leader key
 
 map('n', '<leader>bn', '<cmd>bn<cr>')  -- buffer next
+map('n', '<leader>bp', '<cmd>bp<cr>')  -- buffer next
 map('n', '<leader>l', '<cmd>noh<cr>')  -- clear highlights
 
 -- windows navigation with leader instead of Ctrl

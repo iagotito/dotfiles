@@ -47,7 +47,7 @@ opt('o', 'undofile', true)
 -- AutoCommands
 -----------------------------------------------------------------------------
 
-cmd("autocmd BufWritePre * :%s/\\s\\+$//e") -- rstrip white spaces when save
+cmd("autocmd BufWritePre * if &ft!='markdown' | let position = winsaveview() | :%s/\\s\\+$//e | call winrestview(position) | unlet! position") -- rstrip white spaces when save except on markdown files
 cmd("autocmd BufNewFile,BufReadPre *.md setlocal textwidth=71") -- auto break line at 71 chars in .md files
 cmd("autocmd BufNewFile,BufReadPre *.md setlocal colorcolumn=72")
 
@@ -69,6 +69,7 @@ paq 'nvim-telescope/telescope.nvim'
 paq {'dracula/vim', as='dracula'} -- Use `as` to alias a package name (here `vim`)
 paq 'vim-airline/vim-airline'
 paq 'vim-airline/vim-airline-themes'
+paq 'mhinz/vim-signify'
 
 -----------------------------------------------------------------------------
 -- Colors

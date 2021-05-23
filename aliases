@@ -57,11 +57,13 @@ alias gd='git diff'
 
 alias ta='tmux attach-session -t'
 alias tl='tmux list-sessions'
+alias tkill='tmux kill-server'
 
 # docker
 
 alias dsm='docker start mongodb'
 alias dcm='docker exec -it mongodb /bin/bash'  # connect into a mongo docker contaiener
+alias mdb='dsm && dcm'
 
 # python aliases
 
