@@ -17,8 +17,8 @@ map('n', '<leader>ws', '<c-w>s')
 map('n', '<leader>wv', '<c-w>v')
 map('n', '<leader>w=', '<c-w>=')
 
-map('n', '<leader>e', ':Ex<cr>')
-map('n', '<leader>pv', ':wincmd v<bar> :Ex <bar> :vertical resize 25<cr>')
+--map('n', '<leader>e', ':Ex<cr>')
+--map('n', '<leader>pv', ':wincmd v<bar> :Ex <bar> :vertical resize 25<cr>')
 map('n', '<leader>+', ':vertical resize +5<cr>')
 map('n', '<leader>-', ':vertical resize -5<cr>')
 
@@ -32,3 +32,32 @@ map('v', '<A-k>', ":m '<-2<CR>gv=gv")
 
 -- toggle wrap mode
 map('n', '<A-z>', ':set wrap!<CR>')
+
+-- jump back to previous file
+map('n', '<c-p>', ':e #<cr>')
+
+-----------------------------------------------------------------------------
+-- Telescope
+-----------------------------------------------------------------------------
+-- Find files using Telescope command-line sugar.
+map('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
+map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
+map('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
+map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
+
+-- Using lua functions
+--nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+--nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+--nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+--nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+-----------------------------------------------------------------------------
+-- NerdTree
+-----------------------------------------------------------------------------
+
+map('n', '<leader>n', '<cmd>NERDTreeFocus<CR>')
+map('n', '<C-n>', '<cmd>NERDTree<CR>')
+map('n', '<C-t>', '<cmd>NERDTreeToggle<CR>')
+map('n', '<C-f>', '<cmd>NERDTreeFind<CR>')
+
+-----------------------------------------------------------------------------

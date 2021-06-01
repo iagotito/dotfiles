@@ -38,6 +38,7 @@ opt('o', 'clipboard', 'unnamedplus')  -- use system clipboard
 opt('w', 'wrap', false)               -- no wrap
 opt('w', 'linebreak', true)           -- when wrap, not break words
 opt('w', 'colorcolumn', '80')         -- color column position
+opt('o', 'completeopt', 'menuone,noselect')
 -- undo tree file
 opt('o', 'undodir', '/home/iago/.vim/undodir')
 opt('o', 'undofile', true)
@@ -51,6 +52,15 @@ cmd("autocmd BufWritePre * if &ft!='markdown' | let position = winsaveview() | :
 cmd("autocmd BufNewFile,BufReadPre *.md setlocal textwidth=71") -- auto break line at 71 chars in .md files
 cmd("autocmd BufNewFile,BufReadPre *.md setlocal colorcolumn=72")
 
+-- Highlight trailing white spaces
+-- see: https://vim.fandom.com/wiki/Highlight_unwanted_spaces
+vim.cmd("autocmd ColorScheme * highlight ExtraWhitespace ctermbg=218 guibg=218")
+-- Use next line to highlight in insert mode if not typing at the end of a line
+vim.cmd("autocmd BufNewFile,BufReadPre * match ExtraWhitespace /\\s\\+\\%#\\@<!$/")
+-- Use following lines to highlight only in normal mode
+--vim.cmd("autocmd InsertEnter * match")
+--vim.cmd("autocmd InsertLeave * match ExtraWhitespace /\\s\\+$/")
+
 -----------------------------------------------------------------------------
 -- Plugins
 -----------------------------------------------------------------------------
@@ -59,17 +69,21 @@ vim.cmd 'packadd paq-nvim'         -- Load package
 local paq = require'paq-nvim'.paq  -- Import module and bind `paq` function
 paq{'savq/paq-nvim', opt=true}     -- Let Paq manage itself
 
-paq 'nvim-treesitter/nvim-treesitter'
 paq 'neovim/nvim-lspconfig'
-paq 'shougo/deoplete-lsp'
-paq {'shougo/deoplete.nvim', hook = fn['remote#host#UpdateRemotePlugins']}
+paq 'nvim-treesitter/nvim-treesitter'
+paq {'hrsh7th/nvim-compe', branch='master'}
 paq 'nvim-lua/popup.nvim'
 paq 'nvim-lua/plenary.nvim'
 paq 'nvim-telescope/telescope.nvim'
-paq {'dracula/vim', as='dracula'} -- Use `as` to alias a package name (here `vim`)
+paq {'dracula/vim', as='dracula'}
 paq 'vim-airline/vim-airline'
 paq 'vim-airline/vim-airline-themes'
 paq 'mhinz/vim-signify'
+paq 'preservim/nerdtree'
+paq 'Xuyuanp/nerdtree-git-plugin'
+paq 'ryanoasis/vim-devicons'
+paq 'tiagofumo/vim-nerdtree-syntax-highlight'
+paq 'jiangmiao/auto-pairs'
 
 -----------------------------------------------------------------------------
 -- Colors
@@ -77,20 +91,6 @@ paq 'mhinz/vim-signify'
 
 g.dracula_colorterm=0
 cmd 'colorscheme dracula'
-
------------------------------------------------------------------------------
--- Plugins configurations
------------------------------------------------------------------------------
-
-g['deoplete#enable_at_startup'] = 1  -- enable deoplete at startup
--- Tree-sitter --
-local ts = require 'nvim-treesitter.configs'
-ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
------------------
------- LSP ------
-local lsp = require 'lspconfig'
--- root_dir is where the LSP server will start: here at the project root otherwise in current folder
-lsp.pyright.setup{root_dir = lsp.util.root_pattern('.git', fn.getcwd())}
 
 -----------------------------------------------------------------------------
 -- Mappings
@@ -103,8 +103,14 @@ function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-----------------------------------------------------------------------------
+-- General setup
+-----------------------------------------------------------------------------
+
+-- plugins configs
+require('plugins/treesitter')
+require('plugins/compe')
+-- mappgins configs
 require('mappings')
-require('deoplete')
-require('telescope')
 
 -----------------------------------------------------------------------------
