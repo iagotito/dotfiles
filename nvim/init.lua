@@ -16,7 +16,8 @@ opt.visualbell = true -- use a visual bell instead of emit beep
 opt.relativenumber = true -- show relative line distances
 opt.number = true -- show current line number
 opt.scrolloff = 8 -- number of lines offset when jumping
-opt.tabstop = 4 -- number of spaces tabs count for opt.softtabstop = 4 -- number of spaces tabs count for while editing
+opt.tabstop = 4 -- number of spaces tabs count for
+opt.softtabstop = 4 -- number of spaces tabs count for while editing
 opt.shiftwidth = 4 -- size of an indent
 opt.expandtab = true -- use space instead of tabs
 opt.smartindent = true -- insert indents automatically
@@ -40,8 +41,8 @@ opt.undofile = true
 -----------------------------------------------------------------------------
 
 cmd("autocmd BufWritePre * if &ft!='markdown' | let position = winsaveview() | :%s/\\s\\+$//e | call winrestview(position) | unlet! position") -- rstrip white spaces when save except on markdown files
-cmd("autocmd BufNewFile,BufReadPre *.md setlocal textwidth=71") -- auto break line at 71 chars in .md files
-cmd("autocmd BufNewFile,BufReadPre *.md setlocal colorcolumn=72")
+cmd("autocmd BufNewFile,BufReadPre *.md setlocal textwidth=71 colorcolumn=72") -- auto break line at 71 chars in .md files
+cmd("autocmd BufNewFile,BufReadPre *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2") -- auto break line at 71 chars in .md files
 
 -- Highlight trailing white spaces
 -- see: https://vim.fandom.com/wiki/Highlight_unwanted_spaces
@@ -57,6 +58,7 @@ cmd("autocmd BufNewFile,BufReadPre * match ExtraWhitespace /\\s\\+\\%#\\@<!$/")
 -----------------------------------------------------------------------------
 
 require('plugins')
+require('lsp')
 require('keymaps')
 
 -----------------------------------------------------------------------------

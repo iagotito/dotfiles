@@ -1,22 +1,50 @@
--- Compe setup
-require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
+--- Configuration for nvim-compe
 
-  source = {
-    path = true;
-    nvim_lsp = true;
-    buffer = true;
+local utils = { }
+
+local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
+
+function utils.opt(scope, key, value)
+    scopes[scope][key] = value
+    if scope ~= 'o' then scopes['o'][key] = value end
+end
+
+function utils.map(mode, lhs, rhs, opts)
+  local options = {noremap = true}
+  if opts then options = vim.tbl_extend('force', options, opts) end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+vim.cmd [[set shortmess+=c]]
+utils.opt('o', 'completeopt', 'menuone,noselect')
+
+require'compe'.setup {
+    enabled = true;
+    autocomplete = true;
+    debug = false;
+    min_length = 1;
+    preselect = 'enable';
+    throttle_time = 80;
+    source_timeout = 200;
+    incomplete_delay = 400;
+    allow_prefix_unmatch = false;
+    max_abbr_width = 1000;
+    max_kind_width = 1000;
+    max_menu_width = 1000000;
+    documentation = true;
+
+
+    source = {
+        path = true;
+        buffer = true;
+        calc = true;
+        vsnip = true;
+        nvim_lsp = true;
+        nvim_lua = true;
+        spell = true;
+        tags = true;
+        snippets_nvim = true;
+        treesitter = true;
   };
 }
 
@@ -33,6 +61,9 @@ local check_back_space = function()
     end
 end
 
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
 vim.api.nvim_exec(
     [[
         inoremap <silent><expr> <CR>      compe#confirm('<CR>')

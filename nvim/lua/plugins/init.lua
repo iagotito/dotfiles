@@ -3,6 +3,8 @@ local paq = require'paq-nvim'.paq  -- Import module and bind `paq` function
 paq{'savq/paq-nvim', opt=true}     -- Let Paq manage itself
 
 paq 'neovim/nvim-lspconfig'
+paq 'kabouzeid/nvim-lspinstall'
+paq 'ray-x/lsp_signature.nvim'
 paq 'nvim-treesitter/nvim-treesitter'
 paq {'hrsh7th/nvim-compe', branch='master'}
 paq 'nvim-lua/popup.nvim'
@@ -17,6 +19,7 @@ paq 'Xuyuanp/nerdtree-git-plugin'
 paq 'ryanoasis/vim-devicons'
 paq 'tiagofumo/vim-nerdtree-syntax-highlight'
 paq 'jiangmiao/auto-pairs'
+paq 'alvan/vim-closetag'
 
 -----------------------------------------------------------------------------
 -- Colors
@@ -30,6 +33,7 @@ vim.cmd 'colorscheme dracula'
 -----------------------------------------------------------------------------
 
 require('plugins/treesitter')
-require('plugins/compe')
+--require('plugins/compe')
+require('plugins/closetag')
 
 -----------------------------------------------------------------------------
