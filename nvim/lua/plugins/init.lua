@@ -20,6 +20,7 @@ paq 'ryanoasis/vim-devicons'
 paq 'tiagofumo/vim-nerdtree-syntax-highlight'
 paq 'jiangmiao/auto-pairs'
 paq 'alvan/vim-closetag'
+paq 'christoomey/vim-tmux-navigator'
 
 -----------------------------------------------------------------------------
 -- Colors
