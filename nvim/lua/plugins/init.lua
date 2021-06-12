@@ -21,6 +21,8 @@ paq 'tiagofumo/vim-nerdtree-syntax-highlight'
 paq 'jiangmiao/auto-pairs'
 paq 'alvan/vim-closetag'
 paq 'christoomey/vim-tmux-navigator'
+paq 'preservim/nerdcommenter'
+paq 'norcalli/snippets.nvim'
 
 -----------------------------------------------------------------------------
 -- Colors
@@ -36,5 +38,6 @@ vim.cmd 'colorscheme dracula'
 require('plugins/treesitter')
 --require('plugins/compe')
 require('plugins/closetag')
+require('plugins/snippets')
 
 -----------------------------------------------------------------------------

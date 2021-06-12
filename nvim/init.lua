@@ -35,6 +35,7 @@ opt.completeopt = {'menuone', 'noselect'}
 -- undo tree file
 opt.undodir = '/home/iago/.nvim/undodir'
 opt.undofile = true
+cmd("filetype plugin on")
 
 -----------------------------------------------------------------------------
 -- AutoCommands
