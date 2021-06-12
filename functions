@@ -4,3 +4,5 @@ copy() {
 }
 
 cs() { cd "$@" && ls }
+
+cim() { cd $1 && nvim . && cd .. }

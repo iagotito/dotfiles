@@ -9,6 +9,8 @@ alias uz='unzip'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias 'cd ...'='cd ../..'
+alias 'cd ....'='cd ../../..'
 
 alias cp='cp -r' # copy directories recursively
 
