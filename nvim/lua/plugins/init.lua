@@ -23,6 +23,7 @@ paq 'alvan/vim-closetag'
 paq 'christoomey/vim-tmux-navigator'
 paq 'preservim/nerdcommenter'
 paq 'norcalli/snippets.nvim'
+paq 'tpope/vim-fugitive'
 
 -----------------------------------------------------------------------------
 -- Colors
@@ -39,5 +40,6 @@ require('plugins/treesitter')
 --require('plugins/compe')
 require('plugins/closetag')
 require('plugins/snippets')
+require('plugins/telescope')
 
 -----------------------------------------------------------------------------

@@ -8,3 +8,4 @@ end
 require('keymaps/keymaps')
 require('keymaps/telescope')
 require('keymaps/nerdtree')
+require('keymaps/fugitive')
