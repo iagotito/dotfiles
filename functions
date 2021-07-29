@@ -6,3 +6,5 @@ copy() {
 cs() { cd "$@" && ls }
 
 cim() { cd $1 && nvim . && cd .. }
+
+lrun() { ssh -R 80:localhost:$1 localhost.run }

@@ -41,9 +41,9 @@ alias gs='git status'
 alias ga='git add -A'
 alias gap='git add -p'
 alias gm='git merge'
-alias gl='git log --graph --oneline --branches -20'
+alias gl='git log --graph --oneline --branches -15'
 alias glv='git log' # suposed to mean "git log verbose"
-alias gc='git commit'
+alias gc='git commit -v'
 alias gb='git branch'
 alias gck='git checkout'
 alias gckb='git checkout -b'
@@ -64,7 +64,7 @@ alias tkill='tmux kill-server'
 # docker
 
 alias dsm='docker start mongodb'
-alias dcm='docker exec -it mongodb /bin/bash'  # connect into a mongo docker contaiener
+alias dcm='docker exec -it mongodb mongo'  # connect into a mongo docker contaiener
 alias mdb='dsm && dcm'
 
 # python aliases
@@ -87,3 +87,4 @@ alias c='code .'
 
 # random
 alias ip='curl ipinfo.io/ip'
+alias dropbox='~/.dropbox-dist/dropboxd'
