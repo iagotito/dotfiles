@@ -31,3 +31,20 @@ map('n', '<A-z>', ':set wrap!<CR>')
 
 -- jump back to previous file
 map('n', '<c-p>', ':e #<cr>')
+
+-- Y to yank to the end of the line
+map('n', 'Y', 'y$')
+
+-- undo break points
+map('i', ',', ',<c-g>u')
+map('i', '.', '.<c-g>u')
+map('i', '!', '!<c-g>u')
+map('i', '?', '?<c-g>u')
+map('i', '(', '(<c-g>u')
+map('i', ')', ')<c-g>u')
+map('i', '[', '[<c-g>u')
+map('i', ']', ']<c-g>u')
+map('i', '{', '{<c-g>u')
+map('i', '}', '}<c-g>u')
+map('i', '"', '"<c-g>u')
+map('i', '\'', '\'<c-g>u')
