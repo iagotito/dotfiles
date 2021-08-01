@@ -11,8 +11,6 @@ paq 'nvim-lua/popup.nvim'
 paq 'nvim-lua/plenary.nvim'
 paq 'nvim-telescope/telescope.nvim'
 paq {'dracula/vim', as='dracula'}
-paq 'vim-airline/vim-airline'
-paq 'vim-airline/vim-airline-themes'
 paq 'mhinz/vim-signify'
 paq 'preservim/nerdtree'
 paq 'Xuyuanp/nerdtree-git-plugin'
@@ -24,6 +22,7 @@ paq 'christoomey/vim-tmux-navigator'
 paq 'preservim/nerdcommenter'
 paq 'norcalli/snippets.nvim'
 paq 'tpope/vim-fugitive'
+paq 'hoob3rt/lualine.nvim'
 
 -----------------------------------------------------------------------------
 -- Colors
@@ -41,5 +40,6 @@ require('plugins/treesitter')
 require('plugins/closetag')
 require('plugins/snippets')
 require('plugins/telescope')
+require('plugins/lualine')
 
 -----------------------------------------------------------------------------
