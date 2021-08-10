@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # prompt configuration
 
 fpath=($DOTFILES/zsh/prompt $fpath)
@@ -48,7 +50,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # asdf
 
 . $HOME/.asdf/asdf.sh
-. ~/.asdf/plugins/java/set-java-home.zsh
+#. ~/.asdf/plugins/java/set-java-home.zsh
 
 
 # append completions to fpath
