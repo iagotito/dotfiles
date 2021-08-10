@@ -5,7 +5,6 @@ require'snippets'.snippets = {
   --  it will be lookup up in the _global dictionary.
   _global = {
     -- Insert a basic snippet, which is a string.
-    todo = "TODO(ashkan): ";
     pdb = "import pdb; pdb.set_trace()";
   }
 }

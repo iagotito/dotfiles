@@ -43,7 +43,7 @@ cmd("filetype plugin on")
 
 cmd("autocmd BufWritePre * if &ft!='markdown' | let position = winsaveview() | :%s/\\s\\+$//e | call winrestview(position) | unlet! position") -- rstrip white spaces when save except on markdown files
 cmd("autocmd BufNewFile,BufReadPre *.md setlocal textwidth=71 colorcolumn=72") -- auto break line at 71 chars in .md files
-cmd("autocmd BufNewFile,BufReadPre *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2") -- auto break line at 71 chars in .md files
+cmd("autocmd BufNewFile,BufReadPre *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2") -- set tab to 2 spaces in .html files
 
 -- Highlight trailing white spaces
 -- see: https://vim.fandom.com/wiki/Highlight_unwanted_spaces
@@ -58,8 +58,8 @@ cmd("autocmd BufNewFile,BufReadPre * match ExtraWhitespace /\\s\\+\\%#\\@<!$/")
 -- General setup
 -----------------------------------------------------------------------------
 
+require('keymaps')
 require('plugins')
 require('lsp')
-require('keymaps')
 
 -----------------------------------------------------------------------------
