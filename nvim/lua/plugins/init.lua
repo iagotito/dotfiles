@@ -3,6 +3,7 @@ require 'paq' {
 
     'neovim/nvim-lspconfig';
     'nvim-lua/completion-nvim';
+    'steelsojka/completion-buffers';
     'norcalli/snippets.nvim';
     --'ray-x/lsp_signature.nvim';
 

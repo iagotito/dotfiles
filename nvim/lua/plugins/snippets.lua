@@ -6,5 +6,12 @@ require'snippets'.snippets = {
   _global = {
     -- Insert a basic snippet, which is a string.
     pdb = "import pdb; pdb.set_trace()";
+    inm = [[
+def main():
+    pass
+
+
+if __name__ == '__main__':
+    main()]]
   }
 }
