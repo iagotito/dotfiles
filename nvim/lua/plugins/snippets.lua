@@ -12,6 +12,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()]]
+    main()]];
+    pf = "print(f'$1')";
   }
 }
