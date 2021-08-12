@@ -27,3 +27,13 @@ vim.g.completion_enable_snippet = 'snippets.nvim'
 
 -- trigger on delete
 vim.g.completion_trigger_on_delete = 1
+
+-- add buffer completion from completion-buffers
+vim.g.completion_chain_complete_list = {
+  default = {
+    --{ complete_items = { 'lsp' } },
+    { complete_items = { 'lsp', 'snippet', 'buffers' } },
+    --{ mode = { '<c-p>' } },
+    --{ mode = { '<c-n>' } }
+  },
+}
