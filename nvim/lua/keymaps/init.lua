@@ -50,3 +50,8 @@ map('i', '{', '{<c-g>u')
 map('i', '}', '}<c-g>u')
 map('i', '"', '"<c-g>u')
 map('i', '\'', '\'<c-g>u')
+
+-- Quickly replace current word
+map('n', '<leader><c-r>', '*N:%s// /gI|noh|normal!``<c-left><left><del>')
+-- Quickly replace current word and ask conirmation
+map('n', '<leader>R', '*N:%s// /gcI|noh|normal!``<c-left><left><del>')
