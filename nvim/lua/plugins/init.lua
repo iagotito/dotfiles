@@ -26,6 +26,7 @@ require 'paq' {
     'christoomey/vim-tmux-navigator';
     'preservim/nerdcommenter';
     'tpope/vim-fugitive';
+    'mbbill/undotree';
 }
 
 
@@ -48,5 +49,6 @@ require'plugins.lualine'
 require'plugins.closetag'
 require'plugins.snippets'
 require'plugins.completion'
+require'plugins.undotree'
 
 -----------------------------------------------------------------------------
