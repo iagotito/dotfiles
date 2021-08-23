@@ -21,7 +21,8 @@ require 'paq' {
     'Xuyuanp/nerdtree-git-plugin';
     'tiagofumo/vim-nerdtree-syntax-highlight';
 
-    'jiangmiao/auto-pairs';
+    'windwp/nvim-autopairs';
+    'iagotito/smart-semicolon.nvim',
     'alvan/vim-closetag';
     'christoomey/vim-tmux-navigator';
     'preservim/nerdcommenter';
@@ -50,5 +51,7 @@ require'plugins.closetag'
 require'plugins.snippets'
 require'plugins.completion'
 require'plugins.undotree'
+require'plugins.autopairs'
+require'plugins.smart_semicolon'
 
 -----------------------------------------------------------------------------
