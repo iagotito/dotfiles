@@ -55,3 +55,13 @@ map('i', '\'', '\'<c-g>u')
 map('n', '<leader><c-r>', '*N:%s// /gI|noh|normal!``<c-left><left><del>')
 -- Quickly replace current word and ask conirmation
 map('n', '<leader>R', '*N:%s// /gcI|noh|normal!``<c-left><left><del>')
+
+-- Commands
+-- prevent errors with shift when saving or quiting
+vim.cmd(":command W w")
+vim.cmd(":command Wq wq")
+vim.cmd(":command WQ wq")
+vim.cmd(":command Wa wa")
+vim.cmd(":command WA wa")
+vim.cmd(":command Q q")
+vim.cmd(":command QA qa")
