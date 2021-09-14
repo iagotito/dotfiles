@@ -56,6 +56,21 @@ map('n', '<leader><c-r>', '*N:%s// /gI|noh|normal!``<c-left><left><del>')
 -- Quickly replace current word and ask conirmation
 map('n', '<leader>R', '*N:%s// /gcI|noh|normal!``<c-left><left><del>')
 
+-- Replace inside pairs with register content
+map('n', "ri'", "vi'p")
+map('n', 'ri"', 'vi"p')
+map('n', 'ri(', 'vi(p')
+map('n', 'ri)', 'vi)p')
+map('n', 'ri[', 'vi[p')
+map('n', 'ri]', 'vi]p')
+map('n', 'ri{', 'vi{p')
+map('n', 'ri}', 'vi}p')
+map('n', 'riw', 'viwp')
+
+-- Find without change cursor position
+map('n', '*', '*N')
+map('n', '#', '#N')
+
 -- Commands
 -- prevent errors with shift when saving or quiting
 vim.cmd(":command W w")
