@@ -103,7 +103,7 @@ prompt_git_branch() {
 
 prompt_git_info() {
     if [[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]]; then
-        current_branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+        current_branch=$(git branch --show-current 2> /dev/null)
         echo "$ZSH_THEME_GIT_PROMPT_PREFIX$current_branch$ZSH_THEME_GIT_PROMPT_SUFFIX"
     fi
 }
@@ -144,8 +144,8 @@ prompt_setup() {
     # Display git branch
 
     ZSH_THEME_GIT_PROMPT_PREFIX=" %F{202}λ:%f%F{#a97f7c}" # OrangeRed1 and Blue1 256 color code
-    							  # for the branch color, #a97fc7
-							  # (a light purple) is also nice
+                                                          # for the branch color, #a97fc7
+                                                          # (a light purple) is also nice
     ZSH_THEME_GIT_PROMPT_DIRTY=""
     ZSH_THEME_GIT_PROMPT_CLEAN=""
 
@@ -163,4 +163,5 @@ prompt_setup() {
     precmd_functions+=(build_prompt)
 }
 
+# backgroud color: #1c1c1c
 prompt_setup
