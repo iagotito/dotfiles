@@ -1,7 +1,8 @@
 #!/usr/bin/zsh
-#
-# Some adjustment (to me) over the purification
-# Small changes by Iago Tito over:
+
+# Prompt by Iago Tito
+# https://github.com/iagotito/dotfiles/tree/main/zsh
+# Based on:
 
 # Purification
 # by Matthieu Cneude
@@ -14,154 +15,130 @@
 # https://github.com/therealklanni/purity
 # MIT License
 
-# prompt:
-# %F => color dict
-# %f => reset color
-# %~ => current path
-# %* => time
-# %n => username
-# %m => shortname host
-# %(?..) => prompt conditional - %(condition.true.false)
+setopt prompt_subst
 
-# Display git status
+precmd_functions+=(build_prompt)
+
+# backgroud color: #1c1c1c
+
+GIT_PROMPT_PREFIX=" %F{202}λ:%f%F{#a97f7c}" # OrangeRed1 and Blue1 256 color code
+GIT_PROMPT_SUFFIX="%f"
+
+GIT_PROMPT_DIRTY=""
+GIT_PROMPT_CLEAN=""
+
+GIT_PROMPT_ADDED="%F{green}+%f "
+GIT_PROMPT_MODIFIED="%F{208}!%f " # DarkOrange 256 color code
+GIT_PROMPT_DELETED="%F{red}x%f "
+GIT_PROMPT_RENAMED="%F{magenta}➜%f "
+GIT_PROMPT_UNMERGED="%F{yellow}═%f "
+GIT_PROMPT_UNTRACKED="%F{red}-%f "
+GIT_PROMPT_STASHED="%B%F{red}S%f%b "
+GIT_PROMPT_BEHIND="%B%F{red}↓%f%b "
+GIT_PROMPT_AHEAD="%B%F{green}↑%f%b "
+
+build_prompt() {
+    VENV_INFO=$(get_virtual_env_info)
+    PROMPT_INFO=$(print -P "$VENV_INFO%F{10}%~%f")
+    GIT_INFO=$(print -P $(get_git_info))
+
+    PAD=$(get_pad $PROMPT_INFO $GIT_INFO)
+    if [[ $PAD -le 0 ]]; then
+        PROMPT_INFO=$(print -P '$venv%F{10}.../%1d%f')
+        PAD=$(get_pad $PROMPT_INFO $GIT_INFO)
+    fi
+
+    GIT_INFO=$(printf "%${PAD}s%s" "" "$GIT_INFO")
+
+    PROMPT=$(echo "$PROMPT_INFO$GIT_INFO\n%B%F{blue}>%f%b ")
+}
+
 # TODO to refactor with switch / using someting else than grep
 # Might be faster using ripgrep too
-git_prompt_status() {
-  local INDEX STATUS
+get_git_info() {
+    # If not inside a git repository, return
+    [[ -z "$(git rev-parse --is-inside-work-tree 2> /dev/null)" ]] && return 0
 
-  INDEX=$(command git status --porcelain -b 2> /dev/null)
+    CURRENT_BRANCH_NAME=$(git branch --show-current 2> /dev/null)
+    BRANCH_INFO="$GIT_PROMPT_PREFIX$CURRENT_BRANCH_NAME$GIT_PROMPT_SUFFIX"
 
-  STATUS=""
+    INDEX=$(command git status --porcelain -b 2> /dev/null)
 
-  if $(echo "$INDEX" | command grep -E '^\?\? ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_UNTRACKED$STATUS"
-  fi
+    STATUS=""
 
-  if $(echo "$INDEX" | grep '^A  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_ADDED$STATUS"
-  elif $(echo "$INDEX" | grep '^M  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_ADDED$STATUS"
-  elif $(echo "$INDEX" | grep '^MM ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_ADDED$STATUS"
-  fi
-
-  if $(echo "$INDEX" | grep '^ M ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
-  elif $(echo "$INDEX" | grep '^AM ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
-  elif $(echo "$INDEX" | grep '^MM ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
-  elif $(echo "$INDEX" | grep '^ T ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
-  fi
-
-  if $(echo "$INDEX" | grep '^R  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_RENAMED$STATUS"
-  fi
-
-  if $(echo "$INDEX" | grep '^ D ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
-  elif $(echo "$INDEX" | grep '^D  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
-  elif $(echo "$INDEX" | grep '^AD ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
-  fi
-
-  if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_STASHED$STATUS"
-  fi
-
-  if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_UNMERGED$STATUS"
-  fi
-
-  if $(echo "$INDEX" | grep '^## [^ ]\+ .*ahead' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_AHEAD$STATUS"
-  fi
-
-  if $(echo "$INDEX" | grep '^## [^ ]\+ .*behind' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_BEHIND$STATUS"
-  fi
-
-  if $(echo "$INDEX" | grep '^## [^ ]\+ .*diverged' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DIVERGED$STATUS"
-  fi
-
-  if [[ ! -z "$STATUS" ]]; then
-    echo " %f[ $STATUS ]" | xargs # trim white spaces
-  fi
-}
-
-
-prompt_git_branch() {
-    autoload -Uz vcs_info
-    precmd_vcs_info() { vcs_info }
-    precmd_functions+=( precmd_vcs_info )
-    setopt prompt_subst
-    zstyle ':vcs_info:git:*' formats '%b'
-}
-
-prompt_git_info() {
-    if [[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]]; then
-        current_branch=$(git branch --show-current 2> /dev/null)
-        echo "$ZSH_THEME_GIT_PROMPT_PREFIX$current_branch$ZSH_THEME_GIT_PROMPT_SUFFIX"
+    if [[ ! -z $(echo "$INDEX" | command grep -E '^\?\? ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_UNTRACKED$STATUS"
     fi
+
+    if [[ ! -z $(echo "$INDEX" | grep '^A  ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_ADDED$STATUS"
+    elif [[ ! -z $(echo "$INDEX" | grep '^M  ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_ADDED$STATUS"
+    elif [[ ! -z $(echo "$INDEX" | grep '^MM ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_ADDED$STATUS"
+    fi
+
+    if [[ ! -z $(echo "$INDEX" | grep '^ M ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_MODIFIED$STATUS"
+    elif [[ ! -z $(echo "$INDEX" | grep '^AM ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_MODIFIED$STATUS"
+    elif [[ ! -z $(echo "$INDEX" | grep '^MM ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_MODIFIED$STATUS"
+    elif [[ ! -z $(echo "$INDEX" | grep '^ T ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_MODIFIED$STATUS"
+    fi
+
+    if [[ ! -z $(echo "$INDEX" | grep '^R  ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_RENAMED$STATUS"
+    fi
+
+    if [[ ! -z $(echo "$INDEX" | grep '^ D ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_DELETED$STATUS"
+    elif [[ ! -z $(echo "$INDEX" | grep '^D  ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_DELETED$STATUS"
+    elif [[ ! -z $(echo "$INDEX" | grep '^AD ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_DELETED$STATUS"
+    fi
+
+    if [[ ! -z $(command git rev-parse --verify refs/stash >/dev/null 2>&1) ]]; then
+        STATUS="$GIT_PROMPT_STASHED$STATUS"
+    fi
+
+    if [[ ! -z $(echo "$INDEX" | grep '^UU ' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_UNMERGED$STATUS"
+    fi
+
+    if [[ ! -z $(echo "$INDEX" | grep '^## [^ ]\+ .*ahead' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_AHEAD$STATUS"
+    fi
+
+    if [[ ! -z $(echo "$INDEX" | grep '^## [^ ]\+ .*behind' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_BEHIND$STATUS"
+    fi
+
+    if [[ ! -z $(echo "$INDEX" | grep '^## [^ ]\+ .*diverged' 2> /dev/null) ]]; then
+        STATUS="$GIT_PROMPT_DIVERGED$STATUS"
+    fi
+
+    if [[ ! -z $STATUS ]]; then
+        STATUS=$(echo " %f[ $STATUS ]")
+    fi
+
+    echo "$BRANCH_INFO$STATUS"
+}
+
+get_virtual_env_info() {
+    VENV=${VIRTUAL_ENV##*/}
+    if [[ $VENV ]]; then
+        VENV="%F{51}($VENV)%f "
+    fi
+    echo $VENV
 }
 
 get_pad() {
     # see: https://www.commandlinefu.com/commands/view/3956/remove-color-codes-special-characters-with-sed
-    plain_line=$(echo $1 | sed -r "s,\x1B\[[0-9;]*[a-zA-Z],,g")
-    plain_git_info=$(echo $2 | sed -r "s,\x1B\[[0-9;]*[a-zA-Z],,g")
-    let pad=$COLUMNS-${#plain_line}-${#plain_git_info}
-    echo $pad
+    PLAIN_LINE=$(echo $1 | sed -r "s,\x1B\[[0-9;]*[a-zA-Z],,g")
+    PLAIN_GIT_INFO=$(echo $2 | sed -r "s,\x1B\[[0-9;]*[a-zA-Z],,g")
+    let PAD=$COLUMNS-${#PLAIN_LINE}-${#PLAIN_GIT_INFO}
+    echo $PAD
 }
-
-get_virtual_env() {
-    virtual_env=${VIRTUAL_ENV##*/}
-    if [[ $virtual_env ]]; then
-        virtual_env="%F{51}($virtual_env)%f "
-    fi
-    echo $virtual_env
-}
-
-build_prompt() {
-    venv=$(get_virtual_env)
-    line_info=$(print -P '$venv%F{10}%~%f')
-    git_info=$(print -P '$(prompt_git_info) $(git_prompt_status)')
-
-    pad=$(get_pad $line_info $git_info)
-    if [[ $pad -le 0 ]]; then
-        line_info=$(print -P '$venv%F{10}.../%1d%f')
-        pad=$(get_pad $line_info $git_info)
-    fi
-
-    git_info=$(printf "%${pad}s%s" "" "$git_info")
-
-    PROMPT=$'$line_info$git_info\n%B%F{blue}>%f%b '
-}
-
-prompt_setup() {
-    # Display git branch
-
-    ZSH_THEME_GIT_PROMPT_PREFIX=" %F{202}λ:%f%F{#a97f7c}" # OrangeRed1 and Blue1 256 color code
-                                                          # for the branch color, #a97fc7
-                                                          # (a light purple) is also nice
-    ZSH_THEME_GIT_PROMPT_DIRTY=""
-    ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-    ZSH_THEME_GIT_PROMPT_ADDED="%F{green}+%f "
-    ZSH_THEME_GIT_PROMPT_MODIFIED="%F{208}!%f " # DarkOrange 256 color code
-    ZSH_THEME_GIT_PROMPT_DELETED="%F{red}x%f "
-    ZSH_THEME_GIT_PROMPT_RENAMED="%F{magenta}➜%f "
-    ZSH_THEME_GIT_PROMPT_UNMERGED="%F{yellow}═%f "
-    ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{red}-%f "
-    ZSH_THEME_GIT_PROMPT_STASHED="%B%F{red}S%f%b "
-    ZSH_THEME_GIT_PROMPT_BEHIND="%B%F{red}↓%f%b "
-    ZSH_THEME_GIT_PROMPT_AHEAD="%B%F{green}↑%f%b "
-
-    prompt_git_branch
-    precmd_functions+=(build_prompt)
-}
-
-# backgroud color: #1c1c1c
-prompt_setup
