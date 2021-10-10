@@ -9,8 +9,6 @@ alias uz='unzip'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias 'cd ...'='cd ../..'
-alias 'cd ....'='cd ../../..'
 
 alias cp='cp -r' # copy directories recursively
 
@@ -84,10 +82,6 @@ alias tr='pip install -r tests-requirements.txt'
 alias pp='python -m pytest -v'
 alias var='v;a;r'
 alias vart='var;tr'
-
-# vscode
-
-alias c='code .'
 
 # random
 alias ip='curl ipinfo.io/ip'
