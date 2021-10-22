@@ -2,10 +2,10 @@ require 'paq' {
     'savq/paq-nvim';                  -- Let Paq manage itself
 
     'neovim/nvim-lspconfig';
-    'nvim-lua/completion-nvim';
-    'steelsojka/completion-buffers';
+    'hrsh7th/cmp-nvim-lsp';
+    'hrsh7th/cmp-buffer';
+    'hrsh7th/nvim-cmp';
     'norcalli/snippets.nvim';
-    --'ray-x/lsp_signature.nvim';
 
     'nvim-treesitter/nvim-treesitter';
 
@@ -49,7 +49,7 @@ require'plugins.nerdtree'
 require'plugins.lualine'
 require'plugins.closetag'
 require'plugins.snippets'
-require'plugins.completion'
+require'plugins.cmp'
 require'plugins.undotree'
 require'plugins.autopairs'
 require'plugins.smart_semicolon'

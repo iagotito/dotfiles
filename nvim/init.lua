@@ -31,7 +31,7 @@ opt.clipboard = 'unnamedplus' -- use system clipboard
 opt.wrap = false -- no wrap
 opt.linebreak = true -- when wrap, not break words
 opt.colorcolumn = '80' -- color column position
-opt.completeopt = {'menuone', 'noselect'}
+opt.completeopt = {'menu', 'menuone', 'noselect'}
 -- undo tree file
 opt.undodir = '/home/iago/.nvim/undodir'
 opt.undofile = true
