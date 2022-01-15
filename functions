@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # copy file content to clipboard
 copy() {
     cat $1 | xclip -selection clipboard
@@ -8,3 +10,30 @@ cs() { cd "$@" && ls }
 cim() { cd $1 && nvim . && cd .. }
 
 lrun() { ssh -R 80:localhost:$1 localhost.run }
+
+l() {
+   tmux split-window -h
+   tmux resize-pane -R 19
+}
+
+alias re="tmux resize-pane -R 19"
+
+sv() {
+    cp solutions-carmem/$1/top.sv .
+    make
+}
+
+ver() {
+    cp top.sv ../..
+    cd ../..
+    make
+    popd
+}
+
+j() {
+    JAVA_FILE=$1
+    javac $JAVA_FILE
+    JAVA_CLASS=$(echo $JAVA_FILE | cut -d . -f1)
+    java $JAVA_CLASS
+    rm "$JAVA_CLASS.class"
+}
