@@ -24,5 +24,8 @@ export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
 export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
 
+# bin
+export PATH=$PATH:~/bin/create-flask-app
+
 # npm
 export PATH=$PATH:~/.npm-global/bin
