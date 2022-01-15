@@ -5,7 +5,8 @@ require 'paq' {
     'hrsh7th/cmp-nvim-lsp';
     'hrsh7th/cmp-buffer';
     'hrsh7th/nvim-cmp';
-    'norcalli/snippets.nvim';
+    'hrsh7th/cmp-vsnip';
+    'hrsh7th/vim-vsnip';
 
     'nvim-treesitter/nvim-treesitter';
 
@@ -48,7 +49,6 @@ require'plugins.fugitive'
 require'plugins.nerdtree'
 require'plugins.lualine'
 require'plugins.closetag'
-require'plugins.snippets'
 require'plugins.cmp'
 require'plugins.undotree'
 require'plugins.autopairs'

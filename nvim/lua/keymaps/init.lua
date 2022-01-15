@@ -28,6 +28,10 @@ map('i', '<A-k>', '<Esc>:m .-2<CR>==gi')
 map('v', '<A-j>', ":m '>+1<CR>gv=gv")
 map('v', '<A-k>', ":m '<-2<CR>gv=gv")
 
+-- keep visual selecion when changing indentation
+map('v', '>', '>gv')
+map('v', '<', '<gv')
+
 -- toggle wrap mode
 map('n', '<A-z>', ':set wrap!<CR>')
 
