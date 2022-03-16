@@ -7,6 +7,7 @@ require 'paq' {
     'hrsh7th/nvim-cmp';
     'hrsh7th/cmp-vsnip';
     'hrsh7th/vim-vsnip';
+    'hrsh7th/vim-vsnip-integ';
 
     'nvim-treesitter/nvim-treesitter';
 
@@ -50,6 +51,7 @@ require'plugins.nerdtree'
 require'plugins.lualine'
 require'plugins.closetag'
 require'plugins.cmp'
+require'plugins.vsnip'
 require'plugins.undotree'
 require'plugins.autopairs'
 require'plugins.smart_semicolon'

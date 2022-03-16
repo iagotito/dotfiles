@@ -1,0 +1,21 @@
+{
+    "html5": {
+        "prefix": "html5",
+        "description": "Basic HTML5 structure.",
+        "body": [
+            "<!DOCTYPE html>",
+            "<html lang=\"en-US\">",
+            "  <head>",
+            "    <meta charset=\"UTF-8\">",
+            "    <title>Title</title>",
+            "  </head>",
+            "  <body>",
+            "",
+            "    <h1>H1</h1>",
+            "    <p>p</p>",
+            "",
+            "  </body>",
+            "</html>"
+        ]
+    }
+}
