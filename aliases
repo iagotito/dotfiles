@@ -51,9 +51,13 @@ alias gpl='git pull'
 alias gp='git push -u origin HEAD'
 alias gr='git reset'
 alias grh='git reset --hard'
+alias grs='git reset --soft'
 alias gcl='git clean'
 alias gcln='git clean -n'
 alias gd='git diff'
+alias gst='git stash'
+alias gstl='git stash list'
+alias gsta='git stash apply'
 
 # tmux
 
@@ -84,5 +88,5 @@ alias var='v;a;r'
 alias vart='var;tr'
 
 # random
-alias ip='curl ipinfo.io/ip'
+alias ip='curl --silent ipinfo.io/ip'
 alias dropbox='~/.dropbox-dist/dropboxd'
