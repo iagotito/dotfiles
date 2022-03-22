@@ -1,6 +1,8 @@
 # the BEST alias ever
 alias please='sudo'
 
+alias dot='cd ~/.dotfiles'
+
 # basic navigation aliases
 alias clr='clear'
 alias cls='clear; ls'
