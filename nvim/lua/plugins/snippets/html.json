@@ -11,11 +11,15 @@
             "  </head>",
             "  <body>",
             "",
-            "    <h1>H1</h1>",
-            "    <p>p</p>",
+            "    $1",
             "",
             "  </body>",
             "</html>"
         ]
+    },
+    "script": {
+        "prefix": "script",
+        "description": "Script tag to /scripts/main.js",
+        "body": "<script src=\"/scripts/main.js\"></script>"
     }
 }
