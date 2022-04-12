@@ -138,6 +138,12 @@ backgroundsetup: sudo
 	gsettings set org.gnome.desktop.background picture-uri $(PICTURE_URI)
 	gsettings set org.gnome.desktop.screensaver picture-uri $(PICTURE_URI)
 
+docksetup:
+	gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed 'false'
+	gsettings set org.gnome.shell.extensions.dash-to-dock autohide 'true'
+	gsettings set org.gnome.shell.extensions.dash-to-dock intellihide 'true'
+	gsettings set org.gnome.shell.extensions.dash-to-dock extend-height 'false'
+
 # TODO: maybe move this to the prompt config
 terminalsetup:
 	# From: https://askubuntu.com/questions/1141782/how-to-change-the-background-of-the-terminal-through-a-command
