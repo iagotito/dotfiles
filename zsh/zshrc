@@ -42,9 +42,6 @@ alias ds='dirs -v'  # directy stack
                     # 'd' is used to deactivate python venvs (see $DOTFILES/aliases)
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
-# bd
-source $DOTFILES/zsh/plugins/zsh-bd/bd.zsh
-
 # functions
 
 source $DOTFILES/functions
