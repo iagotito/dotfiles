@@ -72,12 +72,21 @@ main()
   tmux set-option -g message-style "bg=${gray},fg=${white}"
 
   # status bar
-  tmux set-option -g status-style "bg=${gray},fg=${white}"
+  tmux set-option -g status-style "bg=${powerbg},fg=${white}"
 
   # Powerline Configuration
-  tmux set-option -g status-left "#[bg=${green},fg=${dark_gray}]#{?client_prefix,#[bg=${yellow}],} ${left_icon} #[fg=${green},bg=${gray}]#{?client_prefix,#[fg=${yellow}],}${left_sep}"
-  tmux set-option -g  status-right ""
-  powerbg=${gray}
+  powerbg=default
+
+  tmux set-option -g status-left "#[bg=${green},fg=${dark_gray}]#{?client_prefix,#[bg=${yellow}],} ${left_icon} #[fg=${green},bg=${powerbg}]#{?client_prefix,#[fg=${yellow}],}${left_sep}"
+
+  # fg=black is the greatest trick I ever made
+  # I wanted my status line to be the same color of my terminal background, but
+  # I had trouble to do it since the backgorund color is a hex.
+  # Do "bg=default" was not working, but when I do it black it becames almost
+  # invisible with the dracula background.
+  # Since I've already lost a lot of time trying to make it work, I will take
+  # it as a victory.
+  tmux set-window-option -g window-status-current-format "#[fg=black,bg=${dark_purple}]${left_sep}#[fg=${white},bg=${dark_purple}] #I #W #[fg=${dark_purple},bg=${powerbg}]${left_sep}"
 
   if $show_ram_usage; then
     tmux set-option -ga status-right "#[fg=${cyan},bg=${powerbg},nobold,nounderscore,noitalics] ${right_sep}#[fg=${dark_gray},bg=${cyan}] #($theme_dir/ram_info.sh)"
@@ -97,10 +106,7 @@ main()
     fi
   fi
 
-  tmux set-window-option -g window-status-current-format "#[fg=${gray},bg=${dark_purple}]${left_sep}#[fg=${white},bg=${dark_purple}] #I #W #[fg=${dark_purple},bg=${gray}]${left_sep}"
-
-  
-  tmux set-window-option -g window-status-format "#[fg=${white}]#[bg=${gray}] #I #W${flags}"
+  tmux set-window-option -g window-status-format "#[fg=${white}]#[bg=${powerbg}] #I #W${flags}"
   tmux set-window-option -g window-status-activity-style "bold"
   tmux set-window-option -g window-status-bell-style "bold"
 }
