@@ -1,5 +1,24 @@
 #!/usr/bin/zsh
 
+# Terminal colors
+
+# Dracula theme colors
+BACKGROUND="#282A36"
+CURRENT_LINE="#44475A"
+FOREGROUND="#F8F8F2"
+WHITE="#F8F8F2"
+COMMENT="#6272A4"
+CYAN="#8BE9FD"
+GREEN="#50FA7B"
+ORANGE="#FFB86C"
+PINK="#FF79C6"
+PURPLE="#BD93F9"
+RED="#FF5555"
+YELLOW="#F1FA8C"
+# Not from dracula
+GRAY="#2E3436"
+BLUE="#5D7BE6"
+
 # prompt configuration
 
 fpath=($DOTFILES/zsh/prompt $fpath)
@@ -74,3 +93,66 @@ fi
 path+=('/snap/bin')
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Setup colors
+
+# change highlight colors to dracula colors
+# from file: zsh-syntax-highlighting/highlighters/main/main-highlighter.zsh
+ZSH_HIGHLIGHT_STYLES[default]=$FOREGROUND
+ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=$RED,bold
+ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=$YELLOW
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=$GREEN,underline
+ZSH_HIGHLIGHT_STYLES[global-alias]=fg=$CYAN
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=$GREEN,underline
+ZSH_HIGHLIGHT_STYLES[autodirectory]=fg=$GREEN,underline
+ZSH_HIGHLIGHT_STYLES[globbing]=fg=$PURPLE
+ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=$PURPLE
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]=fg=$PINK
+ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]=fg=$PINK
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]=fg=$PINK
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=$YELLOW
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=$YELLOW
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]=fg=$YELLOW
+ZSH_HIGHLIGHT_STYLES[rc-quote]=fg=$CYAN
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=$CYAN
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=$CYAN
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=fg=$CYAN
+ZSH_HIGHLIGHT_STYLES[redirection]=fg=$YELLOW
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=$GREEN
+
+# Changes background color to dracula background color
+# From: https://askubuntu.com/questions/1141782/how-to-change-the-background-of-the-terminal-through-a-command
+DEFAULT_PROFILE=$(gsettings get org.gnome.Terminal.ProfilesList default)
+PROFILE_ID=$(echo "$DEFAULT_PROFILE" | cut -d "'" -f 2)
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ use-theme-colors false
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ background-color $BACKGROUND
+
+# Changes default terminal color palette
+# black, red, green, yellow, blue, purple, cyan, white
+PALETTE="['$GRAY', '$RED', '$GREEN', '$YELLOW', '$BLUE', '$PURPLE', '$CYAN', '$WHITE', 'rgb(76,76,76)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(255,255,0)', 'rgb(70,130,180)', 'rgb(255,0,255)', 'rgb(0,255,255)', 'rgb(255,255,255)']"
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ palette $PALETTE
+
+# change ls colors
+LS_COLORS=$(echo 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:'\
+'do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:'\
+'sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:'\
+'*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:'\
+'*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:'\
+'*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:'\
+'*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:'\
+'*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:'\
+'*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:'\
+'*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:'\
+'*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:'\
+'*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:'\
+'*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:'\
+'*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:'\
+'*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:'\
+'*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:'\
+'*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:'\
+'*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:'\
+'*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:'\
+'*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:'\
+'*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:'\
+'*.opus=00;36:*.spx=00;36:*.xspf=00;36:')
+export LS_COLORS

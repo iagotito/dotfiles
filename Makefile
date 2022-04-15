@@ -4,8 +4,9 @@
 
 SHELL := /usr/bin/bash
 
-PACKAGES := git curl build-essential vim zsh tmux
+PACKAGES := git curl build-essential vim zsh tmux snapd
 PACKAGES += libssl-dev libpam-gnome-keyring xclip
+SNAPPACKAGES := discord insomnia gimp obs-studio
 PROGRAMS := asdf neovim docker dropbox
 
 help:
@@ -35,6 +36,8 @@ packagesinstall: sudo
 	sudo apt update
 	sudo apt install $(PACKAGES) -y
 	@echo "Packages installed"
+
+snappackagesinstall: sudo
 
 _ASDF_DIR := "$${HOME}/.asdf"
 _ASDF_SCRIPT := "$(_ASDF_DIR)/asdf.sh"
