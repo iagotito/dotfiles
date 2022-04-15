@@ -121,8 +121,10 @@ ZSH_HIGHLIGHT_STYLES[arg0]=fg=$GREEN
 # From: https://askubuntu.com/questions/1141782/how-to-change-the-background-of-the-terminal-through-a-command
 DEFAULT_PROFILE=$(gsettings get org.gnome.Terminal.ProfilesList default)
 PROFILE_ID=$(echo "$DEFAULT_PROFILE" | cut -d "'" -f 2)
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ use-system-font false
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ use-theme-colors false
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ background-color $BACKGROUND
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/ font 'Fira Code Medium 16'
 
 # Changes default terminal color palette
 # black, red, green, yellow, blue, purple, cyan, white
