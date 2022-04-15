@@ -9,6 +9,28 @@ PACKAGES += libssl-dev libpam-gnome-keyring xclip
 SNAPPACKAGES := discord insomnia gimp obs-studio
 PROGRAMS := asdf neovim docker dropbox
 
+# Terminal colors
+
+# Dracula theme colors
+BACKGROUND := \#282A36
+CURRENT_LINE := \#44475A
+FOREGROUND := \#F8F8F2
+WHITE := \#F8F8F2
+COMMENT := \#6272A4
+CYAN := \#8BE9FD
+GREEN := \#50FA7B
+ORANGE := \#FFB86C
+PINK := \#FF79C6
+PURPLE := \#BD93F9
+RED := \#FF5555
+YELLOW := \#F1FA8C
+# Not from dracula
+GRAY := \#2E3436
+BLUE := \#5D7BE6
+# Changes default terminal color palette
+# black, red, green, yellow, blue, purple, cyan, white
+PALETTE := "['$(GRAY)', '$(RED)', '$(GREEN)', '$(YELLOW)', '$(BLUE)', '$(PURPLE)', '$(CYAN)', '$(WHITE)', 'rgb(76,76,76)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(255,255,0)', 'rgb(70,130,180)', 'rgb(255,0,255)', 'rgb(0,255,255)', 'rgb(255,255,255)']"
+
 help:
 	@echo "Usage:"
 	@echo
@@ -154,12 +176,12 @@ docksetup:
 	gsettings set org.gnome.shell.extensions.dash-to-dock intellihide 'true'
 	gsettings set org.gnome.shell.extensions.dash-to-dock extend-height 'false'
 
-# TODO: maybe move this to the prompt config
 terminalsetup:
 	# From: https://askubuntu.com/questions/1141782/how-to-change-the-background-of-the-terminal-through-a-command
 	$(eval DEFAULT_PROFILE := $(shell gsettings get org.gnome.Terminal.ProfilesList default))
 	$(eval PROFILE_ID := $(shell echo "$(DEFAULT_PROFILE)" | cut -d "'" -f 2))
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ use-theme-colors false
-	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ background-color '#282A36' # dracula background
+	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ palette $(PALETTE)
+	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ background-color '$(BACKGROUND)'
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ use-system-font false
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ font 'Fira Code Medium 16'
