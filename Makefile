@@ -129,7 +129,7 @@ themesetup: sudo
 	gsettings set org.gnome.desktop.wm.preferences theme 'Sweet-Dark-v40'
 
 fontsdownload: sudo
-	sudo mkdir -p /usr/share/ttf
+	sudo mkdir -p /usr/share/fonts/ttf
 	curl -L https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip -o /tmp/hack-font.zip
 	sudo unzip /tmp/hack-font.zip -d /tmp/hack-font/
 	sudo cp -t /usr/share/fonts/ttf/ /tmp/hack-font/ttf/*
