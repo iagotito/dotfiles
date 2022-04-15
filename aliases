@@ -30,11 +30,11 @@ alias egrep='egrep --color=auto'
 alias :q='exit'
 
 # editing and reliading
-alias ze='vim $ZDOTDIR/.zshrc'        # zshrc edit
+alias ze='nvim $ZDOTDIR/.zshrc'        # zshrc edit
 alias zr='source $ZDOTDIR/.zshrc'     # zshrc reload
-alias ae='vim $DOTFILES/aliases'      # aliases edit
+alias ae='nvim $DOTFILES/aliases'      # aliases edit
 alias ar='source $DOTFILES/aliases'   # aliases reload
-alias fe='vim $DOTFILES/functions'    # functions edit
+alias fe='nvim $DOTFILES/functions'    # functions edit
 alias fr='source $DOTFILES/functions' # functions reload
 
 # git aliases
