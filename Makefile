@@ -131,6 +131,9 @@ themesetup: sudo
 fontsetup: sudo
 	curl -L https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip -o /tmp/hack-font.zip
 	sudo unzip /tmp/hack-font.zip -d /usr/share/fonts/
+	curl -L https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip -o /tmp/firacode.zip
+	sudo unzip /tmp/firacode.zip -d /tmp/firacode/
+	sudo cp -t /usr/share/fonts /tmp/firacode/ttf/*
 	gsettings set org.gnome.desktop.interface font-name 'Hack Regular 12'
 
 backgroundsetup: sudo
@@ -155,4 +158,4 @@ terminalsetup:
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ use-theme-colors false
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ background-color '#1c1c1c'
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ use-system-font false
-	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ font 'Hack Regular 16'
+	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ font 'Fira Code Medium 16'
