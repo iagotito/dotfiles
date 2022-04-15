@@ -3,24 +3,26 @@
 
 My attempt to create some nice dotfiles to me.
 
-## Instalation*
+## Instalation
 
-> The script is deprecated and needs a update. It may not work proper 
-> until it happen and I don't know when I will update it. You still 
-> can install manually, update and make a PR or just send me email to 
-> charge me if you don't know how to do those things. 
+### Zsh dotfiles setup
 
-Just run this command:
+Run the following:
 
-```bash
-bash -c "`curl -fsSL https://raw.githubusercontent.com/iagotito/dotfiles/main/install.sh `"
+`sudo ls` is just a trick to grant the shell sudo privileges (required for the setup script)
+```shell
+sudo ls > /dev/null &&
+wget -q -O - https://raw.githubusercontent.com/iagotito/dotfiles/main/zsh_setup | bash
 ```
 
-__Waring:__ it will override your `~/.zshenv`, `~/.config/zsh/.zshrc` 
-and `~/.tmux.conf` files so create a backup before.
+__Waring:__ it will override your `~/.zshenv` and
+`~/.config/zsh/.zshrc` files so create a backup before.
+
+### Full Instalation
+
+Still working on this script.
 
 ## Requisites
 
-These are dotfiles mainly to zsh and tmux, so you need to have them 
-installed in order to use it well.se are dotfiles do zsh and tmux, 
-so you need to have them installed in order to use it well.
+These are dotfiles mainly to zsh and tmux, so you need to have them
+installed in order to use it well.
