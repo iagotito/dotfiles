@@ -128,12 +128,16 @@ themesetup: sudo
 	gsettings set org.gnome.desktop.interface gtk-theme 'Sweet-Dark-v40'
 	gsettings set org.gnome.desktop.wm.preferences theme 'Sweet-Dark-v40'
 
-fontsetup: sudo
+fontsdownload: sudo
+	sudo mkdir -p /usr/share/ttf
 	curl -L https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip -o /tmp/hack-font.zip
-	sudo unzip /tmp/hack-font.zip -d /usr/share/fonts/
+	sudo unzip /tmp/hack-font.zip -d /tmp/hack-font/
+	sudo cp -t /usr/share/fonts/ttf/ /tmp/hack-font/ttf/*
 	curl -L https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip -o /tmp/firacode.zip
 	sudo unzip /tmp/firacode.zip -d /tmp/firacode/
-	sudo cp -t /usr/share/fonts /tmp/firacode/ttf/*
+	sudo cp -t /usr/share/fonts/ttf/ /tmp/firacode/ttf/*
+
+fontsetup: sudo fontsdownload
 	gsettings set org.gnome.desktop.interface font-name 'Hack Regular 12'
 
 backgroundsetup: sudo
@@ -156,6 +160,6 @@ terminalsetup:
 	$(eval DEFAULT_PROFILE := $(shell gsettings get org.gnome.Terminal.ProfilesList default))
 	$(eval PROFILE_ID := $(shell echo "$(DEFAULT_PROFILE)" | cut -d "'" -f 2))
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ use-theme-colors false
-	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ background-color '#1c1c1c'
+	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ background-color '#282A36' # dracula background
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ use-system-font false
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ font 'Fira Code Medium 16'
