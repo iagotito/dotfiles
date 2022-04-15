@@ -64,9 +64,11 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 # asdf
-
-. $HOME/.asdf/asdf.sh
-#. ~/.asdf/plugins/java/set-java-home.zsh
+# activate asdf if it exists
+if [ -f $HOME/.asdf/asdf.sh ]; then
+    . $HOME/.asdf/asdf.sh
+    #. ~/.asdf/plugins/java/set-java-home.zsh
+fi
 
 
 # append completions to fpath
