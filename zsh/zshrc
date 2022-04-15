@@ -81,8 +81,9 @@ source $DOTFILES/zsh/plugins/completion.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# if tmux is installed,
 # starts new terminal with a tmux session and close it when quit tmux
-if [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
+if [[ -x "$(command -v tmux)" ]] && [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
   exec tmux;
 fi
 
