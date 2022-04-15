@@ -155,4 +155,4 @@ terminalsetup:
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ use-theme-colors false
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ background-color '#1c1c1c'
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ use-system-font false
-	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ font 'Hack Regular 14'
+	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ font 'Hack Regular 16'
