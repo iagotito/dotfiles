@@ -130,7 +130,7 @@ get_git_info() {
 get_virtual_env_info() {
     VENV=${VIRTUAL_ENV##*/}
     if [[ $VENV ]]; then
-        VENV="%F{$GREEN}($VENV)%f "
+        VENV="%F{$ORANGE}($VENV)%f "
     fi
     echo $VENV
 }
