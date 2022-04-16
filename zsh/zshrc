@@ -42,14 +42,17 @@ alias ds='dirs -v'  # directy stack
                     # 'd' is used to deactivate python venvs (see $DOTFILES/aliases)
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
-# functions
-
-source $DOTFILES/functions
-
 # aliases
+source "$DOTFILES/aliases"
+if [[ -f "$PRIVATE_DOTFILES/private-aliases" ]]; then
+    source "$PRIVATE_DOTFILES/private-aliases"
+fi
 
-source $DOTFILES/aliases
-source $DOTFILES/personal-aliases
+# functions
+source "$DOTFILES/functions"
+if [[ -f "$PRIVATE_DOTFILES/private-functions" ]]; then
+    source "$PRIVATE_DOTFILES/private-functions"
+fi
 
 # Vi mode
 bindkey -v

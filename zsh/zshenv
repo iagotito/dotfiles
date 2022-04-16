@@ -5,6 +5,7 @@
 ###############################
 
 export DOTFILES="$HOME/.dotfiles"
+export PRIVATE_DOTFILES="$HOME/.private-dotfiles"
 
 # XDG
 
