@@ -2,7 +2,7 @@
 .PHONY: asdf sudo
 .ONESHELL:
 
-SHELL := /usr/bin/bash
+SHELL := /bin/bash
 
 PACKAGES := git curl build-essential vim zsh tmux snapd
 PACKAGES += libssl-dev libpam-gnome-keyring xclip
@@ -185,3 +185,8 @@ terminalsetup:
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ background-color '$(BACKGROUND)'
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ use-system-font false
 	gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(PROFILE_ID)/ font 'Fira Code Medium 16'
+
+test:
+	$(eval DEFAULT_PROFILE := $(shell gsettings get org.gnome.Terminal.ProfilesList default))
+	$(eval PROFILE_ID := $(shell echo "$(DEFAULT_PROFILE)" | cut -d "'" -f 2))
+	echo $(PROFILE_ID)

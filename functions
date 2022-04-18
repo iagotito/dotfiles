@@ -69,3 +69,32 @@ ups() {
     newsetup=$(cat $FILE | sed "s/$version/$updatedversion/")
     echo $newsetup > $FILE
 }
+
+# git
+
+gitignore() {
+    if [[ -z $@ ]]; then
+        echo "Nothing to ignore."
+        return
+    fi
+    ignore=$(echo $@ | sed 's/ /,/g')
+    gitignore_content=$(curl -s "https://www.toptal.com/developers/gitignore/api/$ignore")
+    echo $gitignore_content > .gitignore
+}
+
+repo_description() {
+    if [[ ! -f README.md ]]; then
+        echo "No README.md file found."
+        return
+    fi
+    description=$(awk -v RS= -v p="2" 'NR == p' README.md)
+    echo $description
+}
+
+ghcurl() {
+    curl -H "Authorization: bearer $(cat ~/github-key)" -X POST -d " \
+     { \
+       \"query\": \"query { viewer { login }}\" \
+     } \
+    " https://api.github.com/graphql
+}
