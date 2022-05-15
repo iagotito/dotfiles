@@ -3,7 +3,13 @@ require('telescope').setup{
         file_ignore_patterns = {
             "__pycache__",
             "venv",
-            "node_modules"
+            "node_modules",
+            ".git"
+        }
+    },
+    pickers = {
+        find_files = {
+            hidden = true
         }
     }
 }
