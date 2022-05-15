@@ -86,6 +86,10 @@ source $DOTFILES/zsh/plugins/completion.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# activate the zsh auto sugestions
+# see: https://github.com/zsh-users/zsh-autosuggestions
+source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # if tmux is installed,
 # starts new terminal with a tmux session and close it when quit tmux
 if [[ -x "$(command -v tmux)" ]] && [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
