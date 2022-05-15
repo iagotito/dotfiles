@@ -19,7 +19,7 @@ sudo apt install -y make git
 ssh_setup
 git_setup
 
-git clone git@github.com:iagotito/dotfiles.git ~/.dotfiles
+git clone --recurse-submodules git@github.com:iagotito/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
 echo
