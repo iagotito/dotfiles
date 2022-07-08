@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # the BEST alias ever
 alias please='sudo'
 
@@ -77,11 +79,27 @@ alias mdb='dsm && dcm'
 
 # python aliases
 
+export DEFAULT_VENV_NAME='.venv'
+
 alias python=python3
 alias pip=pip3
 alias p='python'
-alias v='python -m venv --system-site-packages .venv'
-alias a='source .venv/bin/activate'
+v() {
+    if [[ -z $1 ]]; then
+        VENV_NAME=$DEFAULT_VENV_NAME
+    else
+        VENV_NAME=$1
+    fi
+    python -m venv --system-site-packages $VENV_NAME
+}
+a() {
+    if [[ -z $1 ]]; then
+        VENV_NAME=$DEFAULT_VENV_NAME
+    else
+        VENV_NAME=$1
+    fi
+    source $VENV_NAME/bin/activate
+}
 alias d='deactivate'
 alias r='pip install -r requirements.txt'
 alias tr='pip install -r tests-requirements.txt'
