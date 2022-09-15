@@ -70,6 +70,20 @@ ups() {
     echo $newsetup > $FILE
 }
 
+# start server
+s() {
+    serverdir=$(ls -l | grep -e "^d" | grep -e "server" | \tr -s ' ' | cut -d' ' -f9)
+
+    if [[ -z $serverdir ]]; then
+        # print in red
+        >&2 echo -e "\033[0;31mFora de um servidor com o padrão *server*\033[0m"
+        return 1
+    fi
+
+    ./.venv/bin/python3 -m $serverdir
+}
+
+
 # git
 
 gitignore() {
