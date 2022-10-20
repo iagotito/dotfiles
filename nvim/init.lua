@@ -33,8 +33,10 @@ opt.wrap = false -- no wrap
 opt.linebreak = true -- when wrap, not break words
 opt.colorcolumn = '80' -- color column position
 opt.completeopt = {'menu', 'menuone', 'noselect'}
+opt.mouse = 'a'
 -- undo tree file
-opt.undodir = '/home/iago/.nvim/undodir'
+home = os.getenv("HOME")
+opt.undodir = home .. "/.nvim/undodir"
 opt.undofile = true
 cmd("filetype plugin on")
 
