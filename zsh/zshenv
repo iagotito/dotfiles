@@ -27,6 +27,7 @@ export SAVEHIST=10000                   # Maximum events in history file
 
 # bin
 export PATH=$PATH:~/bin/create-flask-app
+export PATH=$PATH:$HOME/.asdf/installs/python/3.10.6/bin
 
 # npm
 export PATH=$PATH:~/.npm-global/bin
