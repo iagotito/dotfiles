@@ -38,6 +38,10 @@ map('n', '<A-z>', ':set wrap!<CR>')
 -- jump back to previous file
 map('n', '<c-p>', ':e #<cr>')
 
+-- clycle through buffers
+map('n', '<tab>', ':bn<cr>')
+map('n', '<s-tab>', ':bp<cr>')
+
 -- Y to yank to the end of the line
 map('n', 'Y', 'y$')
 
