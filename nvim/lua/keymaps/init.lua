@@ -2,8 +2,10 @@ require'keymaps.util'
 
 vim.g.mapleader=' ' -- set `space` as leader key
 
-map('n', '<leader>bn', '<cmd>bn<cr>')  -- buffer next
-map('n', '<leader>bp', '<cmd>bp<cr>')  -- buffer next
+-- clycle through buffers
+map('n', '<tab>', ':bn<cr>')
+map('n', '<s-tab>', ':bp<cr>')
+
 map('n', '<leader>l', '<cmd>noh<cr>')  -- clear highlights
 
 -- windows navigation with leader instead of Ctrl
@@ -37,10 +39,6 @@ map('n', '<A-z>', ':set wrap!<CR>')
 
 -- jump back to previous file
 map('n', '<c-p>', ':e #<cr>')
-
--- clycle through buffers
-map('n', '<tab>', ':bn<cr>')
-map('n', '<s-tab>', ':bp<cr>')
 
 -- Y to yank to the end of the line
 map('n', 'Y', 'y$')

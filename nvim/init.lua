@@ -14,7 +14,7 @@ print(vim.bo.filetype)
 
 opt.autoread = true -- reload files changed outside of Nvim
 opt.visualbell = true -- use a visual bell instead of emit beep
-opt.relativenumber = true -- show relative line distances
+opt.relativenumber = false -- show relative line distances
 opt.number = true -- show current line number
 opt.scrolloff = 8 -- number of lines offset when jumping
 opt.tabstop = 2 -- number of spaces tabs count for
@@ -47,6 +47,7 @@ cmd("filetype plugin on")
 cmd("autocmd BufWritePre * if &ft!='markdown' | let position = winsaveview() | :%s/\\s\\+$//e | call winrestview(position) | unlet! position") -- rstrip white spaces when save except on markdown files
 cmd("autocmd BufNewFile,BufReadPre *.md setlocal textwidth=71 colorcolumn=72") -- auto break line at 71 chars in .md files
 cmd("autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4") -- set tab to 4 spaces in selected filetypes
+cmd("autocmd FileType go setlocal noexpandtab") -- use tab for identation in go files
 
 -- Highlight trailing white spaces
 -- see: https://vim.fandom.com/wiki/Highlight_unwanted_spaces

@@ -6,9 +6,9 @@ require 'paq' {
     'hrsh7th/cmp-buffer';
     'hrsh7th/cmp-nvim-lsp';
     'hrsh7th/cmp-path';
-    'hrsh7th/cmp-vsnip';
     'hrsh7th/vim-vsnip';
     'hrsh7th/vim-vsnip-integ';
+    'godlygeek/tabular';
 
     'nvim-treesitter/nvim-treesitter';
 
@@ -23,6 +23,7 @@ require 'paq' {
     'preservim/nerdtree';
     'Xuyuanp/nerdtree-git-plugin';
     'tiagofumo/vim-nerdtree-syntax-highlight';
+    'duane9/nvim-rg';
 
     'windwp/nvim-autopairs';
     'iagotito/smart-semicolon.nvim',
@@ -31,6 +32,8 @@ require 'paq' {
     'preservim/nerdcommenter';
     'tpope/vim-fugitive';
     'mbbill/undotree';
+
+    'gpanders/editorconfig.nvim';
 }
 
 

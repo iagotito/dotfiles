@@ -26,8 +26,12 @@ export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
 
 # bin
-export PATH=$PATH:~/bin/create-flask-app
+#export PATH=$PATH:$HOME/bin/create-flask-app
 export PATH=$PATH:$HOME/.asdf/installs/python/3.10.6/bin
+export PATH=$PATH:$HOME/.asdf/installs/golang/1.19/packages/bin
 
 # npm
 export PATH=$PATH:~/.npm-global/bin
+
+# Homebrew
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
