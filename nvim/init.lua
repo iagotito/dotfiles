@@ -14,7 +14,7 @@ print(vim.bo.filetype)
 
 opt.autoread = true -- reload files changed outside of Nvim
 opt.visualbell = true -- use a visual bell instead of emit beep
-opt.relativenumber = false -- show relative line distances
+opt.relativenumber = true -- show relative line distances
 opt.number = true -- show current line number
 opt.scrolloff = 8 -- number of lines offset when jumping
 opt.tabstop = 2 -- number of spaces tabs count for

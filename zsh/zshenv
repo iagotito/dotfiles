@@ -35,3 +35,6 @@ export PATH=$PATH:~/.npm-global/bin
 
 # Homebrew
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+
+# go packages
+export PATH=$PATH:~/.asdf/installs/golang/1.19/packages/bin

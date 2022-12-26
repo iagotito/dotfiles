@@ -6,6 +6,9 @@ vim.g.mapleader=' ' -- set `space` as leader key
 map('n', '<tab>', ':bn<cr>')
 map('n', '<s-tab>', ':bp<cr>')
 
+-- jump back to previous file
+map('n', '<c-p>', ':e #<cr>')
+
 map('n', '<leader>l', '<cmd>noh<cr>')  -- clear highlights
 
 -- windows navigation with leader instead of Ctrl
@@ -34,11 +37,12 @@ map('v', '<A-k>', ":m '<-2<CR>gv=gv")
 map('v', '>', '>gv')
 map('v', '<', '<gv')
 
+-- when paste text into visual selection, throw replaced text
+-- into void register
+map('x', 'p', "\"_dP")
+
 -- toggle wrap mode
 map('n', '<A-z>', ':set wrap!<CR>')
-
--- jump back to previous file
-map('n', '<c-p>', ':e #<cr>')
 
 -- Y to yank to the end of the line
 map('n', 'Y', 'y$')
