@@ -22,7 +22,8 @@ require 'paq' {
     'nvim-telescope/telescope.nvim';
     'preservim/nerdtree';
     'Xuyuanp/nerdtree-git-plugin';
-    'tiagofumo/vim-nerdtree-syntax-highlight';
+    --'tiagofumo/vim-nerdtree-syntax-highlight';
+    'johnstef99/vim-nerdtree-syntax-highlight';
     'duane9/nvim-rg';
 
     'windwp/nvim-autopairs';

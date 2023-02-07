@@ -3,7 +3,39 @@
 # the BEST alias ever
 alias please='sudo'
 
-alias dot='cd ~/.dotfiles'
+alias dot='cd $DOTFILES'
+
+# replace 'ls' with 'exa', if installed
+ls() {
+  if command -v exa &> /dev/null
+  then
+    exa -h --color=auto --group-directories-first $@
+  else
+    ls -h --color=auto --group-directories-first $@
+  fi
+}
+
+la() {
+  if command -v exa &> /dev/null
+  then
+    exa -ah --color=auto --group-directories-first $@
+  else
+    ls -ah --color=auto --group-directories-first $@
+  fi
+}
+
+ll() {
+  if command -v exa &> /dev/null
+  then
+    exa -alh --color=auto --group-directories-first $@
+  else
+    ls -alh --color=auto --group-directories-first $@
+  fi
+}
+
+#alias ls='ls -h --color=auto --group-directories-first'
+#alias la='ls -ah --color=auto --group-directories-first'
+#alias ll='ls -lah --color=auto --group-directories-first'
 
 # basic navigation aliases
 alias clr='clear'
@@ -17,11 +49,6 @@ alias ....='cd ../../..'
 alias cp='cp -r' # copy directories recursively
 
 alias tree='tree -C' # add colorization to tree
-
-# list dirs first and colored
-alias ls='ls -h --color=auto --group-directories-first'
-alias la='ls -ah --color=auto --group-directories-first'
-alias ll='ls -lah --color=auto --group-directories-first'
 
 # highlight grep match
 alias grep='grep --color=auto'

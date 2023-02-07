@@ -68,11 +68,11 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 # asdf
 # activate asdf if it exists
-if [ -f $HOME/.asdf/asdf.sh ]; then
-    . $HOME/.asdf/asdf.sh
+if [ -f /srv/asdf/asdf.sh ]; then
+    . /srv/asdf/asdf.sh
     #. ~/.asdf/plugins/java/set-java-home.zsh
+    export PATH=$PATH:/home/iagopagarme/.asdf/installs/golang/1.19.5/packages/bin
 fi
-
 
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
