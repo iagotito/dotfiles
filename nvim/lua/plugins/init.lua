@@ -35,6 +35,7 @@ require 'paq' {
     'mbbill/undotree';
 
     'gpanders/editorconfig.nvim';
+    'm4xshen/smartcolumn.nvim';
 }
 
 
@@ -60,5 +61,6 @@ require'plugins.vsnip'
 require'plugins.undotree'
 require'plugins.autopairs'
 require'plugins.smart_semicolon'
+require'plugins.smartcolumn'
 
 -----------------------------------------------------------------------------
