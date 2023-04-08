@@ -11,7 +11,7 @@ ls() {
   then
     exa -h --color=auto --group-directories-first $@
   else
-    ls -h --color=auto --group-directories-first $@
+    command ls -h --color=auto --group-directories-first $@
   fi
 }
 
@@ -20,7 +20,7 @@ la() {
   then
     exa -ah --color=auto --group-directories-first $@
   else
-    ls -ah --color=auto --group-directories-first $@
+    command ls -ah --color=auto --group-directories-first $@
   fi
 }
 
@@ -29,7 +29,7 @@ ll() {
   then
     exa -alh --color=auto --group-directories-first $@
   else
-    ls -alh --color=auto --group-directories-first $@
+    command ls -alh --color=auto --group-directories-first $@
   fi
 }
 
