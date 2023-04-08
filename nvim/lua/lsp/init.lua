@@ -51,11 +51,11 @@ for _, lsp in ipairs(servers) do
     }
 end
 
-require'lspconfig'.terraformls.setup{}
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
-  pattern = {"*.tf", "*.tfvars"},
-  callback = vim.lsp.buf.formatting_sync,
-})
+--require'lspconfig'.terraformls.setup{}
+--vim.api.nvim_create_autocmd({"BufWritePre"}, {
+  --pattern = {"*.tf", "*.tfvars"},
+  --callback = vim.lsp.buf.formatting_sync,
+--})
 
 --Enable (broadcasting) snippet capability for completion
 --local capabilities = vim.lsp.protocol.make_client_capabilities()
