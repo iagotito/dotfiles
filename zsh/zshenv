@@ -8,32 +8,27 @@ export DOTFILES="/srv/dotfiles"
 export PRIVATE_DOTFILES="/srv/private-dotfiles"
 
 # XDG
-
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$XDG_CONFIG_HOME/local/share
 export XDG_CACHE_HOME=$XDG_CONFIG_HOME/cache
 
 # editor
-
 export EDITOR="nvim"
 export VISUAL="nvim"
 
 # zsh
-
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
 export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
 
-# bin
-export PATH=$PATH:$HOME/.asdf/installs/python/3.10.6/bin
-export PATH=$PATH:$HOME/.asdf/installs/golang/1.19/packages/bin
+# asdf
+export ASDF_DIR='/opt/asdf'
+export ASDF_DATA_DIR=$ASDF_DIR
+export ASDF_SCRIPT="$ASDF_DIR/asdf.sh"
 
 # npm
 export PATH=$PATH:~/.npm-global/bin
 
 # Homebrew
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
-
-# go packages
-export PATH=$PATH:~/.asdf/installs/golang/1.19/packages/bin
