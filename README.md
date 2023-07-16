@@ -11,8 +11,8 @@ Run the following:
 
 `sudo ls` is just a trick to grant the shell sudo privileges (required for the setup script)
 ```shell
-sudo apt update -y
-sudo apt install git -y
+sudo dnf check-update -y
+sudo dnf install git -y
 
 git config --global user.name "<YOUR NAME>"
 git config --global user.email "<YOUR EMAIL>"
@@ -21,7 +21,7 @@ git config --global user.email "<YOUR EMAIL>"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 
-# I link to install my dotfiles in here, so I can use the same ones across all my users.
+# I like to install my dotfiles in here, so I can use the same ones across all my users.
 # If you prefer, you can skip this block and just to a git clone in your home or any place you like.
 sudo mkdir /srv/dotfiles
 sudo chmod 777 /srv/dotfiles
