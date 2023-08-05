@@ -12,6 +12,9 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$XDG_CONFIG_HOME/local/share
 export XDG_CACHE_HOME=$XDG_CONFIG_HOME/cache
 
+# browser
+export BROWSER="/usr/bin/microsoft-edge"
+
 # editor
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -26,9 +29,14 @@ export SAVEHIST=10000                   # Maximum events in history file
 export ASDF_DIR='/opt/asdf'
 export ASDF_DATA_DIR=$ASDF_DIR
 export ASDF_SCRIPT="$ASDF_DIR/asdf.sh"
+export PATH=$PATH:/opt/asdf/bin
+export PATH=$PATH:/opt/asdf/shims
 
 # npm
 export PATH=$PATH:~/.npm-global/bin
 
 # Homebrew
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+
+# rust / cargo
+export PATH=$PATH:/opt/asdf/installs/rust/1.71.0/bin
