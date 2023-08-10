@@ -9,7 +9,7 @@ alias dot='cd $DOTFILES'
 ls() {
   if command -v exa &> /dev/null
   then
-    exa -h --color=auto --group-directories-first $@
+    exa -h --color=always --group-directories-first --icons $@
   else
     command ls -h --color=auto --group-directories-first $@
   fi
