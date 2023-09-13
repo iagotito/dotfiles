@@ -138,3 +138,34 @@ alias vart='var;tr'
 # random
 alias ip='curl --silent ipinfo.io/ip'
 alias dropbox='~/.dropbox-dist/dropboxd'
+
+# kubernetes
+alias k="kubectl"
+alias kns="kubens"
+alias kctx="kubectx"
+alias kg="kubectl get"
+alias watch="watch "
+alias kgp="kubectl get pods"
+alias kdp="kubectl describe pod"
+alias kgn="kubectl get nodes"
+alias kdn="kubectl describe node"
+alias kgs="kubectl get services"
+alias kgsct="kubectl get secret"
+alias kgds="kubectl get daemonset"
+alias kgd="kubectl get deployment"
+alias kgcm="kubectl get configmap"
+alias kgsm="kubectl get servicemonitor"
+alias kgpr="kubectl get prometheusrules"
+alias kghpa="kubectl get HorizontalPodAutoscaler"
+alias kgpa="kubectl get pod -A"
+alias kge="kubectl get events"
+alias kgpvc="kubectl get pvc"
+alias kgpv="kubectl get pv"
+alias kgsfs="kubectl get statefulset"
+alias kd="kubectl describe"
+alias kgl="kubectl logs -f"
+alias kc="kubectl create -f"
+alias pnr="kubectl get pod -A | grep -v Running"  # Usado para mostrar todos os pods com problemas.
+
+# terraform
+alias tf="terraform"
