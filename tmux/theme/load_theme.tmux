@@ -13,6 +13,7 @@ main()
   show_left_sep=""
   show_right_sep=""
   show_cpu_usage="true"
+  show_cpu_temp="true"
   show_ram_usage="true"
   show_day_month="true"
   show_time="true"
@@ -27,7 +28,7 @@ main()
   cyan='#00d2ff'
   green='#00ff00'
   orange='#ff8400'
-  red='#ff0000'
+  red='#ff5555'
   pink='#ff00ff'
   yellow='#ffff00'
 
@@ -100,6 +101,11 @@ main()
 
   if $show_cpu_usage; then
     tmux set-option -ga status-right "#[fg=${orange},bg=${powerbg},nobold,nounderscore,noitalics] ${right_sep}#[fg=${dark_gray},bg=${orange}] #($theme_dir/cpu_info.sh)"
+    powerbg=${orange}
+  fi
+
+  if $show_cpu_temp; then
+    tmux set-option -ga status-right  "#[fg=${white}] #($theme_dir/cpu_temp.sh)"
     powerbg=${orange}
   fi
 
