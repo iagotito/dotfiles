@@ -50,6 +50,8 @@ alias cp='cp -r' # copy directories recursively
 
 alias tree='tree -C' # add colorization to tree
 
+alias rnie="grep -rniE"
+
 # highlight grep match
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
