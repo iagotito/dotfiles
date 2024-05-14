@@ -7,7 +7,8 @@ require 'paq' {
     'hrsh7th/cmp-nvim-lsp';
     'hrsh7th/cmp-path';
     'hrsh7th/vim-vsnip';
-    'hrsh7th/vim-vsnip-integ';
+    'hrsh7th/cmp-vsnip';
+    --'hrsh7th/vim-vsnip-integ';
     'godlygeek/tabular';
 
     'nvim-treesitter/nvim-treesitter';

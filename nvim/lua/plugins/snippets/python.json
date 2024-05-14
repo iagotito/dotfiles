@@ -26,9 +26,9 @@
         "prefix": "_print",
         "description": "Add 3 print commands to create a space arround the middle one and make it better to find in log messages",
         "body": [
-            "print(\"\\n\"*5)",
+            "print(\"\\n\"*2)",
             "print(f\"{${1}}\")",
-            "print(\"\\n\"*5)"
+            "print(\"\\n\"*2)"
         ]
     }
 }
