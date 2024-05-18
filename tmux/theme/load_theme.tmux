@@ -13,7 +13,7 @@ main()
   show_left_sep=""
   show_right_sep=""
   show_cpu_usage="true"
-  show_cpu_temp="true"
+  show_cpu_temp="false"
   show_ram_usage="true"
   show_day_month="true"
   show_time="true"
