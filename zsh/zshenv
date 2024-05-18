@@ -4,8 +4,8 @@
 # EXPORT ENVIRONMENT VARIABLE #
 ###############################
 
-export DOTFILES="/srv/dotfiles"
-export PRIVATE_DOTFILES="/srv/private-dotfiles"
+export DOTFILES="$HOME/.dotfiles"
+export PRIVATE_DOTFILES="$HOME/.private-dotfiles"
 
 # XDG
 export XDG_CONFIG_HOME=$HOME/.config
@@ -34,14 +34,5 @@ export PATH=$PATH:/opt/asdf/shims
 
 # npm
 export PATH=$PATH:~/.npm-global/bin
-
-# go
-export PATH=$PATH:/opt/asdf/installs/golang/1.21.0/packages/bin
-
-# Homebrew
-export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
-
-# rust / cargo
-export PATH=$PATH:/opt/asdf/installs/rust/1.71.0/bin
 
 export TMPDIR=/var/tmp

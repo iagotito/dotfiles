@@ -1,4 +1,3 @@
-
 # Iago's Dotfiles
 
 My attempt to create some nice dotfiles to me.
@@ -21,26 +20,14 @@ git config --global user.email "<YOUR EMAIL>"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 
-# I link to install my dotfiles in here, so I can use the same ones across all my users.
-# If you prefer, you can skip this block and just to a git clone in your home or any place you like.
-sudo mkdir /srv/dotfiles
-sudo chmod 777 /srv/dotfiles
-git clone --recurse-submodules git@github.com:iagotito/dotfiles.git /srv/dotfiles
-git config --global --add safe.directory /srv/dotfiles
+git clone --recurse-submodules git@github.com:iagotito/dotfiles.git ~/.dotfiles
 ```
 
 Then go to setuper to setup everything else.
 
 ```shell
-cd /srv/dotfiles/setuper
+cd $HOME/.dotfiles/setuper
 ./setuper help
-```
-
-### Full Instalation
-
-```shell
-cd /srv/dotfiles/setuper
-./setuper all
 ```
 
 See [setuper](https://github.com/iagotito/setuper).
