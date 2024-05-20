@@ -9,13 +9,10 @@ cim() { cd $1 && nvim . && cd .. }
 
 lrun() { ssh -R 80:localhost:$1 localhost.run }
 
-l() {
-   tmux split-window -h
-   tmux resize-pane -R 19
-}
-
 cs() {
     echo '#!/usr/bin/bash' > $1
+    echo '' >> $1
+    echo '' >> $1
     chmod +x $1
 }
 
@@ -111,4 +108,14 @@ ghcurl() {
        \"query\": \"query { viewer { login }}\" \
      } \
     " https://api.github.com/graphql
+}
+
+# find
+
+findf() {
+  find $1 -type f -name "$2" 2> /dev/null
+}
+
+findd() {
+  find $1 -type d -name "$2" 2> /dev/null
 }
