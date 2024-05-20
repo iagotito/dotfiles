@@ -54,6 +54,11 @@ if [[ -f "$PRIVATE_DOTFILES/private-functions" ]]; then
     source "$PRIVATE_DOTFILES/private-functions"
 fi
 
+# variables
+if [[ -f "$PRIVATE_DOTFILES/private-variables" ]]; then
+    source "$PRIVATE_DOTFILES/private-variables"
+fi
+
 # Vi mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -87,6 +92,23 @@ source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # activate the zsh auto sugestions
 # see: https://github.com/zsh-users/zsh-autosuggestions
 source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Enable history substring search
+setopt hist_subst_pattern
+
+# Function to search command history with fzf
+fh() {
+  BUFFER=$(history 1 | fzf --tac | command tr -s ' ' | cut -d' ' -f3-)
+  print -z $BUFFER
+}
+
+# Bind the function to a shortcut (Ctrl+R in this case)
+zle -N fh
+bindkey '^r' fh
+#if [[ -n "$TMUX" ]]; then
+  #tmux unbind-key -n C-r
+  #tmux bind-key -n R run-shell "tmux send-keys -t=:.$(tmux display -p '#{session_id}') C-r"
+#fi
 
 # if tmux is installed,
 # starts new terminal with a tmux session and close it when quit tmux
@@ -145,6 +167,12 @@ tw=38;5;12:\
 ow=38;5;10:\
 st=38;5;14:\
 ex=38;2;80;250;12:\
-Dockerfile=38;5;228:\
+*.go=38;5;189:\
+*.py=38;5;230:\
+*.yaml=38;5;225:\
+*.yml=38;5;225:\
+*.json=38;5;141:\
+Dockerfile=38;5;63:\
+*docker-compose.*=38;5;69:\
 Makefile=38;5;228:\
 README.md=38;5;228:"

@@ -36,3 +36,6 @@ export PATH=$PATH:/opt/asdf/shims
 export PATH=$PATH:~/.npm-global/bin
 
 export TMPDIR=/var/tmp
+
+# kubernetes
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
