@@ -111,8 +111,6 @@ alias mdb='dsm && dcm'
 
 export DEFAULT_VENV_NAME='.venv'
 
-alias python=python3
-alias pip=pip3
 alias p='python'
 v() {
     if [[ -z $1 ]]; then
