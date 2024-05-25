@@ -1,5 +1,21 @@
-require('telescope').setup{
+local telescope = require('telescope')
+local sorters = require('telescope.sorters')
+
+local function custom_sorter()
+    return sorters.Sorter:new {
+        scoring_function = function(_, prompt, line)
+            local score = sorters.get_fzy_sorter().scoring_function(_, prompt, line)
+            if line:find('docs') then
+                score = score + 1000  -- Add a large value to deprioritize "docs"
+            end
+            return score
+        end
+    }
+end
+
+telescope.setup{
     defaults = {
+        file_sorter = custom_sorter,
         file_ignore_patterns = {
             "__pycache__",
             "venv",

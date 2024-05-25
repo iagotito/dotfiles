@@ -6,6 +6,11 @@ vim.g.mapleader=' ' -- set `space` as leader key
 map('n', '<tab>', ':bn<cr>')
 map('n', '<s-tab>', ':bp<cr>')
 
+-- manage tabs
+map('n', '<leader>t', ':tabnew<cr>')
+map('n', 't', ':+tabnext<cr>')
+map('n', 'T', ':-tabnext<cr>')
+
 -- jump back to previous file
 map('n', '<c-p>', ':e #<cr>')
 

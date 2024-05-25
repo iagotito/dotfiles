@@ -37,6 +37,10 @@ require 'paq' {
 
     'gpanders/editorconfig.nvim';
     'm4xshen/smartcolumn.nvim';
+
+    'tpope/vim-dadbod';
+    'kristijanhusak/vim-dadbod-completion';
+    'kristijanhusak/vim-dadbod-ui';
 }
 
 
