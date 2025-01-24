@@ -3,11 +3,12 @@ require'keymaps.util'
 vim.g.mapleader=' ' -- set `space` as leader key
 
 -- clycle through buffers
-map('n', '<tab>', ':bn<cr>')
+map('n', '<c-tab>', ':bn<cr>')
+map('n', '<leader><tab>', ':bn<cr>')
 map('n', '<s-tab>', ':bp<cr>')
 
 -- manage tabs
-map('n', '<leader>t', ':tabnew<cr>')
+map('n', '<c-t>', ':tabnew<cr>')
 map('n', 't', ':+tabnext<cr>')
 map('n', 'T', ':-tabnext<cr>')
 

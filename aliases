@@ -87,6 +87,7 @@ alias gp='git push -u origin HEAD'
 alias gr='git reset'
 alias grh='git reset --hard'
 alias grs='git reset --soft'
+alias undocommit='git reset --soft HEAD~1'
 alias gcl='git clean'
 alias gcln='git clean -n'
 alias gd='git diff'
@@ -103,12 +104,15 @@ alias tkill='tmux kill-server'
 
 # docker
 
-alias dc="docker-compose"
-alias dcu="docker-compose up -d"
-alias dcd="docker-compose down"
+alias dc="docker compose"
+alias dcu="docker compose up -d"
+alias dcub="docker compose up -d --build"
+alias dcd="docker compose down"
 alias dim="docker images"
 alias dps="docker ps"
 alias dpsa="docker ps -a"
+alias drmcontainers="docker ps -a | tail -n +2 | cut -d' ' -f1 | xargs docker rm"
+
 
 # python aliases
 
@@ -173,3 +177,6 @@ alias pnr="kubectl get pod -A | grep -v Running"  # Usado para mostrar todos os 
 
 # terraform
 alias tf="terraform"
+
+# nginx
+alias nx="nginx"
