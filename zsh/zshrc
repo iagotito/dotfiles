@@ -112,9 +112,9 @@ bindkey '^r' fh
 
 # if tmux is installed,
 # starts new terminal with a tmux session and close it when quit tmux
-if [[ -x "$(command -v tmux)" ]] && [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
-  exec tmux;
-fi
+#if [[ -x "$(command -v tmux)" ]] && [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
+  #exec tmux;
+#fi
 
 # append snap to PATH
 path+=('/snap/bin')

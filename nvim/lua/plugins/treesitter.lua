@@ -19,3 +19,9 @@ parser_config.csharp = {
   },
   filetype = "cs", -- if filetype does not match the parser name
 }
+
+vim.filetype.add({
+  extension = {
+    keymap = "c"
+  }
+})
