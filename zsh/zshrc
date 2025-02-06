@@ -72,13 +72,9 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 # asdf
-# activate asdf if it exists
-if [ -f /opt/asdf/asdf.sh ]; then
-    . /opt/asdf/asdf.sh
-fi
-
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
+
 # initialise completions with ZSH's compinit
 autoload -Uz compinit; compinit -u
 _comp_options+=(globdots) # With hidden files

@@ -26,13 +26,12 @@ export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
 
 # asdf
-export ASDF_DIR='/opt/asdf'
+export ASDF_DIR="$HOME/.asdf"
 export ASDF_DATA_DIR=$ASDF_DIR
-export ASDF_SCRIPT="$ASDF_DIR/asdf.sh"
-export PATH=$PATH:/opt/asdf/bin
-export PATH=$PATH:/opt/asdf/shims
+export PATH=$PATH:$ASDF_DIR/bin
+export PATH=$PATH:$ASDF_DIR/shims
 
-export PATH="/home/iago/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # npm
 export PATH=$PATH:~/.npm-global/bin
@@ -41,4 +40,3 @@ export TMPDIR=/var/tmp
 
 # kubernetes
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
