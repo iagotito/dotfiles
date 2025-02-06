@@ -4,7 +4,8 @@
 alias please='echo "Of course, sir!" && sudo'
 
 alias dot='cd $DOTFILES'
-alias zmk='cd Documents/zmk-config'
+alias zmk='cd ~/Documents/zmk-config'
+alias bat='batcat'
 
 # replace 'ls' with 'exa', if installed
 ls() {
@@ -111,8 +112,8 @@ alias dcub="docker compose up -d --build"
 alias dcd="docker compose down"
 alias dcl="docker compose -f docker-compose-local.yml"
 alias dim="docker images"
-alias dps="docker ps"
-alias dpsa="docker ps -a"
+alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}\t"'
+alias dpsa='docker ps -a --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}\t"'
 alias dstopcontainers="docker ps | tail -n +2 | cut -d' ' -f1 | xargs docker stop"
 alias drmcontainers="docker ps -a | tail -n +2 | cut -d' ' -f1 | xargs docker rm"
 alias drmimages="docker images | tail -n +2 | command tr -s ' ' | cut -d' ' -f'3' | xargs docker rmi"
@@ -149,7 +150,7 @@ alias vart='var;tr'
 # random
 alias ip='curl --silent ipinfo.io/ip'
 alias dropbox='~/.dropbox-dist/dropboxd'
-alias tldr='tldr --theme ocean'
+#alias tldr='tldr --theme ocean'
 
 # kubernetes
 alias k="kubectl"
