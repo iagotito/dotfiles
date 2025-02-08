@@ -9,27 +9,27 @@ alias bat='batcat'
 
 # replace 'ls' with 'exa', if installed
 ls() {
-  if command -v exa &> /dev/null
+  if command -v eza &> /dev/null
   then
-    exa -h --color=always --group-directories-first --icons $@
+    eza -h --color=always --group-directories-first --icons $@
   else
     command ls -h --color=auto --group-directories-first $@
   fi
 }
 
 la() {
-  if command -v exa &> /dev/null
+  if command -v eza &> /dev/null
   then
-    exa -ah --color=auto --group-directories-first $@
+    eza -ah --color=auto --group-directories-first $@
   else
     command ls -ah --color=auto --group-directories-first $@
   fi
 }
 
 ll() {
-  if command -v exa &> /dev/null
+  if command -v eza &> /dev/null
   then
-    exa -alh --color=auto --group-directories-first $@
+    eza -alh --color=auto --group-directories-first $@
   else
     command ls -alh --color=auto --group-directories-first $@
   fi

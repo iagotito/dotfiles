@@ -143,32 +143,5 @@ ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=fg=$CYAN
 ZSH_HIGHLIGHT_STYLES[redirection]=fg=$YELLOW
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=$GREEN
 
-#### ------------------------------
-
-#### exa - Dracula color scheme definitions
-
-#### ------------------------------
-export EXA_COLORS="uu=38;5;15:\
-gu=38;5;14:\
-gu=38;5;3:\
-di=38;5;62:\
-ln=38;5;10:\
-pi=38;5;8:\
-so=38;5;11:\
-bd=38;5;14:\
-cd=38;5;10:\
-su=38;5;1:\
-sg=38;5;13:\
-tw=38;5;12:\
-ow=38;5;10:\
-st=38;5;14:\
-ex=38;2;80;250;12:\
-*.go=38;5;189:\
-*.py=38;5;230:\
-*.yaml=38;5;225:\
-*.yml=38;5;225:\
-*.json=38;5;141:\
-Dockerfile=38;5;63:\
-*docker-compose.*=38;5;69:\
-Makefile=38;5;228:\
-README.md=38;5;228:"
+export FPATH="$HOME/.projects/eza/completions/zsh:$FPATH"
+export EZA_CONFIG_DIR="$DOTFILES/eza"
