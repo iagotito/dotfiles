@@ -19,18 +19,44 @@ main()
   show_time="true"
   show_refresh="5"
 
-  # Based on Dracula Color Pallette, but with bright colors
-  white='#f8f8f2'
-  gray='#181B28'
-  dark_gray='#282a36'
-  light_purple='#9d5ef7'
-  dark_purple='#472c91'
-  cyan='#00d2ff'
-  green='#00ff00'
-  orange='#ff8400'
-  red='#ff5555'
-  pink='#ff00ff'
-  yellow='#ffff00'
+  # Based on Dracula Color Palette, but with bright colors
+  #white='#f8f8f2'
+  #gray='#181B28'
+  #dark_gray='#282a36'
+  #light_purple='#9d5ef7'
+  #dark_purple='#472c91'
+  #cyan='#00d2ff'
+  #green='#00ff00'
+  #orange='#ff8400'
+  #red='#ff5555'
+  #pink='#ff00ff'
+  #yellow='#ffff00'
+
+  # Based on Dracula Color Palette, but with some slight bright colors
+  white="#f8f8f2"
+  gray="#44475a"
+  dark_gray="#282a36"
+  light_purple="#bd93f9"
+  dark_purple="#6272b4"
+  cyan="#6be9fd"
+  green="#50ff74"
+  orange="#fbb85c"
+  red="#ff5555"
+  pink="#ff79c6"
+  yellow="#f1fa8c"
+
+  # Original Dracula Color Palette
+  #white="#f8f8f2"
+  #gray="#44475a"
+  #dark_gray="#282a36"
+  #light_purple="#bd93f9"
+  #dark_purple="#6272a4"
+  #cyan="#8be9fd"
+  #green="#50fa7b"
+  #orange="#ffb86c"
+  #red="#ff5555"
+  #pink="#ff79c6"
+  #yellow="#f1fa8c"
 
 
   # Handle left icon configuration
