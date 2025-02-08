@@ -42,6 +42,11 @@ alias ds='dirs -v'  # directy stack
                     # 'd' is used to deactivate python venvs (see $DOTFILES/aliases)
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
+
+if [[ -f "$PRIVATE_DOTFILES/private-zshrc" ]]; then
+    source "$PRIVATE_DOTFILES/private-zshrc"
+fi
+
 # aliases
 source "$DOTFILES/aliases"
 if [[ -f "$PRIVATE_DOTFILES/private-aliases" ]]; then
@@ -108,9 +113,14 @@ bindkey '^r' fh
 
 # if tmux is installed,
 # starts new terminal with a tmux session and close it when quit tmux
-#if [[ -x "$(command -v tmux)" ]] && [ -t 0 ] && [[ -z $TMUX ]] && [[ $- = *i* ]]; then
-  #exec tmux;
-#fi
+
+if [ $AUTO_USE_TMUX = "true" ] && \
+  [[ -x "$(command -v tmux)" ]] && \
+  [ -t 0 ] && \
+  [[ -z $TMUX ]] &&\
+  [[ $- = *i* ]]; then
+  exec tmux;
+fi
 
 # append snap to PATH
 path+=('/snap/bin')
