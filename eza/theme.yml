@@ -117,7 +117,10 @@ broken_path_overlay: {foreground: "#6272A4"}
 filenames:
   Dockerfile: {filename: {foreground: "#FFB86C"}}
   docker-compose.yml: {filename: {foreground: "#FFB86C"}}
+  docker-compose-local.yml: {filename: {foreground: "#FFB86C"}}
+  docker-compose.yaml: {filename: {foreground: "#FFB86C"}}
+  docker-compose-local.yaml: {filename: {foreground: "#FFB86C"}}
+  Makefile: {filename: {foreground: "#50FA7B"}}
 
 extensions:
   md: {filename: {foreground: "#F1FA8C"}}
-
