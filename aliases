@@ -4,14 +4,14 @@
 alias please='echo "Of course, sir!" && sudo'
 
 alias dot='cd $DOTFILES'
-alias zmk='cd ~/Documents/zmk-config'
+alias zmk='cd $HOME/Documents/zmk-config'
 alias bat='batcat'
 
 # replace 'ls' with 'exa', if installed
 ls() {
   if command -v eza &> /dev/null
   then
-    eza -h --color=always --group-directories-first --icons $@
+    eza -h --color=always --group-directories-first $@
   else
     command ls -h --color=auto --group-directories-first $@
   fi
@@ -35,6 +35,8 @@ ll() {
   fi
 }
 
+alias tree='ls -T -I "__pycache__|.venv|venv|.git"'
+
 #alias ls='ls -h --color=auto --group-directories-first'
 #alias la='ls -ah --color=auto --group-directories-first'
 #alias ll='ls -lah --color=auto --group-directories-first'
@@ -51,7 +53,7 @@ alias .....='cd ../../../..'
 
 alias cp='cp -r' # copy directories recursively
 
-alias tree='tree -C' # add colorization to tree
+#alias tree='tree -C -I "__pycache__|.venv|venv|.git"' # add colorization to tree
 
 alias rnie="grep --exclude-dir='.venv' --exclude-dir='.git' -rniE"
 

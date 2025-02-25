@@ -5,29 +5,11 @@ copy() {
     cat $1 | xclip -selection clipboard
 }
 
-cim() { cd $1 && nvim . && cd .. }
-
-lrun() { ssh -R 80:localhost:$1 localhost.run }
-
 cs() {
     echo '#!/usr/bin/bash' > $1
     echo '' >> $1
     echo '' >> $1
     chmod +x $1
-}
-
-alias re="tmux resize-pane -R 19"
-
-sv() {
-    cp solutions-carmem/$1/top.sv .
-    make
-}
-
-ver() {
-    cp top.sv ../..
-    cd ../..
-    make
-    popd
 }
 
 j() {
@@ -37,49 +19,6 @@ j() {
     java $JAVA_CLASS
     rm "$JAVA_CLASS.class"
 }
-
-wf() {
-    while true; do
-        clear
-        if [ ! -z "$1" ]; then
-            ls | grep $1
-        else
-            tree -L 3
-        fi
-        sleep 1
-    done
-}
-
-
-# Update a version of python module in the setup.py file
-ups() {
-    FILE="setup.py"
-
-    line=$(cat $FILE | grep version)
-    version=$(echo "$line" | cut -d"'" -f 2)
-
-    devversion=$(echo $version | cut -d'v' -f 2)
-    updateddevversion=$(echo `expr $devversion + 1`)
-
-    updatedversion=$(echo $version | sed "s/dev[0-9]*/dev$updateddevversion/")
-
-    newsetup=$(cat $FILE | sed "s/$version/$updatedversion/")
-    echo $newsetup > $FILE
-}
-
-# start server
-s() {
-    serverdir=$(ls -l | grep -e "^d" | grep -e "server" | \tr -s ' ' | cut -d' ' -f9)
-
-    if [[ -z $serverdir ]]; then
-        # print in red
-        >&2 echo -e "\033[0;31mFora de um servidor com o padrão *server*\033[0m"
-        return 1
-    fi
-
-    ./.venv/bin/python3 -m $serverdir
-}
-
 
 # git
 
@@ -102,14 +41,6 @@ repo_description() {
     echo $description
 }
 
-ghcurl() {
-    curl -H "Authorization: bearer $(cat ~/github-key)" -X POST -d " \
-     { \
-       \"query\": \"query { viewer { login }}\" \
-     } \
-    " https://api.github.com/graphql
-}
-
 # find
 
 findf() {
@@ -118,4 +49,24 @@ findf() {
 
 findd() {
   find $1 -type d -name "$2" 2> /dev/null
+}
+
+# merge files
+mergefiles() {
+  output_file="merged_files.txt"
+  echo "" > "$output_file"
+
+  echo "Merging files"
+  for file in "$@"; do
+    if [[ -f "$file" ]]; then
+      echo "$file"
+      echo ">>> $file" >> "$output_file"
+      cat "$file" >> "$output_file"
+      echo >> "$output_file"
+    else
+      echo "Warning: File '$file' not found. Skipping." >&2
+    fi
+  done
+
+  echo "Files merged into '$output_file'"
 }
