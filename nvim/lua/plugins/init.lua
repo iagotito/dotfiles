@@ -41,6 +41,8 @@ require 'paq' {
     'tpope/vim-dadbod';
     'kristijanhusak/vim-dadbod-completion';
     'kristijanhusak/vim-dadbod-ui';
+
+    'folke/trouble.nvim';
 }
 
 
@@ -67,5 +69,6 @@ require'plugins.undotree'
 require'plugins.autopairs'
 require'plugins.smart_semicolon'
 require'plugins.smartcolumn'
+require'plugins.trouble'
 
 -----------------------------------------------------------------------------
