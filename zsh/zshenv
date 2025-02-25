@@ -33,10 +33,10 @@ export PATH=$PATH:$ASDF_DIR/shims
 
 export PATH="$HOME/.local/bin:$PATH"
 
-# npm
-export PATH=$PATH:~/.npm-global/bin
-
 export TMPDIR=/var/tmp
 
 # kubernetes
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+export PATH="$DOTFILES/global-packages/python:$PATH"
+export PATH="$DOTFILES/global-packages/nodejs:$PATH"
