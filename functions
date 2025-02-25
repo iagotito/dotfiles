@@ -70,3 +70,9 @@ mergefiles() {
 
   echo "Files merged into '$output_file'"
 }
+
+# gitmoji-fuzzy-hook
+addgitmoji() {
+  gitmoji-fuzzy-hook-init >> ./.git/hooks/prepare-commit-msg
+  chmod +x ./.git/hooks/prepare-commit-msg
+}
