@@ -7,8 +7,7 @@ local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt
 
-print(vim.bo.filetype)
------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 -- General settings
 -----------------------------------------------------------------------------
 
@@ -35,8 +34,8 @@ opt.colorcolumn = '80' -- color column position
 opt.completeopt = {'menu', 'menuone', 'noselect'}
 opt.mouse = 'a'
 -- undo tree file
-home = os.getenv("HOME")
-opt.undodir = home .. "/.nvim/undodir"
+dotfiles = os.getenv("DOTFILES")
+opt.undodir = dotfiles .. "/nvim/undodir"
 opt.undofile = true
 cmd("filetype plugin on")
 

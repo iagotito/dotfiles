@@ -43,6 +43,7 @@ require 'paq' {
     'kristijanhusak/vim-dadbod-ui';
 
     'folke/trouble.nvim';
+    'github/copilot.vim';
 }
 
 
