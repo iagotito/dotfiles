@@ -1,75 +1,114 @@
-require 'paq' {
-    'savq/paq-nvim';                  -- Let Paq manage itself
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({
+    "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath
+  })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
 
-    'neovim/nvim-lspconfig';
-    'hrsh7th/nvim-cmp';
-    'hrsh7th/cmp-buffer';
-    'hrsh7th/cmp-nvim-lsp';
-    'hrsh7th/cmp-path';
-    'hrsh7th/vim-vsnip';
-    'hrsh7th/cmp-vsnip';
-    --'hrsh7th/vim-vsnip-integ';
-    'godlygeek/tabular';
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
-    'nvim-treesitter/nvim-treesitter';
-
-    {'dracula/vim', as='dracula'};
-    'hoob3rt/lualine.nvim';
-    'mhinz/vim-signify';
-    'ryanoasis/vim-devicons';
-
-    'nvim-lua/popup.nvim';
-    'nvim-lua/plenary.nvim';
-    'nvim-telescope/telescope.nvim';
-    'preservim/nerdtree';
-    'Xuyuanp/nerdtree-git-plugin';
-    --'tiagofumo/vim-nerdtree-syntax-highlight';
-    'johnstef99/vim-nerdtree-syntax-highlight';
-    'duane9/nvim-rg';
-
-    'windwp/nvim-autopairs';
-    'iagotito/smart-semicolon.nvim',
-    'alvan/vim-closetag';
-    'christoomey/vim-tmux-navigator';
-    'preservim/nerdcommenter';
-    'tpope/vim-fugitive';
-    'mbbill/undotree';
-
-    'gpanders/editorconfig.nvim';
-    'm4xshen/smartcolumn.nvim';
-
-    'tpope/vim-dadbod';
-    'kristijanhusak/vim-dadbod-completion';
-    'kristijanhusak/vim-dadbod-ui';
-
-    'folke/trouble.nvim';
-    'github/copilot.vim';
-}
-
+-- Setup lazy.nvim
+require("lazy").setup({
+  spec = {
+    -- import your plugins
+    --{ import = "plugins" },
 
 -----------------------------------------------------------------------------
--- Colors
+----- Colorscheme
 -----------------------------------------------------------------------------
 
-vim.g.dracula_colorterm=0
-vim.cmd 'colorscheme dracula'
+    {
+      'dracula/vim', as='dracula',
+      config = function()
+        vim.g.dracula_colorterm=0
+        vim.cmd 'colorscheme dracula'
+      end
+    },
 
 -----------------------------------------------------------------------------
--- Plugins configs
+----- Plugins
 -----------------------------------------------------------------------------
 
-require'plugins.treesitter'
-require'plugins.telescope'
-require'plugins.fugitive'
-require'plugins.nerdtree'
-require'plugins.lualine'
-require'plugins.closetag'
-require'plugins.cmp'
-require'plugins.vsnip'
-require'plugins.undotree'
-require'plugins.autopairs'
-require'plugins.smart_semicolon'
-require'plugins.smartcolumn'
-require'plugins.trouble'
+----- Tools
+    {
+      'nvim-treesitter/nvim-treesitter',
+      config = function() require('plugins.treesitter') end
+    },
+    {
+      'nvim-telescope/telescope.nvim',
+      dependencies = { 'nvim-lua/plenary.nvim' },
+      config = function() require('plugins.telescope') end
+    },
+    {
+      'preservim/nerdtree',
+      config = function() require('plugins.nerdtree') end
+    },
+    {
+      'mbbill/undotree',
+      config = function() require('plugins.undotree') end
+    },
+    {
+      'folke/trouble.nvim',
+      config = function() require('plugins.trouble') end
+    },
+    {
+      'neovim/nvim-lspconfig'
+    },
+    { 'hrsh7th/cmp-buffer' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/cmp-path' },
+    {
+      'hrsh7th/nvim-cmp',
+      config = function() require('plugins.cmp') end
+    },
 
------------------------------------------------------------------------------
+----- Quality of file
+    { 'christoomey/vim-tmux-navigator' },
+    { 'Xuyuanp/nerdtree-git-plugin' },
+    { 'johnstef99/vim-nerdtree-syntax-highlight' },
+    { 'preservim/nerdcommenter' },
+    { 'mhinz/vim-signify' },
+    { 'ryanoasis/vim-devicons' },
+    { 'godlygeek/tabular' },
+    {
+      'windwp/nvim-autopairs',
+      config = function() require('plugins.autopairs') end
+    },
+    {
+      'alvan/vim-closetag',
+      config = function() require('plugins.closetag') end
+    },
+    {
+      'm4xshen/smartcolumn.nvim',
+      opts = {},
+    },
+    {
+      'hoob3rt/lualine.nvim',
+      config = function() require('plugins.lualine') end
+    },
+
+  },
+  -- automatically check for plugin updates
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+})
+
+require('plugins.lsp')

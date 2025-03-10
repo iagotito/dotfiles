@@ -63,6 +63,5 @@ cmd("autocmd BufNewFile,BufReadPre * match ExtraWhitespace /\\s\\+\\%#\\@<!$/")
 
 require('keymaps')
 require('plugins')
-require('lsp')
 
 -----------------------------------------------------------------------------
