@@ -2,3 +2,4 @@ personal-aliases
 global-packages/nodejs
 global-packages/python
 undodir/
+lazy-lock.json

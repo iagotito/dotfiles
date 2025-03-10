@@ -1,8 +1,14 @@
 require'nvim-treesitter.configs'.setup {
-    --ensure_installed = 'maintained',
     highlight = {
         enable = true
-    }
+    },
+    --ensure_installed = {
+      --"lua", "python", "vimdoc", "vim", "html", "javascript", "typescript",
+      --"json", "yaml", "terraform", "go", "sql", "markdown_inline", "luadoc",
+      --"c", "query",
+    --},
+    --sync_install = false,  -- Ensures parsers are installed only once.
+    --auto_install = true,   -- Automatically install missing parsers.
 }
 
 require("nvim-treesitter.install").prefer_git = true
