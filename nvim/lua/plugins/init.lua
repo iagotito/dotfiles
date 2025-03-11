@@ -1,15 +1,15 @@
 -- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   local out = vim.fn.system({
-    "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath
+    'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath
   })
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
+      { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
+      { out, 'WarningMsg' },
+      { '\nPress any key to exit...' },
     }, true, {})
     vim.fn.getchar()
     os.exit(1)
@@ -20,14 +20,14 @@ vim.opt.rtp:prepend(lazypath)
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
 
 -- Setup lazy.nvim
-require("lazy").setup({
+require('lazy').setup({
   spec = {
     -- import your plugins
-    --{ import = "plugins" },
+    --{ import = 'plugins' },
 
 -----------------------------------------------------------------------------
 ----- Colorscheme
@@ -45,7 +45,7 @@ require("lazy").setup({
 ----- Plugins
 -----------------------------------------------------------------------------
 
------ Tools
+    -- Tools
     {
       'nvim-treesitter/nvim-treesitter',
       config = function() require('plugins.treesitter') end
@@ -67,9 +67,6 @@ require("lazy").setup({
       'folke/trouble.nvim',
       config = function() require('plugins.trouble') end
     },
-    {
-      'neovim/nvim-lspconfig'
-    },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-path' },
@@ -77,8 +74,14 @@ require("lazy").setup({
       'hrsh7th/nvim-cmp',
       config = function() require('plugins.cmp') end
     },
+    {
+      'williamboman/mason.nvim',
+      config = function() require('mason').setup() end
+    },
+    { 'williamboman/mason-lspconfig.nvim' },
+    { 'neovim/nvim-lspconfig' },
 
------ Quality of file
+    -- Quality of file
     { 'christoomey/vim-tmux-navigator' },
     { 'Xuyuanp/nerdtree-git-plugin' },
     { 'johnstef99/vim-nerdtree-syntax-highlight' },
