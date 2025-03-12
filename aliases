@@ -35,7 +35,7 @@ ll() {
   fi
 }
 
-alias tree='ls -T -I "__pycache__|.venv|venv|.git"'
+alias tree='eza -T -I "__pycache__|.venv|venv|.git"'
 
 #alias ls='ls -h --color=auto --group-directories-first'
 #alias la='ls -ah --color=auto --group-directories-first'
@@ -148,6 +148,11 @@ alias tr='pip install -r test_requirements.txt'
 alias pp='python -m pytest -v'
 alias var='v;a;r'
 alias vart='var;tr'
+
+alias al='alembic'
+alias alr='alembic revision'
+alias alra='al revision --autogenerate'
+alias alu='alembic upgrade head'
 
 # random
 alias ip='curl --silent ipinfo.io/ip'
