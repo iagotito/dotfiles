@@ -67,19 +67,29 @@ require('lazy').setup({
       'folke/trouble.nvim',
       config = function() require('plugins.trouble') end
     },
-    { 'hrsh7th/cmp-buffer' },
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/cmp-path' },
     {
       'hrsh7th/nvim-cmp',
       config = function() require('plugins.cmp') end
     },
+    { 'hrsh7th/cmp-buffer' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/cmp-path' },
+    {
+      'hrsh7th/vim-vsnip',
+      config = function() require('plugins.vsnip') end
+    },
+    { 'hrsh7th/cmp-vsnip' },
     {
       'williamboman/mason.nvim',
       config = function() require('mason').setup() end
     },
     { 'williamboman/mason-lspconfig.nvim' },
     { 'neovim/nvim-lspconfig' },
+    {
+      'tpope/vim-fugitive',
+      --config = function() require('plugins.fugitive').setup() end
+    },
+    { 'tpope/vim-abolish' },
 
     -- Quality of file
     { 'christoomey/vim-tmux-navigator' },
