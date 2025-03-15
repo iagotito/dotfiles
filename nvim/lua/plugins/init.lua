@@ -115,7 +115,11 @@ require('lazy').setup({
       'hoob3rt/lualine.nvim',
       config = function() require('plugins.lualine') end
     },
-
+    {
+      'stevearc/conform.nvim',
+      opts = {},
+      config = function() require('plugins.conform') end
+    },
   },
   -- automatically check for plugin updates
   checker = {
