@@ -2,9 +2,9 @@
 -- Aliases
 -----------------------------------------------------------------------------
 
-local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
-local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
-local g = vim.g      -- a table to access global variables
+local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd')
+local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
+local g = vim.g -- a table to access global variables
 local opt = vim.opt
 
 ----------------------------------------------------------------------------
@@ -25,14 +25,14 @@ opt.showmatch = true -- highlight matching parens, braces, brackets, etc
 opt.ignorecase = true -- ignore case
 opt.smartcase = true -- don't ignore case with capitals
 opt.hidden = true -- enable modified buffers in background
-opt.wildmode = {'list', 'longest'} -- command-line completion mode
-opt.statusline = '%F' -- display full path in status line
-opt.clipboard = 'unnamedplus' -- use system clipboard
+opt.wildmode = { "list", "longest" } -- command-line completion mode
+opt.statusline = "%F" -- display full path in status line
+opt.clipboard = "unnamedplus" -- use system clipboard
 opt.wrap = false -- no wrap
 opt.linebreak = true -- when wrap, not break words
-opt.colorcolumn = '80' -- color column position
-opt.completeopt = {'menu', 'menuone', 'noselect'}
-opt.mouse = 'a'
+opt.colorcolumn = "80" -- color column position
+opt.completeopt = { "menu", "menuone", "noselect" }
+opt.mouse = "a"
 -- undo tree file
 dotfiles = os.getenv("DOTFILES")
 opt.undodir = dotfiles .. "/nvim/undodir"
@@ -43,7 +43,9 @@ cmd("filetype plugin on")
 -- AutoCommands
 -----------------------------------------------------------------------------
 
-cmd("autocmd BufWritePre * if &ft!='markdown' | let position = winsaveview() | :%s/\\s\\+$//e | call winrestview(position) | unlet! position") -- rstrip white spaces when save except on markdown files
+cmd(
+	"autocmd BufWritePre * if &ft!='markdown' | let position = winsaveview() | :%s/\\s\\+$//e | call winrestview(position) | unlet! position"
+) -- rstrip white spaces when save except on markdown files
 cmd("autocmd BufNewFile,BufReadPre *.md setlocal textwidth=71 colorcolumn=72") -- auto break line at 71 chars in .md files
 cmd("autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4") -- set tab to 4 spaces in selected filetypes
 cmd("autocmd FileType go setlocal noexpandtab") -- use tab for identation in go files
@@ -61,7 +63,7 @@ cmd("autocmd BufNewFile,BufReadPre * match ExtraWhitespace /\\s\\+\\%#\\@<!$/")
 -- General setup
 -----------------------------------------------------------------------------
 
-require('keymaps')
-require('plugins')
+require("keymaps")
+require("plugins")
 
 -----------------------------------------------------------------------------
