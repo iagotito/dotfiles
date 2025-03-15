@@ -1,22 +1,22 @@
 -- filenames like *.xml, *.html, *.xhtml, ...
 -- These are the file extensions where this plugin is enabled.
 --
-vim.g.closetag_filenames = '*.html'
+vim.g.closetag_filenames = "*.html"
 
 -- filenames like *.xml, *.xhtml, ...
 -- This will make the list of non-closing tags self-closing in the specified files.
 --
-vim.g.closetag_xhtml_filenames = ''
+vim.g.closetag_xhtml_filenames = ""
 
 -- filetypes like xml, html, xhtml, ...
 -- These are the file types where this plugin is enabled.
 --
-vim.g.closetag_filetypes = 'html'
+vim.g.closetag_filetypes = "html"
 
 -- filetypes like xml, xhtml, ...
 -- This will make the list of non-closing tags self-closing in the specified files.
 --
-vim.g.closetag_xhtml_filetypes = ''
+vim.g.closetag_xhtml_filetypes = ""
 
 -- integer value [0|1]
 -- This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
@@ -36,8 +36,8 @@ vim.g.closetag_emptyTags_caseSensitive = 1
 
 -- Shortcut for closing tags, default is '>'
 --
-vim.g.closetag_shortcut = '>'
+vim.g.closetag_shortcut = ">"
 
 -- Add > at current position without closing the current tag, default is ''
 --
-vim.g.closetag_close_shortcut = '<leader>'
+vim.g.closetag_close_shortcut = "<leader>"
