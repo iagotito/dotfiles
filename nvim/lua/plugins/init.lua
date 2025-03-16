@@ -140,6 +140,12 @@ require("lazy").setup({
 			end,
 		},
 		{
+			"windwp/nvim-ts-autotag",
+			config = function()
+				require("plugins.ts-autotag")
+			end,
+		},
+		{
 			"m4xshen/smartcolumn.nvim",
 			opts = {},
 		},
