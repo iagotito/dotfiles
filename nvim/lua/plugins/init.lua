@@ -112,6 +112,12 @@ require("lazy").setup({
 			--config = function() require('plugins.fugitive').setup() end
 		},
 		{ "tpope/vim-abolish" },
+		{
+			"hat0uma/csvview.nvim",
+			config = function()
+				require("plugins.csvview")
+			end,
+		},
 
 		-- Quality of file
 		{ "christoomey/vim-tmux-navigator" },
@@ -119,7 +125,7 @@ require("lazy").setup({
 		{ "johnstef99/vim-nerdtree-syntax-highlight" },
 		{ "preservim/nerdcommenter" },
 		{ "mhinz/vim-signify" },
-		{ "ryanoasis/vim-devicons" },
+		--{ "ryanoasis/vim-devicons" },
 		{ "godlygeek/tabular" },
 		{
 			"windwp/nvim-autopairs",
