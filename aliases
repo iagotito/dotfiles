@@ -73,6 +73,8 @@ alias ar='source $DOTFILES/aliases'   # aliases reload
 alias fe='nvim $DOTFILES/functions'    # functions edit
 alias fr='source $DOTFILES/functions' # functions reload
 
+alias history='nvim $ZDOTDIR/.zhistory'
+
 # git aliases
 
 alias gs='git status'

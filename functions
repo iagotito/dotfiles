@@ -2,7 +2,7 @@
 
 # copy file content to clipboard
 copy() {
-    cat $1 | xclip -selection clipboard
+    command cat $1 | xclip -selection clipboard
 }
 
 cs() {
@@ -61,7 +61,7 @@ mergefiles() {
     if [[ -f "$file" ]]; then
       echo "$file"
       echo ">>> $file" >> "$output_file"
-      cat "$file" >> "$output_file"
+      command cat "$file" >> "$output_file"
       echo >> "$output_file"
     else
       echo "Warning: File '$file' not found. Skipping." >&2
