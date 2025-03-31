@@ -15,7 +15,7 @@ vim.cmd(
 vim.g.NERDTreeShowHidden = 1
 
 -- Ignore patterns
-vim.g.NERDTreeIgnore = { ".venv$[[dir]]", ".git$[[dir]]" }
+vim.g.NERDTreeIgnore = { ".venv$[[dir]]", ".git$[[dir]]", "__pycache__$[[dir]]", ".pytest_cache$[[dir]]" }
 
 -- Keymaps
 require("keymaps.util")
