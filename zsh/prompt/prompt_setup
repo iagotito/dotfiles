@@ -44,7 +44,7 @@ build_prompt() {
 
     PAD=$(get_pad $PROMPT_INFO $GIT_INFO)
     if [[ $PAD -le 0 ]]; then
-        PROMPT_INFO=$(print -P "$venv%F{$CYAN}.../%1d%f")
+        PROMPT_INFO=$(print -P "$VENV_INFO%F{$CYAN}.../%1d%f")
         PAD=$(get_pad $PROMPT_INFO $GIT_INFO)
     fi
 
