@@ -36,7 +36,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
-local servers = { "pyright", "lua_ls", "ts_ls", "volar" }
+local servers = { "pyright", "lua_ls", "ts_ls", "volar", "gopls" }
 
 -- Download servers using mason-lspconfig
 require("mason-lspconfig").setup({
