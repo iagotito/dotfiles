@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # the BEST alias ever
-alias please='echo "Of course, sir!" && sudo'
+alias please='echo "Of course, sir!\n" && sudo'
 
 alias dot='cd $DOTFILES'
 alias zmk='cd $HOME/Documents/zmk-config'
@@ -65,12 +65,15 @@ alias egrep='egrep --color=auto'
 # mimic vim functions
 alias :q='exit'
 
+# Fix theme warning when opening appimage
+alias nvim='GTK_THEME=Adwaita /usr/bin/nvim'
+
 # editing and reliading
-alias ze='nvim $ZDOTDIR/.zshrc'        # zshrc edit
+alias ze='nvim $ZDOTDIR/.zshrc'       # zshrc edit
 alias zr='source $ZDOTDIR/.zshrc'     # zshrc reload
-alias ae='nvim $DOTFILES/aliases'      # aliases edit
+alias ae='nvim $DOTFILES/aliases'     # aliases edit
 alias ar='source $DOTFILES/aliases'   # aliases reload
-alias fe='nvim $DOTFILES/functions'    # functions edit
+alias fe='nvim $DOTFILES/functions'   # functions edit
 alias fr='source $DOTFILES/functions' # functions reload
 
 alias history='nvim $ZDOTDIR/.zhistory'
@@ -122,7 +125,6 @@ alias dstopcontainers="docker ps | tail -n +2 | cut -d' ' -f1 | xargs docker sto
 alias drmcontainers="docker ps -a | tail -n +2 | cut -d' ' -f1 | xargs docker rm"
 alias drmimages="docker images | tail -n +2 | command tr -s ' ' | cut -d' ' -f'3' | xargs docker rmi"
 
-
 # python aliases
 
 export DEFAULT_VENV_NAME='.venv'
@@ -150,16 +152,12 @@ alias tr='pip install -r test_requirements.txt'
 alias pp='python -m pytest -v'
 alias var='v;a;r'
 alias vart='var;tr'
+alias pyt='poetry run pytest -W ignore'
 
 alias al='alembic'
 alias alr='alembic revision'
 alias alra='al revision --autogenerate'
-alias alu='alembic upgrade head'
-
-# random
-alias ip='curl --silent ipinfo.io/ip'
-alias dropbox='~/.dropbox-dist/dropboxd'
-#alias tldr='tldr --theme ocean'
+alias alu='POSTGRES_HOST=localhost alembic upgrade head'
 
 # kubernetes
 alias k="kubectl"
@@ -190,7 +188,9 @@ alias kc="kubectl create -f"
 alias pnr="kubectl get pod -A | grep -v Running"  # Usado para mostrar todos os pods com problemas.
 
 # terraform
+
 alias tf="terraform"
 
 # nginx
+
 alias nx="nginx"
