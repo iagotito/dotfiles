@@ -155,3 +155,4 @@ ZSH_HIGHLIGHT_STYLES[arg0]=fg=$GREEN
 
 export FPATH="$HOME/.projects/eza/completions/zsh:$FPATH"
 export EZA_CONFIG_DIR="$DOTFILES/eza"
+fpath+=${ZDOTDIR:-~}/.zsh_functions
