@@ -1,6 +1,7 @@
 require("lualine").setup({
 	options = {
-		theme = "dracula",
+		theme = require("plugins.lualinetheme").theme(),
+		--theme = "dracula",
 	},
 	sections = {
 		lualine_b = { "filename" },
