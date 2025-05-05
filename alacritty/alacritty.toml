@@ -1,0 +1,10 @@
+[colors.primary]
+background = "#282A36"
+
+[font]
+size = 16
+normal = { family = "firacode", style = "medium" }
+
+[window]
+decorations = "Transparent"
+opacity = 0.90
