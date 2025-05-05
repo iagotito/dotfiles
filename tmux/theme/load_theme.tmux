@@ -44,6 +44,7 @@ main()
   red="#ff5555"
   pink="#ff79c6"
   yellow="#f1fa8c"
+  bg_color="#282A36"
 
   # Original Dracula Color Palette
   #white="#f8f8f2"
@@ -102,7 +103,7 @@ main()
   tmux set-option -g status-style "bg=default,fg=${white}"
 
   # Powerline Configuration
-  tmux set-option -g status-left "#[bg=${green},fg=${dark_gray}]#{?client_prefix,#[bg=${yellow}],} ${left_icon} #[fg=${green},bg=${gray}]#{?client_prefix,#[fg=${yellow}],}${left_sep}"
+  tmux set-option -g status-left "#[bg=${green},fg=${dark_gray}]#{?client_prefix,#[bg=${yellow}],} ${left_icon} #[fg=${green},bg=${bg_color}]#{?client_prefix,#[fg=${yellow}],}${left_sep}"
 
   # fg=black is the greatest trick I ever made
   # I wanted my status line to be the same color of my terminal background, but
@@ -111,7 +112,9 @@ main()
   # invisible with the dracula background.
   # Since I've already lost a lot of time trying to make it work, I will take
   # it as a victory.
-  tmux set-window-option -g window-status-current-format "#[fg=black,bg=${dark_purple}]${left_sep}#[fg=${white},bg=${dark_purple}] #I #W #[fg=${dark_purple},bg=default]${left_sep}"
+  #tmux set-window-option -g window-status-current-format "#[fg=black,bg=${dark_purple}`:]${left_sep}#[fg=${white},bg=${dark_purple}] #I #W #[fg=${dark_purple},bg=default]${left_sep}"
+
+  tmux set-window-option -g window-status-current-format "#[fg=${bg_color},bg=${dark_purple}]${left_sep}#[fg=${white},bg=${dark_purple}] #I #W #[fg=${dark_purple},bg=default]${left_sep}"
 
   tmux set-window-option -g window-status-format "#[fg=${white}]#[bg=default] #I #W${flags}"
   tmux set-window-option -g window-status-activity-style "bold"
