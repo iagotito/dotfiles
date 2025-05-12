@@ -99,13 +99,13 @@ require("lazy").setup({
 			end,
 		},
 		{ "hrsh7th/cmp-vsnip" },
-		{
-			"williamboman/mason.nvim",
-			config = function()
-				require("mason").setup()
-			end,
-		},
-		{ "williamboman/mason-lspconfig.nvim" },
+    {
+      "williamboman/mason.nvim",
+      config = function()
+        require("mason").setup()
+      end,
+    },
+		--{ "williamboman/mason-lspconfig.nvim" },
 		{ "neovim/nvim-lspconfig" },
 		{
 			"tpope/vim-fugitive",
@@ -162,6 +162,7 @@ require("lazy").setup({
 				require("plugins.conform")
 			end,
 		},
+    {"farmergreg/vim-lastplace"},
 	},
 	-- automatically check for plugin updates
 	checker = {

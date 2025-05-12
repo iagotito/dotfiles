@@ -78,7 +78,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 # asdf
 # append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
+#fpath=(${ASDF_DIR}/completions $fpath)
 
 # initialise completions with ZSH's compinit
 autoload -Uz compinit; compinit -u
@@ -153,6 +153,5 @@ ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=fg=$CYAN
 ZSH_HIGHLIGHT_STYLES[redirection]=fg=$YELLOW
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=$GREEN
 
-export FPATH="$HOME/.projects/eza/completions/zsh:$FPATH"
-export EZA_CONFIG_DIR="$DOTFILES/eza"
+export EZA_CONFIG_DIR="$DOFILES/eza"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
