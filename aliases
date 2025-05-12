@@ -7,7 +7,12 @@ alias dot='cd $DOTFILES'
 alias zmk='cd $HOME/Documents/zmk-config'
 alias bat='batcat'
 
+alias nconf='nvim $DOTFILES/nixos/configuration.nix'
+alias nreb='sudo nixos-rebuild switch'
+alias hconf='nvim $DOTFILES/hyprland/hyprland.conf'
+
 # replace 'ls' with 'exa', if installed
+unalias ls 2> /dev/null
 ls() {
   if command -v eza &> /dev/null
   then
@@ -17,6 +22,7 @@ ls() {
   fi
 }
 
+unalias la 2> /dev/null
 la() {
   if command -v eza &> /dev/null
   then
@@ -26,6 +32,7 @@ la() {
   fi
 }
 
+unalias ll 2> /dev/null
 ll() {
   if command -v eza &> /dev/null
   then
@@ -66,7 +73,7 @@ alias egrep='egrep --color=auto'
 alias :q='exit'
 
 # Fix theme warning when opening appimage
-alias nvim='GTK_THEME=Adwaita /usr/bin/nvim'
+# alias nim='GTK_THEME=Adwaita /usr/bin/nvim'
 
 # editing and reliading
 alias ze='nvim $ZDOTDIR/.zshrc'       # zshrc edit

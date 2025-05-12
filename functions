@@ -2,7 +2,7 @@
 
 # copy file content to clipboard
 copy() {
-    command cat $1 | xclip -selection clipboard
+    command cat $1 | wl-copy
 }
 
 cs() {
@@ -75,4 +75,20 @@ mergefiles() {
 addgitmoji() {
   gitmoji-fuzzy-hook-init >> ./.git/hooks/prepare-commit-msg
   chmod +x ./.git/hooks/prepare-commit-msg
+}
+
+# based on: https://superuser.com/a/181543
+watchchange() {
+  local file="$1"
+  shift
+  local command="$@"
+  local filename=$(basename "$file")
+  local directory=$(dirname "$file")
+
+  inotifywait -e close_write,moved_to,create -m "$directory" |
+  while read -r dir events fname; do
+    if [ "$fname" = "$filename" ]; then
+      $command
+    fi
+  done
 }
