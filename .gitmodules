@@ -1,12 +1,12 @@
-[submodule "zsh/plugins/zsh-syntax-highlighting"]
-	path = zsh/plugins/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "zsh/plugins/zsh-autosuggestions"]
-	path = zsh/plugins/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule "setuper"]
-	path = setuper
-	url = https://github.com/iagotito/setuper.git
-[submodule "zsh/plugins/gitmoji-fuzzy-hook"]
-	path = zsh/plugins/gitmoji-fuzzy-hook
+  path = setuper
+  url = https://github.com/iagotito/setuper.git
+[submodule "zsh/.config/zsh/plugins/zsh-syntax-highlighting"]
+	path = zsh/.config/zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "zsh/.config/zsh/plugins/zsh-autosuggestions"]
+	path = zsh/.config/zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/.config/zsh/plugins/gitmoji-fuzzy-hook"]
+	path = zsh/.config/zsh/plugins/gitmoji-fuzzy-hook
 	url = https://gitlab.com/raabf/gitmoji-fuzzy-hook.git

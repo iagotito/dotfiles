@@ -3,7 +3,7 @@ background = "#282A36"
 
 [font]
 size = 16
-normal = { family = "firacode", style = "medium" }
+normal = { family = "Fira Code", style = "Medium" }
 
 [window]
 decorations = "Transparent"
