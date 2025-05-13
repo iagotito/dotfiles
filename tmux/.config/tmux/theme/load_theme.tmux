@@ -5,7 +5,7 @@ export LC_ALL=en_US.UTF-8
 main()
 {
   # set scripts dir variable
-  theme_dir="$DOTFILES/tmux/theme"
+  theme_dir="$HOME/.config/tmux/theme"
 
   # set configuration option variables
   show_left_icon="smiley"

@@ -39,7 +39,7 @@ $menu = wofi --show drun
 
 # exec-once = $terminal
 # exec-once = nm-applet &
-exec-once = hyprpaper & firefox
+exec-once = firefox
 exec-once = hyprpm reload -n
 exec-once = systemctl --user start hyprpolkitagent
 exec-once = swaync

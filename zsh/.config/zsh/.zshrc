@@ -21,7 +21,7 @@ BLUE="#5D7BE6"
 
 # prompt configuration
 
-fpath=($DOTFILES/zsh/prompt $fpath)
+fpath=($ZDOTDIR/prompt $fpath)
 autoload -Uz prompt_setup; prompt_setup
 
 # zhistory
@@ -83,16 +83,16 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # initialise completions with ZSH's compinit
 autoload -Uz compinit; compinit -u
 _comp_options+=(globdots) # With hidden files
-source $DOTFILES/zsh/plugins/completion.zsh
+source $ZDOTDIR/plugins/completion.zsh
 
 # activate the syntax highlighting
 # see: https://github.com/zsh-users/zsh-syntax-highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # activate the zsh auto sugestions
 # see: https://github.com/zsh-users/zsh-autosuggestions
-source $DOTFILES/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Enable history substring search
 setopt hist_subst_pattern

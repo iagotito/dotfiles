@@ -2,3 +2,5 @@ personal-aliases
 global-packages/*
 undodir/
 lazy-lock.json
+.zhistory
+.zcompdump

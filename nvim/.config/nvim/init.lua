@@ -34,8 +34,8 @@ opt.colorcolumn = "80" -- color column position
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.mouse = "a"
 -- undo tree file
-dotfiles = os.getenv("DOTFILES")
-opt.undodir = dotfiles .. "/nvim/undodir"
+home = os.getenv("HOME")
+opt.undodir = home .. "/.config/nvim/undodir"
 opt.undofile = true
 cmd("filetype plugin on")
 
