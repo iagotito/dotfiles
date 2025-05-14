@@ -7,9 +7,8 @@ alias dot='cd $DOTFILES'
 alias zmk='cd $HOME/Documents/zmk-config'
 alias bat='batcat'
 
-alias nconf='nvim $DOTFILES/nixos/configuration.nix'
-alias nreb='sudo nixos-rebuild switch'
-alias hconf='nvim $DOTFILES/hyprland/hyprland.conf'
+alias hconf='nvim $HOME/.config/hypr/hyprland.conf'
+alias wconf='cd $HOME/.config/waybar'
 
 # replace 'ls' with 'exa', if installed
 unalias ls 2> /dev/null

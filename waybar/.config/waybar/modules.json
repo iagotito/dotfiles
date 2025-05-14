@@ -5,10 +5,11 @@
     "active-only": false,
     "all-outputs": true,
     "format": "{icon}",
+    // defined in the styles.css
     "format-icons": {
-    "active": "",
-    "default": "",
-    "empty": ""
+      "active": "",
+      "default": "",
+      "empty": ""
     },
     "persistent-workspaces": {
        "*": 2
