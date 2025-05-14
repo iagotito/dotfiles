@@ -36,14 +36,14 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
---local servers = { "pyright", "lua_ls", "ts_ls", "gopls" }
-local servers = { "pyright", "ts_ls", "gopls" }
+local servers = { "pyright", "lua_ls", "ts_ls", "gopls" }
+--local servers = { "pyright", "ts_ls", "gopls" }
 
 -- Download servers using mason-lspconfig
---require("mason-lspconfig").setup({
-  --ensure_installed = servers,
-  ----automatic_installation = true,
---})
+require("mason-lspconfig").setup({
+  ensure_installed = servers,
+  automatic_installation = true,
+})
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
