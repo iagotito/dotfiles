@@ -4,3 +4,5 @@ undodir/
 lazy-lock.json
 .zhistory
 .zcompdump
+out
+*.log
