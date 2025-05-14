@@ -41,11 +41,19 @@ require("lazy").setup({
 		{
 			"dracula/vim",
 			as = "dracula",
-			config = function()
-				vim.g.dracula_colorterm = 0
-				vim.cmd("colorscheme dracula")
-			end,
+			--config = function()
+				--vim.g.dracula_colorterm = 0
+				--vim.cmd("colorscheme dracula")
+			--end,
 		},
+    {
+      "catppuccin/nvim",
+      name = "catppuccin",
+      priority = 1000,
+      config = function()
+				require("plugins.catppuccin")
+      end,
+    },
 
 		-----------------------------------------------------------------------------
 		----- Plugins

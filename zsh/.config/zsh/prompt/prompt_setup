@@ -21,7 +21,7 @@ precmd_functions+=(build_prompt)
 
 # Infos
 
-GIT_PROMPT_PREFIX=" %F{$PINK}:"
+GIT_PROMPT_PREFIX=" %F{$THEME_COLOR_2}:"
 GIT_PROMPT_SUFFIX="%f"
 
 GIT_PROMPT_DIRTY=""
@@ -39,18 +39,18 @@ GIT_PROMPT_AHEAD="↑"
 
 build_prompt() {
     VENV_INFO=$(get_virtual_env_info)
-    PROMPT_INFO=$(print -P "$VENV_INFO%F{$CYAN}%~%f")
+    PROMPT_INFO=$(print -P "$VENV_INFO%F{$THEME_COLOR_5}%~%f")
     GIT_INFO=$(print -P $(get_git_info))
 
     PAD=$(get_pad $PROMPT_INFO $GIT_INFO)
     if [[ $PAD -le 0 ]]; then
-        PROMPT_INFO=$(print -P "$VENV_INFO%F{$CYAN}.../%1d%f")
+        PROMPT_INFO=$(print -P "$VENV_INFO%F{$THEME_COLOR_5}.../%1d%f")
         PAD=$(get_pad $PROMPT_INFO $GIT_INFO)
     fi
 
     GIT_INFO=$(printf "%${PAD}s%s" "" "$GIT_INFO")
 
-    PROMPT=$(echo "$PROMPT_INFO$GIT_INFO\n%B%F{$GREEN}➜%f%b ")
+    PROMPT=$(echo "$PROMPT_INFO$GIT_INFO\n%B%F{$THEME_COLOR_7}➜%f%b ")
 }
 
 # TODO to refactor with switch / using someting else than grep
@@ -121,7 +121,7 @@ get_git_info() {
     fi
 
     if [[ ! -z $STATUS ]]; then
-        STATUS=$(echo " %f%B%F{$RED}[$STATUS]")
+        STATUS=$(echo " %f%B%F{$THEME_COLOR_0}[$STATUS]")
     fi
 
     echo "$BRANCH_INFO$STATUS%b"
@@ -130,7 +130,7 @@ get_git_info() {
 get_virtual_env_info() {
     VENV=${VIRTUAL_ENV##*/}
     if [[ $VENV ]]; then
-        VENV="%F{$ORANGE}($VENV)%f "
+        VENV="%F{$THEME_COLOR_1}($VENV)%f "
     fi
     echo $VENV
 }

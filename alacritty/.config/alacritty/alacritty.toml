@@ -1,5 +1,9 @@
-[colors.primary]
-background = "#282A36"
+#[colors.primary]
+#background = "#282A36"
+
+general.import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]
 
 [font]
 size = 16
