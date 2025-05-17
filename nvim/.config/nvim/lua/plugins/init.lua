@@ -41,19 +41,19 @@ require("lazy").setup({
 		{
 			"dracula/vim",
 			as = "dracula",
+			config = function()
+				vim.g.dracula_colorterm = 0
+				vim.cmd("colorscheme dracula")
+			end,
+		},
+		{
+			"catppuccin/nvim",
+			name = "catppuccin",
+			priority = 1000,
 			--config = function()
-				--vim.g.dracula_colorterm = 0
-				--vim.cmd("colorscheme dracula")
+			--require("plugins.catppuccin")
 			--end,
 		},
-    {
-      "catppuccin/nvim",
-      name = "catppuccin",
-      priority = 1000,
-      config = function()
-				require("plugins.catppuccin")
-      end,
-    },
 
 		-----------------------------------------------------------------------------
 		----- Plugins
@@ -107,13 +107,13 @@ require("lazy").setup({
 			end,
 		},
 		{ "hrsh7th/cmp-vsnip" },
-    {
-      "williamboman/mason.nvim",
-      config = function()
-        require("mason").setup()
-      end,
-    },
-    { "williamboman/mason-lspconfig.nvim" },
+		{
+			"williamboman/mason.nvim",
+			config = function()
+				require("mason").setup()
+			end,
+		},
+		{ "williamboman/mason-lspconfig.nvim" },
 		{ "neovim/nvim-lspconfig" },
 		{
 			"tpope/vim-fugitive",
@@ -170,7 +170,13 @@ require("lazy").setup({
 				require("plugins.conform")
 			end,
 		},
-    {"farmergreg/vim-lastplace"},
+		{
+			"zapling/mason-conform.nvim",
+			config = function()
+				require("mason-conform").setup()
+			end,
+		},
+		{ "farmergreg/vim-lastplace" },
 	},
 	-- automatically check for plugin updates
 	checker = {

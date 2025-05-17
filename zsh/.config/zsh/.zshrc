@@ -108,8 +108,8 @@ set_theme() {
 }
 
 # Example usage
-set_theme "catppuccin"
-#set_theme "dracula"
+#set_theme "catppuccin"
+set_theme "dracula"
 
 # prompt configuration
 
