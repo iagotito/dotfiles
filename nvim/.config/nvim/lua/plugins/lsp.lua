@@ -37,12 +37,12 @@ local on_attach = function(client, bufnr)
 end
 
 local servers = { "pyright", "lua_ls", "ts_ls", "gopls" }
---local servers = { "pyright", "ts_ls", "gopls" }
+--local servers = { "lua_ls", "ts_ls", "gopls" }
 
 -- Download servers using mason-lspconfig
 require("mason-lspconfig").setup({
-  ensure_installed = servers,
-  automatic_installation = true,
+	--ensure_installed = servers,
+	--automatic_installation = true,
 })
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
