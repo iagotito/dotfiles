@@ -1,38 +1,26 @@
 # Iago's Dotfiles
 
-My attempt to create some nice dotfiles to me.
+My attempt to create some nice dotfiles to me. Includes configuration
+files for a customized Linux environment, especially settings for
+terminal, tmux, and desktop environment, including configurations for
+Alacritty, Hyprland, Waybar, and more.
 
-## Instalation
+## Screenshots
 
-### Zsh dotfiles setup
+Terminal
 
-Run the following:
+[![Terminal screenshot](images/terminal_1.png)](images/terminal_1.png)
 
-`sudo ls` is just a trick to grant the shell sudo privileges (required for the setup script)
-```shell
-sudo apt update -y
-sudo apt install git -y
+Neovim
 
-git config --global user.name "<YOUR NAME>"
-git config --global user.email "<YOUR EMAIL>"
+[![Neovim screenshot](images/neovim_1.png)](images/neovim_1.png)
 
-# Setup the ssh agent. Requires an id_ed25519 ssh key, or you can change to your's.
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
+## Usage
 
-git clone --recurse-submodules git@github.com:iagotito/dotfiles.git ~/.dotfiles
-```
+Clone the repository and use the setuper script to apply
+configurations. Refer to individual directories for specific program
+settings.
 
-Then go to setuper to setup everything else.
+## License
 
-```shell
-cd $HOME/.dotfiles/setuper
-./setuper help
-```
-
-See [setuper](https://github.com/iagotito/setuper).
-
-## Requisites
-
-These are dotfiles mainly to zsh and tmux, so you need to have them
-installed in order to use it well.
+MIT License. See LICENSE for details.
