@@ -107,8 +107,12 @@ alias gcl='git clean'
 alias gcln='git clean -n'
 alias gd='git diff'
 alias gst='git stash'
-alias gstl='git stash list'
-alias gsta='git stash apply'
+alias gsl='git stash list'
+alias gsa='git stash apply'
+alias gsp='git stash push -m'
+alias gpop='git stash pop'
+alias gwl='git worktree list'
+alias gwa='git worktree add'
 
 # tmux
 
