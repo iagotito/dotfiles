@@ -29,13 +29,35 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+	buf_set_keymap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 	buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
 	buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
 	buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 	buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
+-- Configure inline diagnostics
+vim.diagnostic.config({
+	virtual_text = {
+		prefix = "■",
+		source = "always",
+		spacing = 4,
+	},
+	signs = {
+		active = true,
+		text = {
+			[vim.diagnostic.severity.ERROR] = "❌",
+			[vim.diagnostic.severity.WARN] = "⚠",
+			[vim.diagnostic.severity.INFO] = "ℹ",
+			[vim.diagnostic.severity.HINT] = "💡",
+		},
+	},
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+})
+
+-- Language servers
 local servers = { "pyright", "lua_ls", "ts_ls", "gopls" }
 --local servers = { "lua_ls", "ts_ls", "gopls" }
 
