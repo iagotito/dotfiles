@@ -114,6 +114,10 @@ alias gpop='git stash pop'
 alias gwl='git worktree list'
 alias gwa='git worktree add'
 
+# lazygit
+
+alias lgit='lazygit'
+
 # tmux
 
 alias t='tmux'
