@@ -1,3 +1,5 @@
+// Based on config from Stephan Raabe (2023)
+// https://github.com/mylinuxforwork/dotfiles/
 {
     "include": "~/.config/waybar/modules.json",
     // General Settings
@@ -35,8 +37,8 @@
     // Modules Right
     "modules-right": [
         //"custom/updates",
-        //"pulseaudio",
-        //"bluetooth",
+        "pulseaudio",
+        "bluetooth",
         //"battery",
         //"network",
         //"group/hardware",
@@ -44,8 +46,8 @@
         //"custom/hypridle",
         //"custom/hyprshade",
         //"tray",
-        //"custom/exit",
         //"custom/ml4w-welcome",
-        "clock"
+        "clock",
+        "custom/exit"
     ]
 }
