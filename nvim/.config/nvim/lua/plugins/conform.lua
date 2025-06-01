@@ -10,6 +10,7 @@ require("conform").setup({
 		html = { "prettier" },
 		vue = { "prettier" },
 		go = { "gopls", "goimports", "golines" },
+		json = { "jq" },
 	},
 })
 

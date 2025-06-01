@@ -46,14 +46,14 @@ require("lazy").setup({
 				vim.cmd("colorscheme dracula")
 			end,
 		},
-		{
-			"catppuccin/nvim",
-			name = "catppuccin",
-			priority = 1000,
-			--config = function()
-			--require("plugins.catppuccin")
-			--end,
-		},
+		--{
+		--"catppuccin/nvim",
+		--name = "catppuccin",
+		--priority = 1000,
+		----config = function()
+		----require("plugins.catppuccin")
+		----end,
+		--},
 
 		-----------------------------------------------------------------------------
 		----- Plugins
@@ -115,9 +115,15 @@ require("lazy").setup({
 		},
 		{ "williamboman/mason-lspconfig.nvim" },
 		{ "neovim/nvim-lspconfig" },
+		--{
+		--"tpope/vim-fugitive",
+		--config = function() require('plugins.fugitive').setup() end
+		--},
 		{
-			"tpope/vim-fugitive",
-			--config = function() require('plugins.fugitive').setup() end
+			"kdheepak/lazygit.nvim",
+			config = function()
+				require("plugins.lazygit")
+			end,
 		},
 		{ "tpope/vim-abolish" },
 		{
