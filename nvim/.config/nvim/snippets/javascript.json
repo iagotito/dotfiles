@@ -1,0 +1,17 @@
+{
+    "fetch": {
+        "prefix": "fetch",
+        "decription": "Function to fetch data from a API URL.",
+        "body": [
+            "fetch(API_URL + \"/$1\", {",
+            "   method: \"GET\",",
+            "   headers: { \"Content-Type\": \"application/json\" },",
+            "})",
+            ".then(res => { return res.json(); })",
+            ".then(data => {",
+            "",
+            "})",
+            ".catch(err => { console.log(err); })"
+        ]
+    }
+}

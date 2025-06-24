@@ -28,6 +28,10 @@ return {
 						"node_modules/",
 						".git/",
 						"undodir/",
+						"target/debug/incremental",
+						"target/debug/.fingerprint",
+						"target/debug/deps",
+						"target/debug/build",
 					},
 				},
 				pickers = {

@@ -1,6 +1,6 @@
 return {
-	{
-		"m4xshen/smartcolumn.nvim",
-		opts = {},
-	},
+	--{
+	--"m4xshen/smartcolumn.nvim",
+	--opts = {},
+	--},
 }

@@ -1,0 +1,30 @@
+{
+    "html5": {
+        "prefix": "html5",
+        "description": "Basic HTML5 structure.",
+        "body": [
+            "<!DOCTYPE html>",
+            "<html lang=\"en-US\">",
+            "  <head>",
+            "    <meta charset=\"UTF-8\">",
+            "    <title>Title</title>",
+            "  </head>",
+            "  <body>",
+            "",
+            "    $1",
+            "",
+            "  </body>",
+            "</html>"
+        ]
+    },
+    "script": {
+        "prefix": "script",
+        "description": "Script tag to /scripts/main.js",
+        "body": "<script src=\"/scripts/main.js\"></script>"
+    },
+    "style": {
+        "prefix": "style",
+        "description": "Link tag to styles.css",
+        "body": "<link rel=\"stylesheet\" href=\"styles.css\">"
+    }
+}

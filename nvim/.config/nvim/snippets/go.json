@@ -1,0 +1,11 @@
+{
+  "iferr": {
+    "prefix": "iferr",
+    "description": "Common error check.",
+    "body": [
+      "if err != nil {",
+      "  return nil, err",
+      "}"
+    ]
+  }
+}

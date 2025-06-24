@@ -16,6 +16,7 @@ return {
 					vue = { "prettier" },
 					go = { "gopls", "goimports", "golines" },
 					json = { "jq" },
+					rust = { "rustfmt" },
 				},
 			})
 

@@ -1,0 +1,34 @@
+{
+    "pdb": {
+        "prefix": "pdb",
+        "description": "Imports python's pdb debugger.",
+        "body": "import pdb; pdb.set_trace()"
+    },
+    "pudb": {
+        "prefix": "pudb",
+        "description": "Imports python's pudb debugger.",
+        "body": "import pudb; pudb.set_trace() # remember to install it before use."
+    },
+    "if name main": {
+        "prefix": "inm",
+        "description": "Create a basic python script structure to call a main function.",
+        "body": [
+            "def main():",
+            "    ${1}",
+            "    pass",
+            "",
+            "",
+            "if __name__ == \"__main__\":",
+            "    main()"
+        ]
+    },
+    "spaced print": {
+        "prefix": "_print",
+        "description": "Add 3 print commands to create a space arround the middle one and make it better to find in log messages",
+        "body": [
+            "print(\"\\n\"*2)",
+            "print(f\"{${1}}\")",
+            "print(\"\\n\"*2)"
+        ]
+    }
+}

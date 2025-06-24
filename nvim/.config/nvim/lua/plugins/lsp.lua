@@ -69,7 +69,7 @@ return {
 			})
 
 			-- Language servers
-			local servers = { "pyright", "lua_ls", "ts_ls", "gopls" }
+			local servers = { "pyright", "lua_ls", "ts_ls", "gopls", "rust_analyzer" }
 
 			-- Ensure servers are installed via mason-lspconfig
 			--require("mason-lspconfig").setup({

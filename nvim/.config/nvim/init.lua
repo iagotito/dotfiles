@@ -30,14 +30,15 @@ opt.statusline = "%F" -- display full path in status line
 opt.clipboard = "unnamedplus" -- use system clipboard
 opt.wrap = false -- no wrap
 opt.linebreak = true -- when wrap, not break words
-opt.colorcolumn = "80" -- color column position
+--opt.colorcolumn = "80" -- color column position
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.mouse = "a"
+opt.filetype = "on"
+--opt.plugin = "on"
 -- undo tree file
 home = os.getenv("HOME")
 opt.undodir = home .. "/.config/nvim/undodir"
 opt.undofile = true
-cmd("filetype plugin on")
 
 -----------------------------------------------------------------------------
 -- AutoCommands
@@ -46,7 +47,7 @@ cmd("filetype plugin on")
 cmd(
 	"autocmd BufWritePre * if &ft!='markdown' | let position = winsaveview() | :%s/\\s\\+$//e | call winrestview(position) | unlet! position"
 ) -- rstrip white spaces when save except on markdown files
-cmd("autocmd BufNewFile,BufReadPre *.md setlocal textwidth=71 colorcolumn=72") -- auto break line at 71 chars in .md files
+cmd("autocmd BufNewFile,BufReadPre *.md setlocal textwidth=71") -- colorcolumn=72") -- auto break line at 71 chars in .md files
 cmd("autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4") -- set tab to 4 spaces in selected filetypes
 cmd("autocmd FileType go setlocal noexpandtab") -- use tab for identation in go files
 

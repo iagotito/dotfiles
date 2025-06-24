@@ -5,7 +5,7 @@ return {
 			"hrsh7th/cmp-vsnip",
 		},
 		config = function()
-			vim.g.vsnip_snippet_dir = "$HOME/.config/nvim/lua/plugins/snippets/"
+			vim.g.vsnip_snippet_dir = "$HOME/.config/nvim/snippets/"
 		end,
 	},
 }
