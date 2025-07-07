@@ -39,4 +39,5 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="$DOTFILES/global-packages/python:$PATH"
 export PATH="$DOTFILES/global-packages/nodejs:$PATH"
 export PATH="$DOTFILES/global-packages/golang:$PATH"
-# . "$HOME/.cargo/env"
+
+. "$HOME/.cargo/env"

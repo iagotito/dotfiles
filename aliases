@@ -3,6 +3,14 @@
 # the BEST alias ever
 alias please='echo "Of course, sir!\n" && sudo'
 
+n() {
+    if [ $# -eq 0 ]; then
+        nvim .
+    else
+        nvim "$@"
+    fi
+}
+
 alias dot='cd $DOTFILES'
 alias zmk='cd $HOME/Documents/zmk-config'
 alias bat='batcat'
@@ -61,12 +69,23 @@ alias cp='cp -r' # copy directories recursively
 
 #alias tree='tree -C -I "__pycache__|.venv|venv|.git"' # add colorization to tree
 
+# replace 'grep' with 'ripgrep', if installed
+unalias grep 2> /dev/null
+grep() {
+  if command -v rg &> /dev/null
+  then
+    rg $@
+  else
+    command grep $@
+  fi
+}
+
 alias rnie="grep --exclude-dir={.venv,.git,__pycache__,node_modules} --binary-files=without-match -rniE"
 
 # highlight grep match
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+#alias grep='grep --color=auto'
+#alias fgrep='fgrep --color=auto'
+#alias egrep='egrep --color=auto'
 
 # mimic vim functions
 alias :q='exit'
@@ -162,7 +181,7 @@ a() {
 }
 alias d='deactivate'
 alias r='pip install -r requirements.txt'
-alias tr='pip install -r test_requirements.txt'
+alias ttr='pip install -r test_requirements.txt'
 alias pp='python -m pytest -v'
 alias var='v;a;r'
 alias vart='var;tr'
@@ -170,7 +189,8 @@ alias pyt='poetry run pytest -W ignore'
 
 alias al='alembic'
 alias alr='alembic revision'
-alias alra='al revision --autogenerate'
+alias alra='al revision --autogenerate -m'
+alias almg='al merge heads'
 alias alu='POSTGRES_HOST=localhost alembic upgrade head'
 
 # kubernetes
