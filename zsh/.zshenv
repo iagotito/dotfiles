@@ -30,6 +30,7 @@ export PATH=$ASDF_DIR/bin:$PATH
 export PATH=$ASDF_DIR/shims:$PATH
 
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$DOTFILES/bin:$PATH"
 
 export TMPDIR=/var/tmp
 
