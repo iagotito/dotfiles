@@ -249,11 +249,3 @@ export EZA_CONFIG_DIR="$HOME/.config/eza"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 export PATH=$PATH:/home/iago/bin
-
-# Load the kubectl completion code for zsh[1] into the current shell
-#source <(kubectl completion zsh)
-# Set the kubectl completion code for zsh[1] to autoload on startup
-kubectl completion zsh > "${fpath[1]}/_kubectl"
-
-autoload bashcompinit && bashcompinit
-source '/home/iago/lib/azure-cli/az.completion'
