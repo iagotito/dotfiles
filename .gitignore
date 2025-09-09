@@ -3,6 +3,7 @@ global-packages/*
 undodir/
 lazy-lock.json
 .zhistory
+.zsh_history
 .zcompdump
 out
 *.log

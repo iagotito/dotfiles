@@ -171,6 +171,8 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # asdf
 # append completions to fpath
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+# Add custom completions
+fpath=("$HOME/.zfunc" $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit; compinit -u
 _comp_options+=(globdots) # With hidden files
@@ -205,16 +207,16 @@ bindkey '^r' fh
 # if tmux is installed,
 # starts new terminal with a tmux session and close it when quit tmux
 
-if [ "$AUTO_USE_TMUX" = "true" ] && \
-  [[ -x "$(command -v tmux)" ]] && \
-  [ -t 0 ] && \
-  [[ -z $TMUX ]] &&\
-  [[ $- = *i* ]]; then
-  exec tmux;
+if [[ "$AUTO_USE_TMUX" == "true" ]] \
+   && [[ -z "$TMUX" ]] \
+   && [[ $- == *i* ]] \
+   && command -v tmux >/dev/null 2>&1 \
+   && [[ -n "$WAYLAND_DISPLAY" || -n "$DISPLAY" ]]; then
+  exec tmux
 fi
 
 # append snap to PATH
-path+=('/snap/bin')
+#path+=('/snap/bin')
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -244,8 +246,9 @@ ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=fg=$THEME_COLOR_5
 ZSH_HIGHLIGHT_STYLES[redirection]=fg=$THEME_COLOR_3
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=$THEME_COLOR_7
 
-export EZA_CONFIG_DIR="$HOME/.config/eza"
-
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
+export EZA_CONFIG_DIR="$HOME/.config/eza"
 export PATH=$PATH:/home/iago/bin
+
+. "$HOME/.config/local/share/../bin/env"
