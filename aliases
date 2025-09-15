@@ -69,18 +69,7 @@ alias cp='cp -r' # copy directories recursively
 
 #alias tree='tree -C -I "__pycache__|.venv|venv|.git"' # add colorization to tree
 
-# replace 'grep' with 'ripgrep', if installed
-unalias grep 2> /dev/null
-grep() {
-  if command -v rg &> /dev/null
-  then
-    rg $@
-  else
-    command grep $@
-  fi
-}
-
-alias rnie="grep --exclude-dir={.venv,.git,__pycache__,node_modules} --binary-files=without-match -rniE"
+alias rnie="rg --exclude-dir={.venv,.git,__pycache__,node_modules} --binary-files=without-match -rniE"
 
 # highlight grep match
 #alias grep='grep --color=auto'
