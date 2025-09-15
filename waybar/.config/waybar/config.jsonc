@@ -1,53 +1,458 @@
 // Based on config from Stephan Raabe (2023)
 // https://github.com/mylinuxforwork/dotfiles/
+// And SolDoesTech (2025)
+// https://github.com/SolDoesTech/HyprV2
 {
-    "include": "~/.config/waybar/modules.json",
-    // General Settings
-
-    // Position TOP
     "layer": "top",
-    "margin-top": 5,
-    "margin-bottom": 0,
-    "margin-left": 5,
-    "margin-right": 5,
-    "spacing": 0,
-
-    // Load Modules
-    //"include": [
-        //"~/dotfiles/.settings/waybar-quicklinks.json",
-    //],
-
-    // Modules Left
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 35,
     "modules-left": [
-        "custom/appmenu",
-        //"custom/settings",
-        //"custom/waybarthemes",
-        //"custom/wallpaper",
-        "wlr/taskbar"
-        //"group/quicklinks",
-        //"hyprland/window"
-        //"custom/starter"
+      "custom/launch_wofi",
+      "hyprland/window"
     ],
-
-    // Modules Center
     "modules-center": [
-        "hyprland/workspaces"
+      "hyprland/workspaces"
+    ],
+    "modules-right": [
+      //"temperature",
+      "cpu",
+      "memory",
+      "disk",
+      "pulseaudio",
+      "pulseaudio#microphone",
+      //"tray",
+      //"custom/weather",
+      "clock",
+      "custom/power_btn"
     ],
 
-    // Modules Right
-    "modules-right": [
-        //"custom/updates",
-        "pulseaudio",
-        "bluetooth",
-        //"battery",
-        //"network",
-        //"group/hardware",
-        //"custom/cliphist",
-        //"custom/hypridle",
-        //"custom/hyprshade",
-        //"tray",
-        //"custom/ml4w-welcome",
-        "clock",
-        "custom/exit"
-    ]
+    "hyprland/window": {
+        "format": "{}"
+    },
+
+    "custom/launch_wofi": {
+        "format": "",
+        "on-click": "wofi --show drun --replace",
+        "tooltip": false
+    },
+
+    "custom/power_btn": {
+        "format": "",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": " {usage}%",
+        "max-length": 10,
+        //"on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "󰋊 {percentage_used}%",
+        "path": "/",
+        "tooltip": true,
+        "tooltip-format": "SSD - {used} used out of {total} on {path} ({percentage_used}%)",
+        //"on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": "Memory - {used:0.1f}GB used",
+        //"on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
+
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "active-only": false,
+    "all-outputs": true,
+    "format": "{icon}",
+    // defined in the styles.css
+    "format-icons": {
+      "active": "",
+      "default": "",
+      "empty": "",
+    },
+    "persistent-workspaces": {
+      "*": 2,
+    },
+  },
+
+   "custom/weather": {
+        //shows the current weather and forecast
+        "tooltip" : true,
+        "format" : "{}",
+        "interval" : 30,
+        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
+        "return-type" : "json"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "tooltip": true,
+        "tooltip-format": "{: %A, %B %e %Y}"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "on-click": "pamixer -t",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "on-click": "pamixer --default-source -t",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "pamixer --default-source -i 5",
+        "on-scroll-down": "pamixer --default-source -d 5",
+        "scroll-step": 5
+    },
+
+    "temperature": {
+        "thermal-zone": 1,
+        "format": " {temperatureF}°F",
+        "critical-threshold": 70,
+        "format-critical": " {temperatureC}°C",
+        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    }
 }
+
+
+
+//{
+  //"include": "~/.config/waybar/modules.json",
+  //// General Settings
+
+  //// Position TOP
+  //"layer": "top",
+  //"position": "top",
+  //"mod": "dock",
+  //"exclusive": true,
+  //"passthrough": false,
+  //"gtk-layer-shell": true,
+
+  //"margin-top": 5,
+  //"margin-bottom": 0,
+  //"margin-left": 5,
+  //"margin-right": 5,
+  //"spacing": 0,
+
+
+  //"modules-left": [
+    //"custom/launch_wofi",
+    //"wlr/taskbar"
+  //],
+  //"modules-center": [
+    //"hyprland/workspaces"
+  //],
+  //"modules-right": [
+    //"cpu",
+    //"memory",
+    //"disk",
+    //"temperature",
+    //"pulseaudio",
+    //"bluetooth",
+    //"clock",
+    //"custom/exit"
+  //],
+
+  //// Hyprland Window
+  //"hyprland/window": {
+    //"format": "{}",
+    //"separate-outputs": true,
+  //},
+
+  //// Workspaces
+  //"hyprland/workspaces": {
+    //"on-click": "activate",
+    //"active-only": false,
+    //"all-outputs": true,
+    //"format": "{icon}",
+    //// defined in the styles.css
+    //"format-icons": {
+      //"active": "",
+      //"default": "",
+      //"empty": "",
+    //},
+    //"persistent-workspaces": {
+      //"*": 2,
+    //},
+  //},
+
+  //// Taskbar
+  //"wlr/taskbar": {
+    //"format": "{icon}",
+    //"icon-size": 18,
+    //"tooltip-format": "{title}",
+    //"on-click": "activate",
+    //"on-click-middle": "close",
+    //"ignore-list": ["Alacritty"],
+    //"app_ids-mapping": {
+      //"firefoxdeveloperedition": "firefox-developer-edition",
+    //},
+    //"rewrite": {
+      //"Firefox Web Browser": "Firefox",
+      //"Foot Server": "Terminal",
+    //},
+  //},
+
+  //// Cliphist
+  //"custom/cliphist": {
+    //"format": "",
+    //"on-click": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh",
+    //"on-click-right": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh d",
+    //"on-click-middle": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh w",
+    //"tooltip": false,
+  //},
+
+  //// Hyprshade
+  //"custom/hyprshade": {
+    //"format": "",
+    //"on-click": "sleep 0.1; ~/dotfiles/hypr/scripts/hyprshade.sh",
+    //"on-click-right": "sleep 0.1; ~/dotfiles/hypr/scripts/hyprshade.sh rofi",
+    //"tooltip": false,
+  //},
+
+  //// Hypridle inhibitor
+  //"custom/hypridle": {
+    //"format": "",
+    //"return-type": "json",
+    //"escape": true,
+    //"exec-on-event": true,
+    //"interval": 60,
+    //"exec": "~/dotfiles/hypr/scripts/hypridle.sh status",
+    //"on-click": "~/dotfiles/hypr/scripts/hypridle.sh toggle",
+    //"on-click-right": "hyprlock",
+  //},
+
+  //// Updates Count
+  //"custom/updates": {
+    //"format": "   {}",
+    //"tooltip-format": "{}",
+    //"escape": true,
+    //"return-type": "json",
+    //"exec": "~/dotfiles/scripts/updates.sh",
+    //"restart-interval": 60,
+    //"on-click": "alacritty -e ~/dotfiles/scripts/installupdates.sh",
+    //"tooltip": false,
+  //},
+
+  //// Wallpaper
+  //"custom/wallpaper": {
+    //"format": "",
+    //"on-click": "~/dotfiles/hypr/scripts/wallpaper.sh select",
+    //"on-click-right": "~/dotfiles/hypr/scripts/wallpaper-effects.sh",
+    //"tooltip": false,
+  //},
+
+  //// Settings
+  //"custom/settings": {
+    //"format": "",
+    //"on-click": "~/dotfiles/apps/ML4W_Dotfiles_Settings-x86_64.AppImage",
+    //"tooltip": false,
+  //},
+
+  //// Filemanager Launcher
+  //"custom/filemanager": {
+    //"format": "",
+    //"on-click": "thunar",
+    //"tooltip": false,
+  //},
+
+  //// Browser Launcher
+  //"custom/browser": {
+    //"format": "",
+    //"on-click": "~/dotfiles/.settings/browser.sh",
+    //"tooltip": false,
+  //},
+
+  //// System tray
+  //"tray": {
+    //// "icon-size": 21,
+    //"spacing": 10,
+  //},
+
+  //// Clock
+  //"clock": {
+    //// "timezone": "America/New_York",
+    //"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    //"format-alt": "{:%Y-%m-%d}",
+  //},
+
+  //// System
+  //"custom/system": {
+    //"format": "",
+    //"tooltip": false,
+  //},
+
+  //// CPU
+  //"cpu": {
+    //"interval": 10,
+    //"format": " {usage}%",
+    //"max-length": 10,
+    ////"on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+  //},
+
+  //// Memory
+  //"memory": {
+    //"interval": 30,
+    //"format": " {}%",
+    //"max-length": 10,
+    //"tooltip": true,
+    //"tooltip-format": "Memory - {used:0.1f}GB used",
+    //"on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+  //},
+
+  //// Harddisc space used
+  //"disk": {
+    //"interval": 30,
+    //"format": "󰋊 {percentage_used}%",
+    //"path": "/",
+    //"tooltip": true,
+    //"tooltip-format": "HDD - {used} used out of {total} on {path} ({percentage_used}%)",
+    //"on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+  //},
+
+  //"temperature": {
+    //"thermal-zone": 1,
+    //"format": " {temperatureF}°F",
+    //"critical-threshold": 70,
+    //"format-critical": " {temperatureC}°C",
+    //"on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+  //},
+
+  //// Group Hardware
+  //"group/hardware": {
+    //"orientation": "inherit",
+    //"drawer": {
+      //"transition-duration": 300,
+      //"children-class": "not-memory",
+      //"transition-left-to-right": false,
+    //},
+    //"modules": ["custom/system", "disk", "cpu", "memory", "hyprland/language"],
+  //},
+
+  //// Group Settings
+  //"group/settings": {
+    //"orientation": "inherit",
+    //"drawer": {
+      //"transition-duration": 300,
+      //"children-class": "not-memory",
+      //"transition-left-to-right": false,
+    //},
+    //"modules": ["custom/settings", "custom/waybarthemes", "custom/wallpaper"],
+  //},
+
+  //// Group Quicklinks
+  //"group/quicklinks": {
+    //"orientation": "horizontal",
+    //"modules": ["custom/filemanager", "custom/browser"],
+  //},
+
+  //// Network
+  //"network": {
+    //"format": "{ifname}",
+    //"format-wifi": "   {signalStrength}%",
+    //"format-ethernet": "  {ipaddr}",
+    //"format-disconnected": "Not connected", //An empty format will hide the module.
+    //"tooltip-format": " {ifname} via {gwaddri}",
+    //"tooltip-format-wifi": "   {essid} ({signalStrength}%)",
+    //"tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
+    //"tooltip-format-disconnected": "Disconnected",
+    //"max-length": 50,
+    //"on-click": "alacritty -e nmtui",
+  //},
+
+  //// Battery
+  //"battery": {
+    //"states": {
+      //// "good": 95,
+      //"warning": 30,
+      //"critical": 15,
+    //},
+    //"format": "{icon}   {capacity}%",
+    //"format-charging": "  {capacity}%",
+    //"format-plugged": "  {capacity}%",
+    //"format-alt": "{icon}  {time}",
+    //// "format-good": "", // An empty format will hide the module
+    //// "format-full": "",
+    //"format-icons": [" ", " ", " ", " ", " "],
+  //},
+
+  //// Pulseaudio
+  //"pulseaudio": {
+    //// "scroll-step": 1, // %, can be a float
+    //"format": "{icon}  {volume}%",
+    //"format-bluetooth": "{volume}% {icon} {format_source}",
+    //"format-bluetooth-muted": " {icon} {format_source}",
+    //"format-muted": " {format_source}",
+    //"format-source": "{volume}% ",
+    //"format-source-muted": "",
+    //"format-icons": {
+      //"headphone": "",
+      //"hands-free": "",
+      //"headset": "",
+      //"phone": "",
+      //"portable": "",
+      //"car": "",
+      //"default": ["", " ", " "],
+    //},
+    //"on-click": "pavucontrol",
+  //},
+
+  //// Bluetooth
+  //"bluetooth": {
+    //"format-disabled": "",
+    //"format-off": "",
+    //"interval": 30,
+    //"on-click": "blueman-manager",
+    //"format-no-controller": "",
+  //},
+
+  //// Other
+  //"user": {
+    //"format": "{user}",
+    //"interval": 60,
+    //"icon": false,
+  //},
+
+  //// Idle Inhibator
+  //"idle_inhibitor": {
+    //"format": "{icon}",
+    //"tooltip": true,
+    //"format-icons": {
+      //"activated": "",
+      //"deactivated": "",
+    //},
+    //"on-click-right": "hyprlock",
+  //},
+//}
