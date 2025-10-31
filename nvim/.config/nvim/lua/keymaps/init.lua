@@ -17,6 +17,9 @@ map("n", "<c-p>", ":e #<cr>")
 
 map("n", "<leader>l", "<cmd>noh<cr>") -- clear highlights
 
+-- copy current file path (same as C-g) to clipboard
+map("n", "<leader>h", "<cmd>let @+ = expand('%')<cr>")
+
 -- windows navigation with leader instead of Ctrl
 map("n", "<leader>wh", "<c-w>s")
 map("n", "<leader>wv", "<c-w>v")
@@ -92,3 +95,25 @@ vim.cmd(":command Wa wa")
 vim.cmd(":command WA wa")
 vim.cmd(":command Q q")
 vim.cmd(":command QA qa")
+
+for _, m in ipairs({ "n", "x" }) do
+	-- Black-hole by default
+	map(m, "d", '"_d')
+	map(m, "c", '"_c')
+	map(m, "x", '"_x')
+	map(m, "s", '"_s')
+	map(m, "S", '"_S')
+	map(m, "D", '"_D')
+	map(m, "C", '"_C')
+	map(m, "X", '"_X')
+
+	-- Fallback to default with leader
+	map(m, "<leader>d", "d")
+	map(m, "<leader>c", "c")
+	map(m, "<leader>x", "x")
+	map(m, "<leader>s", "s")
+	map(m, "<leader>S", "S")
+	map(m, "<leader>D", "D")
+	map(m, "<leader>C", "C")
+	map(m, "<leader>X", "X")
+end

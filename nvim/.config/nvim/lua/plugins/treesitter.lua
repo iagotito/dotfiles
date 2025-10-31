@@ -35,6 +35,10 @@ return {
 					keymap = "c",
 				},
 			})
+
+			-- Change the keys color to light blue (the color of '@constructor' highlight group) in json and jsonc files
+			vim.api.nvim_set_hl(0, "@property.jsonc", { link = "@constructor" })
+			vim.api.nvim_set_hl(0, "@property.json", { link = "@constructor" })
 		end,
 	},
 }
