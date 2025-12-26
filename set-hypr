@@ -8,78 +8,82 @@
 # This is a quick and dirty script there are some error checking
 # IMPORTANT - This script is meant to run on a clean fresh Arch install on physical hardware
 
-# Define the software that would be inbstalled 
+# Define the software that would be inbstalled
 #Need some prep work
 prep_stage=(
-    qt5-wayland 
+    qt5-wayland
     qt5ct
-    qt6-wayland 
+    qt6-wayland
     qt6ct
     qt5-svg
     qt5-quickcontrols2
     qt5-graphicaleffects
-    gtk3 
-    polkit-gnome 
-    pipewire 
-    wireplumber 
-    jq 
-    wl-clipboard 
-    cliphist 
-    python-requests 
+    gtk3
+    polkit-gnome
+    pipewire
+    wireplumber
+    jq
+    wl-clipboard
+    cliphist
+    python-requests
     pacman-contrib
+    cpio
 )
 
 #software for nvidia GPU only
 nvidia_stage=(
-    linux-headers 
-    nvidia-dkms 
-    nvidia-settings 
-    libva 
+    linux-headers
+    nvidia-dkms
+    nvidia-settings
+    libva
     libva-nvidia-driver-git
 )
 
 #the main packages
 install_stage=(
-    kitty 
-    mako 
+    kitty
+    mako
     waybar
     hyprlock
     hypridle
     hyprpaper
-    wlogout 
-    wofi 
-    xdg-desktop-portal-hyprland 
-    swappy 
-    grim 
-    slurp 
-    thunar 
+    wlogout
+    wofi
+    xdg-desktop-portal-hyprland
+    swappy
+    grim
+    slurp
+    thunar
     btop
     firefox
     thunderbird
     mpv
-    pamixer 
-    pavucontrol 
-    brightnessctl 
-    bluez 
-    bluez-utils 
-    blueman 
-    network-manager-applet 
-    gvfs 
-    thunar-archive-plugin 
+    pamixer
+    pavucontrol
+    brightnessctl
+    bluez
+    bluez-utils
+    blueman
+    network-manager-applet
+    gvfs
+    thunar-archive-plugin
     file-roller
-    zsh 
-    papirus-icon-theme 
-    ttf-jetbrains-mono-nerd 
-    noto-fonts-emoji 
-    lxappearance 
+    zsh
+    papirus-icon-theme
+    ttf-jetbrains-mono-nerd
+    noto-fonts-emoji
+    lxappearance
     xfce4-settings
-    nwg-look-bin
+    nwg-look
     sddm
     stow
     tmux
     eza
     flameshot-git
     ttf-firacode-nerd
+    fzf
+    ripgrep
+    less
 )
 
 # set some colors
@@ -175,9 +179,9 @@ if [[ $WIFI == "Y" || $WIFI == "y" ]]; then
     echo -en "$CNT - Restarting NetworkManager service, Please wait."
     sleep 2
     sudo systemctl restart NetworkManager &>> $INSTLOG
-    
+
     #wait for services to restore (looking at you DNS)
-    for i in {1..6} 
+    for i in {1..6}
     do
         echo -n "."
         sleep 1
@@ -217,7 +221,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     # Prep Stage - Bunch of needed items
     echo -e "$CNT - Prep Stage - Installing needed components, this may take a while..."
     for SOFTWR in ${prep_stage[@]}; do
-        install_software $SOFTWR 
+        install_software $SOFTWR
     done
 
     # Setup Nvidia if it was found
@@ -226,7 +230,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
         for SOFTWR in ${nvidia_stage[@]}; do
             install_software $SOFTWR
         done
-    
+
         # update config
         sudo sed -i 's/MODULES=()/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
         sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
@@ -234,13 +238,13 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     fi
 
     # Install the correct hyprland version
-    echo -e "$CNT - Installing Hyprland, this may take a while..."   
+    echo -e "$CNT - Installing Hyprland, this may take a while..."
     install_software hyprland
 
     # Stage 1 - main components
     echo -e "$CNT - Installing main components, this may take a while..."
     for SOFTWR in ${install_stage[@]}; do
-        install_software $SOFTWR 
+        install_software $SOFTWR
     done
 
     # Start the bluetooth service
@@ -252,7 +256,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     echo -e "$CNT - Enabling the SDDM Service..."
     sudo systemctl enable sddm &>> $INSTLOG
     sleep 2
-    
+
     # Clean out other portals
     echo -e "$CNT - Cleaning out conflicting xdg portals..."
     yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
@@ -264,11 +268,11 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
 
     # Setup each appliaction
-    # check for existing config folders and backup 
+    # check for existing config folders and backup
     for DIR in eza flameshot hypr kitty mako nvim tmux wallpapers waybar wlogout wofi
-    do 
+    do
         DIRPATH=~/.config/$DIR
-        if [ -d "$DIRPATH" ]; then 
+        if [ -d "$DIRPATH" ]; then
             echo -e "$CAT - Config for $DIR located, backing up."
             mv $DIRPATH $DIRPATH-back &>> $INSTLOG
             echo -e "$COK - Backed up $DIR to $DIRPATH-back."
@@ -285,7 +289,12 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
         echo -e "$COK - Backed up .zshenv to .zshenv-back."
     fi
 
-    echo -e "$CNT - Setting up the new config..." 
+    echo -e "$CNT - Setting up the new config..."
+
+    hyprpm update
+    hyprpm add https://github.com/outfoxxed/hy3
+    hyprpm enable hy3
+
     cd ~/.dotfiles
     rm -rf ~/.config/hypr; stow hyprland
     stow eza
@@ -316,8 +325,8 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     else
         echo -e "$CWR - $WLDIR NOT found, creating..."
         sudo mkdir -p $WLDIR
-    fi 
-    
+    fi
+
     # stage the .desktop file
     sudo cp hyprland/hyprland.desktop /usr/share/wayland-sessions/
 
@@ -343,7 +352,7 @@ fi
 
 ### Script is done ###
 echo -e "$CNT - Script had completed!"
-if [[ "$ISNVIDIA" == true ]]; then 
+if [[ "$ISNVIDIA" == true ]]; then
     echo -e "$CAT - Since we attempted to setup an Nvidia GPU the script will now end and you should reboot.
     Please type 'reboot' at the prompt and hit Enter when ready."
     exit
