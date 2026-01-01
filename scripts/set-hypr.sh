@@ -8,6 +8,9 @@
 # This is a quick and dirty script there are some error checking
 # IMPORTANT - This script is meant to run on a clean fresh Arch install on physical hardware
 
+# Set the dotfiles directory path
+DOTFILES_DIR="$HOME/.dotfiles"
+
 # Define the software that would be inbstalled
 #Need some prep work
 prep_stage=(
@@ -84,6 +87,7 @@ install_stage=(
     fzf
     ripgrep
     less
+    asdf-vm
 )
 
 # set some colors
@@ -295,7 +299,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     hyprpm add https://github.com/outfoxxed/hy3
     hyprpm enable hy3
 
-    cd ~/.dotfiles
+    cd "$DOTFILES_DIR" || exit 1
     rm -rf ~/.config/hypr; stow hyprland
     stow eza
     stow flameshot
@@ -313,12 +317,21 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
         echo -e "\nsource = ~/.config/hypr/env_var_nvidia.conf" >> ~/.config/hypr/hyprland.conf
     fi
 
-    # Copy the SDDM theme
+    # Install the SDDM theme
     echo -e "$CNT - Setting up the login screen."
-    sudo cp -R sddm/sdt /usr/share/sddm/themes
-    #sudo chown -R $USER:$USER /usr/share/sddm/themes/sdt
+    cd "$DOTFILES_DIR" || exit 1
+    sudo -E env USE_QT5=true bash "$DOTFILES_DIR/scripts/install-sddm-theme.sh"
+
+    # Copy custom theme configuration
+    THEME_DIR="/usr/share/sddm/themes/where_is_my_sddm_theme_qt5"
+    sudo cp "$DOTFILES_DIR/sddm/theme/theme.conf" "$THEME_DIR/theme.conf"
+
+    # Copy background wallpaper
+    sudo cp "$DOTFILES_DIR/wallpapers/.config/wallpapers/mountain.jpg" "$THEME_DIR/"
+
+    # Set theme as current
     sudo mkdir -p /etc/sddm.conf.d
-    echo -e "[Theme]\nCurrent=sdt" | sudo tee -a /etc/sddm.conf.d/10-theme.conf &>> $INSTLOG
+    echo -e "[Theme]\nCurrent=where_is_my_sddm_theme_qt5" | sudo tee -a /etc/sddm.conf.d/10-theme.conf &>> $INSTLOG
     WLDIR=/usr/share/wayland-sessions
     if [ -d "$WLDIR" ]; then
         echo -e "$COK - $WLDIR found"
@@ -328,7 +341,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     fi
 
     # stage the .desktop file
-    sudo cp hyprland/hyprland.desktop /usr/share/wayland-sessions/
+    sudo cp "$DOTFILES_DIR/hyprland/hyprland.desktop" /usr/share/wayland-sessions/
 
     # setup the first look and feel as dark
     xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark"
@@ -337,6 +350,10 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
     #cp -f ~/.config/HyprV/backgrounds/v4-background-dark.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
 fi
+
+### Configure cedilla input method ###
+echo -e "$CNT - Configuring cedilla input method..."
+sudo bash "$DOTFILES_DIR/scripts/enable-cedilla.sh"
 
 ### Configure zsh shell ###
 read -rep $'[\e[1;33mACTION\e[0m] - Set zsh as default shell? (y,n) ' SETZSH
