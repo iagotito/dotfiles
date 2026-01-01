@@ -80,13 +80,19 @@ tooltip label{
 }
 
 /*Left round*/
-#clock, #tray, #custom-lock_screen, #temperature, #backlight, #cpu {
+#clock, #tray, #custom-lock_screen, #temperature, #backlight, #cpu, #pulseaudio {
     border-radius: 10px 0px 0px 10px;
 }
 
 /*Right round*/
-#custom-light_dark, #custom-power_btn, #pulseaudio.microphone, #battery, #disk {
+#custom-light_dark, #custom-power_btn, #pulseaudio.microphone, #disk {
     border-radius: 0px 10px 10px 0px;
+    margin-right: 8px;
+}
+
+/*Full round (both left and right)*/
+#battery {
+    border-radius: 10px 10px 10px 10px;
     margin-right: 8px;
 }
 
