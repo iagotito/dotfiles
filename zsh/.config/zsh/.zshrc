@@ -250,5 +250,3 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 export PATH=$PATH:/home/iago/bin
-
-. "$HOME/.config/local/share/../bin/env"

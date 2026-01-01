@@ -24,8 +24,8 @@ export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
 
 # asdf
-#export ASDF_DIR="$HOME/.asdf"
-export ASDF_DIR="/opt/asdf"
+export ASDF_DIR="$HOME/.asdf"
+#export ASDF_DIR="/opt/asdf"
 export ASDF_DATA_DIR=$ASDF_DIR
 export PATH=$ASDF_DIR/bin:$PATH
 export PATH=$ASDF_DIR/shims:$PATH
@@ -42,4 +42,4 @@ export PATH="$DOTFILES/global-packages/python:$PATH"
 export PATH="$DOTFILES/global-packages/nodejs:$PATH"
 export PATH="$DOTFILES/global-packages/golang:$PATH"
 
-. "$HOME/.cargo/env"
+#. "$HOME/.cargo/env"
