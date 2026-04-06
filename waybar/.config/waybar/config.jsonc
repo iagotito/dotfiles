@@ -24,6 +24,7 @@
       "disk",
       "pulseaudio",
       "pulseaudio#microphone",
+      "network",
       "battery",
       //"tray",
       //"custom/weather",
@@ -105,7 +106,8 @@
     "clock": {
         "format": "{:%I:%M %p}",
         "tooltip": true,
-        "tooltip-format": "{: %A, %B %e %Y}"
+        "tooltip-format": "{: %A, %B %e %Y}",
+        "on-click": "~/.config/eww/toggle-calendar.sh"
     },
 
     "pulseaudio": {
@@ -146,6 +148,21 @@
         "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
     },
 
+  // Network
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "{icon}",
+        "format-ethernet": "  {ipaddr}",
+        "format-disconnected": "Not connected",
+        "tooltip-format": " {ifname} via {gwaddri}",
+        "tooltip-format-wifi": "  {essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
+        "tooltip-format-disconnected": "Disconnected",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "max-length": 50,
+        "on-click": "hyprltm-net"
+    },
+
   // Battery
     "battery": {
         "interval": 10,
@@ -154,7 +171,7 @@
             "warning": 30,
             "critical": 20
         },
-        "format": "{icon}",
+        "format": "{icon} {capacity}%",
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt-click": "click-right",

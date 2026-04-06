@@ -88,6 +88,7 @@ install_stage=(
     ripgrep
     less
     asdf-vm
+    keychain
 )
 
 # set some colors

@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # the BEST alias ever
-alias please='echo "Of course, sir!\n" && sudo'
+alias please='sudo'
 
 n() {
     if [ $# -eq 0 ]; then
@@ -12,11 +12,12 @@ n() {
 }
 
 alias dot='cd $DOTFILES'
-alias zmk='cd $HOME/Documents/zmk-config'
+alias zmkdir='cd $HOME/Documents/zmk-config'
 alias bat='batcat'
 
 alias hconf='nvim $HOME/.config/hypr/hyprland.conf'
 alias wconf='cd $HOME/.config/waybar'
+alias monitor1='hyprctl dispatch moveworkspacetomonitor 1 HDMI-A-1'
 
 # replace 'ls' with 'exa', if installed
 unalias ls 2> /dev/null
@@ -69,7 +70,7 @@ alias cp='cp -r' # copy directories recursively
 
 #alias tree='tree -C -I "__pycache__|.venv|venv|.git"' # add colorization to tree
 
-alias rnie="rg --exclude-dir={.venv,.git,__pycache__,node_modules} --binary-files=without-match -rniE"
+alias rnie="grep --exclude-dir={.venv,.git,__pycache__,node_modules} --binary-files=without-match -rniE"
 
 # highlight grep match
 #alias grep='grep --color=auto'
@@ -98,13 +99,15 @@ alias gs='git status'
 alias ga='git add -A'
 alias gap='git add -p'
 alias gm='git merge'
-alias gl='git log --graph --oneline --branches -15'
+alias gl='git log --graph --oneline -15'
+alias glb='git log --graph --oneline --branches -15'
 alias glv='git log' # suposed to mean "git log verbose"
 alias gc='git commit -v'
 alias gb='git branch'
 alias gck='git checkout'
 alias gckb='git checkout -b'
 alias gpl='git pull'
+alias gplr='git pull --rebase'
 alias gf='git fetch'
 alias gp='git push -u origin HEAD'
 alias gr='git reset'
@@ -121,6 +124,9 @@ alias gsp='git stash push -m'
 alias gpop='git stash pop'
 alias gwl='git worktree list'
 alias gwa='git worktree add'
+alias gwr='git worktree remove'
+alias print_new_files="git status --porcelain | grep '^?? ' | cut -c4-"
+alias print_changed_files="git status --porcelain | grep '^ M ' | cut -c4-"
 
 # lazygit
 

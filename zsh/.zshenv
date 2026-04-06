@@ -43,3 +43,6 @@ export PATH="$DOTFILES/global-packages/nodejs:$PATH"
 export PATH="$DOTFILES/global-packages/golang:$PATH"
 
 #. "$HOME/.cargo/env"
+
+# uv
+export PATH="/home/iago/.config/local/share/../bin:$PATH"

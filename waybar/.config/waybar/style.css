@@ -96,6 +96,12 @@ tooltip label{
     margin-right: 8px;
 }
 
+#network {
+    border-radius: 10px 10px 10px 10px;
+    margin-right: 8px;
+    padding: 0px 12px 0px 8px;
+}
+
 /*Left and right*/
 #workspaces {
     border-radius: 10px 10px 10px 10px;
@@ -143,6 +149,7 @@ tooltip label{
 #battery {
     color: #a6e3a1;
     border-left: 0px;
+    padding: 0px 12px;
 }
 
 

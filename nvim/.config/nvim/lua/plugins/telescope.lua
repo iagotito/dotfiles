@@ -6,6 +6,7 @@ return {
 			local telescope = require("telescope")
 			local sorters = require("telescope.sorters")
 			local builtin = require("telescope.builtin")
+      local actions = require("telescope.actions")
 
 			local function custom_sorter()
 				return sorters.Sorter:new({
@@ -24,7 +25,8 @@ return {
 					file_sorter = custom_sorter,
 					file_ignore_patterns = {
 						"__pycache__/",
-						"venv/",
+            "venv/",
+            ".venv/",
 						"node_modules/",
 						".git/",
 						"undodir/",
@@ -32,13 +34,32 @@ return {
 						"target/debug/.fingerprint",
 						"target/debug/deps",
 						"target/debug/build",
+            "worktrees/"
 					},
+          mappings = {
+              i = {
+                  ["<C-d>"] = actions.delete_buffer,
+              },
+              n = {
+                  ["dd"] = actions.delete_buffer,
+                  ["<C-d>"] = actions.delete_buffer,
+              },
+          },
 				},
-				pickers = {
-					find_files = {
-						hidden = true,
-					},
+			pickers = {
+				find_files = {
+					hidden = true,
 				},
+				live_grep = {
+					additional_args = { "--hidden" },
+				},
+        buffers = {
+          sort_mru = true,
+          ignore_current_buffer = false,
+          previewer = true,
+          file_ignore_patterns = {}, -- disables global ignores
+        },
+			},
 			})
 
 			-- Keymaps
@@ -46,6 +67,7 @@ return {
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+      vim.keymap.set("n", "<C-b>", builtin.buffers, { desc = "Telescope buffers" })
 		end,
 	},
 }

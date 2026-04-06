@@ -19,6 +19,8 @@ map("n", "<leader>l", "<cmd>noh<cr>") -- clear highlights
 
 -- copy current file path (same as C-g) to clipboard
 map("n", "<leader>h", "<cmd>let @+ = expand('%')<cr>")
+-- copy current file full path to clipboard
+map("n", "<leader>j", "<cmd>let @+ = expand('%:p')<cr>")
 
 -- windows navigation with leader instead of Ctrl
 map("n", "<leader>wh", "<c-w>s")
