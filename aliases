@@ -122,6 +122,7 @@ alias gsl='git stash list'
 alias gsa='git stash apply'
 alias gsp='git stash push -m'
 alias gpop='git stash pop'
+alias gw='git worktree'
 alias gwl='git worktree list'
 alias gwa='git worktree add'
 alias gwr='git worktree remove'
@@ -187,6 +188,8 @@ alias alr='alembic revision'
 alias alra='al revision --autogenerate -m'
 alias almg='al merge heads'
 alias alu='POSTGRES_HOST=localhost alembic upgrade head'
+
+alias uvs='uv sync; a'
 
 # kubernetes
 alias k="kubectl"

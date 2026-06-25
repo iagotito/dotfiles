@@ -120,7 +120,8 @@ filenames:
   docker-compose-local.yml: {filename: {foreground: "#FFB86C"}}
   docker-compose.yaml: {filename: {foreground: "#FFB86C"}}
   docker-compose-local.yaml: {filename: {foreground: "#FFB86C"}}
-  Makefile: {filename: {foreground: "#50FA7B"}}
+  Makefile: {filename: {foreground: "#F1FA8C"}}
+  makefile: {filename: {foreground: "#F1FA8C"}}
 
 extensions:
   md: {filename: {foreground: "#F1FA8C"}}
