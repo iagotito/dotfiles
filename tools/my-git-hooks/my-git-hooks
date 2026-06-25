@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Personal git wrapper with modular hooks
+
+HOOKS_DIR="$DOTFILES/tools/my-git-hooks/hooks/"
+REAL_GIT=$(command -v git)
+
+if [[ -z "$REAL_GIT" ]]; then
+    echo "Error: git not found in PATH" >&2
+    exit 1
+fi
+
+# Prevent accidental recursion (defense in depth)
+if [[ -n "$GIT_WRAPPER_ACTIVE" ]]; then
+    exec "$REAL_GIT" "$@"
+fi
+
+export GIT_WRAPPER_ACTIVE=1
+
+# Run all executable hooks
+if [[ -d "$HOOKS_DIR" ]]; then
+    for hook in "$HOOKS_DIR"*; do
+        [[ -x "$hook" ]] || continue
+        # Pass all arguments to the hook
+        if ! "$hook" "$@"; then
+            echo "Aborted by hook: $hook" >&2
+            exit 1
+        fi
+    done
+fi
+
+# Execute the real git
+exec "$REAL_GIT" "$@"

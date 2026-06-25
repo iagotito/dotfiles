@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Hook: Warn on 'git add private_*' and block on 'git commit' if private_* files are staged
+
+COMMAND="$1"
+
+# Pattern to match
+PATTERN="private_"
+
+case "$COMMAND" in
+    "add")
+        # Check files being added in this command
+        for file in "${@:2}"; do
+            if [[ -f "$file" && "$file" =~ $PATTERN ]]; then
+                echo "⚠️  WARNING: Adding file starting with 'private_': $file" >&2
+                echo "   Consider using .gitignore or a different name." >&2
+            fi
+        done
+
+        # Also check if any private_* files are being added via wildcards etc.
+        if command git ls-files --others --exclude-standard | grep -E "$PATTERN"; then
+            echo "⚠️  WARNING: Untracked 'private_*' files detected that could be added." >&2
+        fi
+        ;;
+
+    "commit")
+        # Check currently staged files
+        STAGED_PRIVATE=$(command git diff --cached --name-only | grep -E "$PATTERN" || true)
+        echo $STAGED_PRIVATE
+
+        if [[ -n "$STAGED_PRIVATE" ]]; then
+            echo "❌ ERROR: Cannot commit. Files starting with 'private_' are in the staging area:" >&2
+            echo "$STAGED_PRIVATE" >&2
+            echo "" >&2
+            echo "   Remove them from staging with: git restore --staged <file>" >&2
+            exit 1
+        fi
+        ;;
+esac
+
+# Always succeed unless we explicitly blocked the commit
+exit 0
