@@ -4,7 +4,7 @@
 COMMAND="$1"
 
 # Match both lowercase and uppercase versions
-PATTERN="(private_|PRIVATE_|local)"
+PATTERN="(private_|PRIVATE_|local|CLAUDE)"
 
 case "$COMMAND" in
     "add")

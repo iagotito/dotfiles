@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Hook: Block 'git push' on branches containing "local" in the name
+
+COMMAND="$1"
+
+case "$COMMAND" in
+    "push")
+        # Get current branch name
+        CURRENT_BRANCH=$(command git branch --show-current 2>/dev/null || true)
+
+        if [[ -z "$CURRENT_BRANCH" ]]; then
+            # Probably in detached HEAD state
+            echo "⚠️ WARNING: You are in detached HEAD state. Push is allowed." >&2
+            exit 0
+        fi
+
+        # Check if branch name contains "local" (case insensitive)
+        if [[ "$CURRENT_BRANCH" =~ [Ll][Oo][Cc][Aa][Ll] ]]; then
+            echo "❌ ERROR: Cannot push from branch '$CURRENT_BRANCH'" >&2
+            echo "   Branch names containing 'local' are blocked from pushing." >&2
+            echo "" >&2
+            echo "   Suggestions:" >&2
+            echo "   • Rename the branch: git branch -m new-name" >&2
+            echo "   • Or push with a different branch: git push origin other-branch" >&2
+            echo "   • Or temporarily force push if you really need to (not recommended): git push --no-verify" >&2
+            exit 1
+        fi
+        ;;
+esac
+
+# Always succeed for other commands or allowed pushes
+exit 0
+

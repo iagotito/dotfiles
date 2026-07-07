@@ -126,6 +126,7 @@ alias gw='git worktree'
 alias gwl='git worktree list'
 alias gwa='git worktree add'
 alias gwr='git worktree remove'
+alias gcp='git cherry-pick'
 alias print_new_files="git status --porcelain | grep '^?? ' | cut -c4-"
 alias print_changed_files="git status --porcelain | grep '^ M ' | cut -c4-"
 
