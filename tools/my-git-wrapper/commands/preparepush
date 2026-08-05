@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Usage: git preparepush
+#
+# Removes any commit whose message starts with "local" from the current
+# branch. Never compares or rebases against 'dev' — merging into dev happens
+# on GitHub, this only strips private commits before you push.
+set -euo pipefail
+
+CURRENT_BRANCH=$("$REAL_GIT" branch --show-current 2>/dev/null || true)
+
+if [[ -z "$CURRENT_BRANCH" ]]; then
+    echo "❌ Detached HEAD — checkout a branch first." >&2
+    exit 1
+fi
+
+if [[ -n "$("$REAL_GIT" status --porcelain)" ]]; then
+    echo "❌ Working tree is not clean. Commit or stash your changes first." >&2
+    exit 1
+fi
+
+REMOVED=0
+
+while true; do
+    TARGET=$("$REAL_GIT" log --reverse --format='%H %s' HEAD | grep -iE '^[0-9a-f]+ local' | head -1 | awk '{print $1}' || true)
+
+    [[ -n "$TARGET" ]] || break
+
+    SUBJECT=$("$REAL_GIT" log -1 --format='%s' "$TARGET")
+    echo "→ Dropping $TARGET ($SUBJECT)"
+    "$REAL_GIT" rebase --onto "${TARGET}^" "$TARGET"
+    REMOVED=$((REMOVED + 1))
+done
+
+if [[ "$REMOVED" -eq 0 ]]; then
+    echo "✅ No 'local*' commits found on '$CURRENT_BRANCH'. Nothing to do."
+else
+    echo "✅ Removed $REMOVED local commit(s) from '$CURRENT_BRANCH'."
+fi

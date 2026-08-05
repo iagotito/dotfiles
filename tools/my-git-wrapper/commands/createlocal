@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Usage: git createlocal <branch-name>
+#
+# Fetches the latest 'dev', creates <branch-name> from origin/dev, and
+# cherry-picks the configured local-only commit onto it.
+set -euo pipefail
+
+source "$WRAPPER_DIR/commands/_lib.sh"
+
+BRANCH_NAME="${1:-}"
+
+if [[ -z "$BRANCH_NAME" ]]; then
+    echo "Usage: git createlocal <branch-name>" >&2
+    exit 1
+fi
+
+LOCAL_COMMIT=$(get_local_commit || true)
+
+if [[ -z "$LOCAL_COMMIT" ]]; then
+    echo "❌ No local commit configured for this repo." >&2
+    echo "   Run: git setlocalcommit <commit-hash>" >&2
+    exit 1
+fi
+
+if ! "$REAL_GIT" cat-file -e "${LOCAL_COMMIT}^{commit}" 2>/dev/null; then
+    echo "❌ Configured local commit '$LOCAL_COMMIT' was not found in this repo." >&2
+    echo "   Run: git setlocalcommit <commit-hash> to fix it." >&2
+    exit 1
+fi
+
+echo "→ Fetching origin/dev..."
+"$REAL_GIT" fetch origin dev
+
+echo "→ Creating branch '$BRANCH_NAME' from origin/dev..."
+"$REAL_GIT" checkout -b "$BRANCH_NAME" origin/dev
+
+echo "→ Cherry-picking local commit $LOCAL_COMMIT..."
+"$REAL_GIT" cherry-pick "$LOCAL_COMMIT"
+
+echo "✅ Branch '$BRANCH_NAME' ready with local commit applied."

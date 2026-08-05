@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Usage: git setlocalcommit <commit-hash>
+#
+# Configures which commit is the "local-only" commit to cherry-pick when
+# running `git createlocal`. Stored per-repo in a file ignored by dotfiles.
+set -euo pipefail
+
+source "$WRAPPER_DIR/commands/_lib.sh"
+
+HASH="${1:-}"
+
+if [[ -z "$HASH" ]]; then
+    echo "Usage: git setlocalcommit <commit-hash>" >&2
+    exit 1
+fi
+
+if ! "$REAL_GIT" cat-file -e "${HASH}^{commit}" 2>/dev/null; then
+    echo "❌ '$HASH' is not a valid commit in this repository." >&2
+    exit 1
+fi
+
+ROOT=$(_repo_root)
+if [[ -z "$ROOT" ]]; then
+    echo "❌ Not inside a git repository." >&2
+    exit 1
+fi
+
+FULL_HASH=$("$REAL_GIT" rev-parse "$HASH")
+set_local_commit "$ROOT" "$FULL_HASH"
+
+SUBJECT=$("$REAL_GIT" log -1 --format='%s' "$FULL_HASH")
+echo "✅ Local commit for '$ROOT' set to $FULL_HASH ($SUBJECT)"

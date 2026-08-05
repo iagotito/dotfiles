@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+# Personal git wrapper with modular hooks and custom commands
+
+WRAPPER_DIR="$DOTFILES/tools/my-git-wrapper"
+HOOKS_DIR="$WRAPPER_DIR/hooks"
+COMMANDS_DIR="$WRAPPER_DIR/commands"
+REAL_GIT=$(command -v git)
+export WRAPPER_DIR REAL_GIT
+
+if [[ -z "$REAL_GIT" ]]; then
+    echo "Error: git not found" >&2
+    exit 1
+fi
+
+# Prevent recursion
+if [[ -n "$GIT_WRAPPER_ACTIVE" ]]; then
+    exec "$REAL_GIT" "$@"
+fi
+export GIT_WRAPPER_ACTIVE=1
+
+COMMAND="$1"
+
+# === Help ===
+if [[ -z "$COMMAND" || "$COMMAND" == "--help" || "$COMMAND" == "-h" ]]; then
+    echo "my-git-wrapper — personal git wrapper with private-branch/commit hooks and custom commands"
+    echo ""
+    echo "Custom commands:"
+    if [[ -d "$COMMANDS_DIR" ]]; then
+        for cmd in "$COMMANDS_DIR"/*; do
+            [[ -f "$cmd" && -x "$cmd" ]] || continue
+            printf '  git %s\n' "$(basename "$cmd")"
+        done
+    fi
+    echo ""
+    echo "Active hooks (run before every real git command):"
+    if [[ -d "$HOOKS_DIR" ]]; then
+        for hook in "$HOOKS_DIR"/*; do
+            [[ -f "$hook" && -x "$hook" ]] || continue
+            printf '  %s\n' "$(basename "$hook")"
+        done
+    fi
+    echo ""
+    echo "This is a wrapper — all other commands are passed through to real git."
+    echo "For real git's own help, use 'command git --help' or 'git <command> --help'."
+    exit 0
+fi
+
+# === Custom commands ===
+if [[ -n "$COMMAND" && -x "$COMMANDS_DIR/$COMMAND" ]]; then
+    shift
+    exec "$COMMANDS_DIR/$COMMAND" "$@"
+fi
+
+# === Run hooks ===
+if [[ -d "$HOOKS_DIR" ]]; then
+    for hook in "$HOOKS_DIR"/*; do
+        [[ -f "$hook" && -x "$hook" ]] || continue
+        if ! "$hook" "$@"; then
+            echo "Aborted by hook: $hook" >&2
+            exit 1
+        fi
+    done
+fi
+
+# Run real git
+exec "$REAL_GIT" "$@"

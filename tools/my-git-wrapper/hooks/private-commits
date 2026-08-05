@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Hook: Block 'git push' if any commit about to be pushed has a message
+# starting with "local" (private/local-only commits).
+
+COMMAND="$1"
+
+[[ "$COMMAND" == "push" ]] || exit 0
+
+CURRENT_BRANCH=$(command git branch --show-current 2>/dev/null || true)
+
+if [[ -z "$CURRENT_BRANCH" ]]; then
+    # Detached HEAD, nothing sensible to check here
+    exit 0
+fi
+
+UPSTREAM=$(command git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null || true)
+
+if [[ -n "$UPSTREAM" ]]; then
+    RANGE="$UPSTREAM..HEAD"
+elif command git show-ref --verify --quiet "refs/remotes/origin/$CURRENT_BRANCH"; then
+    RANGE="origin/$CURRENT_BRANCH..HEAD"
+elif command git show-ref --verify --quiet "refs/remotes/origin/dev"; then
+    RANGE="origin/dev..HEAD"
+else
+    RANGE="HEAD"
+fi
+
+BAD_COMMITS=$(command git log --format='%h %s' "$RANGE" 2>/dev/null | grep -iE '^[0-9a-f]+ local' || true)
+
+if [[ -n "$BAD_COMMITS" ]]; then
+    echo "❌ ERROR: Commit(s) starting with 'local' would be pushed:" >&2
+    echo "$BAD_COMMITS" | sed 's/^/   /' >&2
+    echo "" >&2
+    echo "   These are private/local-only commits and must not be pushed." >&2
+    echo "   Run: git preparepush   to remove them, then push again." >&2
+    exit 1
+fi
+
+exit 0
