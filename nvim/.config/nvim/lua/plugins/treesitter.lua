@@ -1,42 +1,18 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-    branch = "master",
+		branch = "main",
+    build = ":TSUpdate",
 		config = function()
-			require("nvim-treesitter.configs").setup({
-				highlight = {
-					enable = true,
-				},
-				--ensure_installed = {
-				--"lua", "python", "vimdoc", "vim", "html", "javascript", "typescript",
-				--"json", "yaml", "terraform", "go", "sql", "markdown_inline", "luadoc",
-				--"c", "query",
-				--},
-				--sync_install = false,  -- Ensures parsers are installed only once.
-				--auto_install = true,   -- Automatically install missing parsers.
+      vim.api.nvim_create_autocmd("FileType", {
+				callback = function(args)
+					local ft = vim.bo[args.buf].filetype
+					local lang = vim.treesitter.language.get_lang(ft) or ft
+					if vim.treesitter.language.add(lang) then
+						vim.treesitter.start(args.buf, lang)
+					end
+				end,
 			})
-
-			require("nvim-treesitter.install").prefer_git = true
-
-			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-			parser_config.csharp = {
-				install_info = {
-					url = "https://github.com/tree-sitter/tree-sitter-c-sharp", -- local path or git repo
-					files = { "src/parser.c" }, -- note that some parsers also require src/scanner.c or src/scanner.cc
-					-- optional entries:
-					branch = "master", -- default branch in case of git repo if different from master
-					generate_requires_npm = false, -- if stand-alone parser without npm dependencies
-					requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
-				},
-				filetype = "cs", -- if filetype does not match the parser name
-			}
-
-			vim.filetype.add({
-				extension = {
-					keymap = "c",
-				},
-			})
-
 			-- Change the keys color to light blue (the color of '@constructor' highlight group) in json and jsonc files
 			vim.api.nvim_set_hl(0, "@property.jsonc", { link = "@constructor" })
 			vim.api.nvim_set_hl(0, "@property.json", { link = "@constructor" })

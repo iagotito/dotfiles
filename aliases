@@ -102,10 +102,14 @@ alias gm='git merge'
 alias gl='git log --graph --oneline -15'
 alias glb='git log --graph --oneline --branches -15'
 alias glv='git log' # suposed to mean "git log verbose"
+alias glo='git log --oneline -15'
 alias gc='git commit -v'
+alias gcm='git commit -m'
 alias gb='git branch'
 alias gck='git checkout'
 alias gckb='git checkout -b'
+alias gsw='git switch'
+alias gswc='git switch -c'
 alias gpl='git pull'
 alias gplr='git pull --rebase'
 alias gf='git fetch'
@@ -129,6 +133,11 @@ alias gwr='git worktree remove'
 alias gcp='git cherry-pick'
 alias print_new_files="git status --porcelain | grep '^?? ' | cut -c4-"
 alias print_changed_files="git status --porcelain | grep '^ M ' | cut -c4-"
+alias grb="git rebase"
+
+grbi() {
+    git rebase -i HEAD~"$1"
+}
 
 # lazygit
 

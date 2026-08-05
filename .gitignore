@@ -7,3 +7,4 @@ lazy-lock.json
 .zcompdump
 out
 *.log
+tools/my-git-wrapper/.local-commit
