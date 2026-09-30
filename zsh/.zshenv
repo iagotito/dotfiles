@@ -17,6 +17,9 @@ export XDG_CURRENT_DESKTOP=hyprland
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# claude code: default to the personal profile; use claude-makasi to switch
+export CLAUDE_CONFIG_DIR="$HOME/.claude-personal"
+
 # zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
@@ -42,7 +45,7 @@ export PATH="$DOTFILES/global-packages/python:$PATH"
 export PATH="$DOTFILES/global-packages/nodejs:$PATH"
 export PATH="$DOTFILES/global-packages/golang:$PATH"
 
-#. "$HOME/.cargo/env"
+. "$HOME/.cargo/env"
 
 # uv
 export PATH="/home/iago/.config/local/share/../bin:$PATH"

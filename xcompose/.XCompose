@@ -1,0 +1,5 @@
+# keep the locale defaults, then override ' + c to produce ç (us-intl gives ć)
+include "%L"
+
+<dead_acute> <c> : "ç" ccedilla
+<dead_acute> <C> : "Ç" Ccedilla

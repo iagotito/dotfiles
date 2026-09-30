@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Usage: git cherrypicklocal
+#
+# Cherry-picks the configured local-only commit onto the current branch.
+# Unlike createlocal, this does not fetch or create a new branch.
+set -euo pipefail
+
+source "$WRAPPER_DIR/commands/_lib.sh"
+
+LOCAL_COMMIT=$(get_local_commit || true)
+
+if [[ -z "$LOCAL_COMMIT" ]]; then
+    echo "❌ No local commit configured for this repo." >&2
+    echo "   Run: git setlocalcommit <commit-hash>" >&2
+    exit 1
+fi
+
+if ! "$REAL_GIT" cat-file -e "${LOCAL_COMMIT}^{commit}" 2>/dev/null; then
+    echo "❌ Configured local commit '$LOCAL_COMMIT' was not found in this repo." >&2
+    echo "   Run: git setlocalcommit <commit-hash> to fix it." >&2
+    exit 1
+fi
+
+echo "→ Cherry-picking local commit $LOCAL_COMMIT..."
+"$REAL_GIT" cherry-pick "$LOCAL_COMMIT"
+
+echo "✅ Local commit applied to current branch."

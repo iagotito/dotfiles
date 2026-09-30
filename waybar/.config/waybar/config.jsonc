@@ -11,8 +11,8 @@
     "gtk-layer-shell": true,
     "height": 35,
     "modules-left": [
-      "custom/launch_wofi",
-      "hyprland/window"
+      "custom/launch_wofi"
+      //"hyprland/window"
     ],
     "modules-center": [
       "hyprland/workspaces"

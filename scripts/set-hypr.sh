@@ -310,6 +310,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     stow tmux
     stow wallpapers
     stow waybar
+    stow xcompose
     stow wlogout
     stow wofi
 

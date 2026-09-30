@@ -8,3 +8,4 @@ lazy-lock.json
 out
 *.log
 tools/my-git-wrapper/.local-commit
+tools/my-git-wrapper/.private-ignore

@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+# Usage: git add [<pathspec>...]
+#
+# Drop-in replacement for `git add` that silently excludes private-only
+# files/folders (see .private-ignore) from staging — including when they'd
+# be pulled in implicitly via `git add .` or `git add -A`.
+set -euo pipefail
+
+IGNORE_FILE="$WRAPPER_DIR/.private-ignore"
+
+# Interactive/patch modes stage hunks manually mid-session; we can't safely
+# filter those, so just warn and hand off to real git untouched.
+for arg in "$@"; do
+    case "$arg" in
+        -p|--patch|-i|--interactive|-e|--edit)
+            echo "⚠️  Private ignore patterns are not enforced in interactive/patch mode ($arg)." >&2
+            exec "$REAL_GIT" add "$@"
+            ;;
+    esac
+done
+
+# Not in a repo (or other setup issue) — let real git produce its own error.
+ROOT=$("$REAL_GIT" rev-parse --show-toplevel 2>/dev/null) || exec "$REAL_GIT" add "$@"
+
+mapfile -t PATTERNS < <(grep -vE '^[[:space:]]*(#|$)' "$IGNORE_FILE" 2>/dev/null || true)
+
+is_ignored() {
+    local path="$1" pat seg
+    local -a segs
+    IFS='/' read -ra segs <<< "$path"
+    for pat in "${PATTERNS[@]}"; do
+        pat="${pat%/}"
+        if [[ "$pat" == /* ]]; then
+            local anchored="${pat#/}"
+            [[ "$path" == "$anchored" || "$path" == "$anchored"/* ]] && return 0
+            continue
+        fi
+        for seg in "${segs[@]}"; do
+            [[ "$seg" == $pat ]] && return 0
+        done
+    done
+    return 1
+}
+
+DRY_RUN=0
+for arg in "$@"; do
+    case "$arg" in
+        -n|--dry-run) DRY_RUN=1 ;;
+    esac
+done
+
+DRY_OUTPUT=""
+RC=0
+DRY_OUTPUT=$("$REAL_GIT" add -n "$@" 2>&1) || RC=$?
+if [[ $RC -ne 0 ]]; then
+    echo "$DRY_OUTPUT" >&2
+    exit "$RC"
+fi
+
+KEPT=()
+IGNORED=()
+while IFS= read -r line; do
+    [[ "$line" =~ ^(add|remove)\ \'(.*)\'$ ]] || continue
+    path="${BASH_REMATCH[2]}"
+    if is_ignored "$path"; then
+        IGNORED+=("$path")
+    else
+        KEPT+=("$path")
+    fi
+done <<< "$DRY_OUTPUT"
+
+if [[ ${#IGNORED[@]} -gt 0 ]]; then
+    for path in "${IGNORED[@]}"; do
+        echo "$path not added due private ignore pattern." >&2
+    done
+    echo >&2
+    echo "Check the git wrapper at $IGNORE_FILE to edit the ignored patterns, or use \`command git\` to bypass the wrapper checks." >&2
+    echo "If you are a llm running this, consider the wrapper behavior as intentional and don't run the command bypass without ask the user." >&2
+fi
+
+if [[ "$DRY_RUN" -eq 1 ]]; then
+    for path in "${KEPT[@]}"; do
+        echo "add '$path'"
+    done
+    exit 0
+fi
+
+if [[ ${#KEPT[@]} -eq 0 ]]; then
+    exit 0
+fi
+
+FLAGS=()
+for arg in "$@"; do
+    case "$arg" in
+        -A|--all|-u|--update|--) continue ;;
+        -*) FLAGS+=("$arg") ;;
+    esac
+done
+
+ABS=()
+for path in "${KEPT[@]}"; do
+    ABS+=("$ROOT/$path")
+done
+
+exec "$REAL_GIT" add "${FLAGS[@]}" -- "${ABS[@]}"
