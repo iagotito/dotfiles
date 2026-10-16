@@ -182,7 +182,29 @@ return {
     -- - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     -- - settings (table): Override the default settings passed when initializing the server.
     local servers = {
-      pyright = {},
+      pyright = {
+        -- Point pyright at the project's venv: $VIRTUAL_ENV, then <root>/.venv,
+        -- then the poetry env. Falls back to pyright's default (python on PATH).
+        before_init = function(_, config)
+          local root = config.root_dir
+          local python
+          local venv = vim.env.VIRTUAL_ENV
+          if venv and venv ~= '' and vim.uv.fs_stat(venv .. '/bin/python') then
+            python = venv .. '/bin/python'
+          elseif root and vim.uv.fs_stat(root .. '/.venv/bin/python') then
+            python = root .. '/.venv/bin/python'
+          elseif root and vim.uv.fs_stat(root .. '/poetry.lock') and vim.fn.executable 'poetry' == 1 then
+            local res = vim.system({ 'poetry', 'env', 'info', '-e' }, { cwd = root, text = true }):wait()
+            local path = vim.trim(res.stdout or '')
+            if res.code == 0 and path ~= '' and vim.uv.fs_stat(path) then
+              python = path
+            end
+          end
+          if python then
+            config.settings = vim.tbl_deep_extend('force', config.settings or {}, { python = { pythonPath = python } })
+          end
+        end,
+      },
       lua_ls = {
         settings = {
           Lua = {

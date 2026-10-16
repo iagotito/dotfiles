@@ -1,12 +1,41 @@
 #!/usr/bin/env bash
-# Hook: Block 'git push' on branches containing "local" in the name
+# Hook: Block 'git push' on branches containing "local" in the name,
+# and on any push involving a branch starting with "rename-branch/"
+# (current branch, a branch/refspec argument, or --all/--branches/--mirror)
 
 COMMAND="$1"
 
 case "$COMMAND" in
     "push")
+        # Block "rename-branch/" placeholders given as arguments (before the detached HEAD exit)
+        REFUSED=""
+        for ARG in "${@:2}"; do
+            if [[ "$ARG" == *rename-branch/* ]]; then
+                REFUSED="argument '$ARG'"
+                break
+            fi
+            if [[ "$ARG" == "--all" || "$ARG" == "--branches" || "$ARG" == "--mirror" ]] \
+                && [[ -n "$(command git for-each-ref --format='%(refname)' refs/heads/rename-branch/ 2>/dev/null || true)" ]]; then
+                REFUSED="'$ARG' (a local 'rename-branch/' branch exists)"
+                break
+            fi
+        done
+
         # Get current branch name
         CURRENT_BRANCH=$(command git branch --show-current 2>/dev/null || true)
+
+        if [[ -z "$REFUSED" && "$CURRENT_BRANCH" =~ ^rename-branch/ ]]; then
+            REFUSED="current branch '$CURRENT_BRANCH'"
+        fi
+
+        if [[ -n "$REFUSED" ]]; then
+            echo "❌ ERROR: Cannot push: $REFUSED" >&2
+            echo "   Branches starting with 'rename-branch/' are placeholders." >&2
+            echo "" >&2
+            echo "   Suggestions:" >&2
+            echo "   • Rename the branch: git branch -m <new-name>" >&2
+            exit 1
+        fi
 
         if [[ -z "$CURRENT_BRANCH" ]]; then
             # Probably in detached HEAD state

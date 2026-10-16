@@ -227,7 +227,7 @@ alias kgsfs="kubectl get statefulset"
 alias kd="kubectl describe"
 alias kgl="kubectl logs -f"
 alias kc="kubectl create -f"
-alias pnr="kubectl get pod -A | grep -v Running"  # Usado para mostrar todos os pods com problemas.
+alias kpnr="kubectl get pod -A | grep -v Running"  # Usado para mostrar todos os pods com problemas.
 
 # terraform
 
@@ -236,3 +236,6 @@ alias tf="terraform"
 # nginx
 
 alias nx="nginx"
+
+# harlequin
+alias hl"harlequin"
