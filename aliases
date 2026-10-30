@@ -24,7 +24,7 @@ unalias ls 2> /dev/null
 ls() {
   if command -v eza &> /dev/null
   then
-    eza -h --color=always --group-directories-first $@
+    eza -h --icons=auto --color=always --group-directories-first $@
   else
     command ls -h --color=auto --group-directories-first $@
   fi
@@ -34,7 +34,7 @@ unalias la 2> /dev/null
 la() {
   if command -v eza &> /dev/null
   then
-    eza -ah --color=auto --group-directories-first $@
+    eza -ah --icons=auto --color=auto --group-directories-first $@
   else
     command ls -ah --color=auto --group-directories-first $@
   fi
@@ -44,13 +44,13 @@ unalias ll 2> /dev/null
 ll() {
   if command -v eza &> /dev/null
   then
-    eza -alh --color=auto --group-directories-first $@
+    eza -alh --icons=auto --color=auto --group-directories-first $@
   else
     command ls -alh --color=auto --group-directories-first $@
   fi
 }
 
-alias tree='eza -T -I "__pycache__|.venv|venv|.git"'
+alias tree='eza -T --icons=auto -I "__pycache__|.venv|venv|.git"'
 
 #alias ls='ls -h --color=auto --group-directories-first'
 #alias la='ls -ah --color=auto --group-directories-first'

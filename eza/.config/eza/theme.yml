@@ -115,13 +115,13 @@ broken_symlink: {foreground: "#FF5555"}
 broken_path_overlay: {foreground: "#6272A4"}
 
 filenames:
-  Dockerfile: {filename: {foreground: "#FFB86C"}}
-  docker-compose.yml: {filename: {foreground: "#FFB86C"}}
-  docker-compose-local.yml: {filename: {foreground: "#FFB86C"}}
-  docker-compose.yaml: {filename: {foreground: "#FFB86C"}}
-  docker-compose-local.yaml: {filename: {foreground: "#FFB86C"}}
-  Makefile: {filename: {foreground: "#F1FA8C"}}
-  makefile: {filename: {foreground: "#F1FA8C"}}
+  Dockerfile: {filename: {foreground: "#FFB86C"}, icon: {style: {foreground: "#FFB86C"}}}
+  docker-compose.yml: {filename: {foreground: "#FFB86C"}, icon: {style: {foreground: "#FFB86C"}}}
+  docker-compose-local.yml: {filename: {foreground: "#FFB86C"}, icon: {style: {foreground: "#FFB86C"}}}
+  docker-compose.yaml: {filename: {foreground: "#FFB86C"}, icon: {style: {foreground: "#FFB86C"}}}
+  docker-compose-local.yaml: {filename: {foreground: "#FFB86C"}, icon: {style: {foreground: "#FFB86C"}}}
+  Makefile: {filename: {foreground: "#F1FA8C"}, icon: {style: {foreground: "#F1FA8C"}}}
+  makefile: {filename: {foreground: "#F1FA8C"}, icon: {style: {foreground: "#F1FA8C"}}}
 
 extensions:
-  md: {filename: {foreground: "#F1FA8C"}}
+  md: {filename: {foreground: "#F1FA8C"}, icon: {style: {foreground: "#F1FA8C"}}}
